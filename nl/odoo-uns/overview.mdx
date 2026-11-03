@@ -31,6 +31,10 @@ De connector scheidt berichtenverkeer, productie en voorraad. Zo gebruikt iedere
 | Uitbreiding productievoorraad (`smc_mrp_stock_uns`) | Optioneel. Verbindt toegestaan materiaalverbruik uit werkelijke partijen met de componentmutaties van een productieorder. |
 | Integratiedienst en UNS | Een afzonderlijk ingerichte dienst haalt berichten op en levert die via de gedeelde datalaag af. De Odoo-uitbreidingen voeren die dienst niet zelf uit. |
 
+De uitbreidingen draaien in Odoo 19 en hebben geen aanvullende externe Python-bibliotheken nodig. De UNS-basis gebruikt Odoo `base`; de productie-uitbreiding gebruikt `smc_uns` en Odoo `mrp`. De optionele voorraaduitbreiding gebruikt `smc_uns` en Odoo `stock`. De optionele uitbreiding voor productievoorraad gebruikt `smc_mrp_uns`, `smc_stock_uns`, `smc_uns`, `mrp` en `stock`. De afzonderlijke integratiedienst heeft eigen systeemeisen.
+
+Sheet Metal Connect onderhoudt deze Odoo-uitbreidingen. De Odoo-implementatiepartner krijgt de broncode voor de afgesproken installatie en het onderhoud.
+
 ## Hoe lopen de gegevens?
 
 ```mermaid

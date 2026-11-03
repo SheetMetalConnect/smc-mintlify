@@ -57,11 +57,15 @@ flowchart TD
 
 Observation alone does not complete production or change stock. Automatic completion supports the full planned quantity, not partial or scrap completion. Missing lot information, backorders, Odoo warnings or conflicting timers can prevent it.
 
+When native operation completion is enabled, Odoo rejects it if the work center is blocked. The rejection leaves the operation and stock unchanged; inspect the reason in the inbox and feedback audit.
+
 For an unexpected result, see [troubleshooting](/odoo-uns/troubleshooting). A UNS User can inspect the message journals when the normal records do not explain the issue.
 
 ## Follow messages in Odoo
 
 The **UNS** app separates the outgoing snapshot, incoming request and feedback result. These screens help locate the handoff; the ordinary Odoo records remain the place to check production and stock.
+
+The lists show event time with seconds, event, recorded trigger, source, contract, context and outcome where available. Older messages can say **Not recorded** when the trigger was not captured. Open a record to follow accessible links to its current Odoo source. Snapshot references describe the saved message; current source details can change later and are shown separately.
 
 <Steps>
   <Step title="Find the outgoing snapshot">

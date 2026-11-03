@@ -60,6 +60,8 @@ De overzichten helpen om de verwerking te volgen:
 
 Zoek steeds de betreffende order of bewerking. Controleer daarnaast de tijdregistratie, productieorder of voorraadregistratie die bij de ingeschakelde functie hoort.
 
+De lijsten tonen het tijdstip met seconden, de gebeurtenis, vastgelegde aanleiding, bron, contract, context en uitkomst als die gegevens beschikbaar zijn. Bij oudere berichten staat **Niet vastgelegd** als de aanleiding niet is bewaard. Open een bericht om via beschikbare links de huidige bron in Odoo te bekijken. De referentie in de momentopname hoort bij het opgeslagen bericht; huidige brongegevens kunnen later veranderen en staan apart.
+
 <Frame caption="Illustratie met voorbeeldgegevens: uitgaande en inkomende berichten en het terugkoppelingslogboek.">
   <img src="/images/odoo-uns/message-views-nl.png" alt="Illustratie van uitgaande berichten, inkomende berichten en het terugkoppelingslogboek met statussen en referenties" />
 </Frame>
@@ -90,6 +92,8 @@ flowchart TD
 ```
 
 Vastgelegde voortgang is niet automatisch gereedgemelde productie. Een waargenomen aantal is niet automatisch een voorraadmutatie.
+
+Is automatische gereedmelding van een bewerking ingeschakeld, dan wijst Odoo die af zolang het werkcentrum geblokkeerd is. De bewerking en voorraad blijven daarbij ongewijzigd. De reden staat bij het inkomende bericht en in het terugkoppelingslogboek.
 
 Welke handelingen zijn toegestaan, staat bij de [instellingen](/nl/odoo-uns/settings).
 

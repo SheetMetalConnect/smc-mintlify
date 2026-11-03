@@ -24,6 +24,10 @@ The connector separates message handling from manufacturing and stock so each in
 | Manufacturing-stock extension (`smc_mrp_stock_uns`) | Optional. Connects authorized actual-lot material consumption to manufacturing component moves. |
 | Integration service and UNS | A separately configured service collects and delivers messages through the shared data layer. It is not run by the Odoo add-ons. |
 
+The add-ons run in Odoo 19 and do not require additional third-party Python libraries. The UNS core depends on Odoo `base`; the manufacturing extension depends on `smc_uns` and Odoo `mrp`. The optional stock extension depends on `smc_uns` and Odoo `stock`. The optional manufacturing-stock extension depends on `smc_mrp_uns`, `smc_stock_uns`, `smc_uns`, `mrp` and `stock`. The integration service has its own runtime requirements.
+
+Sheet Metal Connect maintains these Odoo add-ons. The Odoo implementation partner receives the source code for the agreed installation and maintenance work.
+
 ## How the pieces connect
 
 A Unified Namespace (UNS) is a shared data layer for connected systems. The Odoo add-on works with a configured external integration and delivery service; the add-on itself is not the transport.

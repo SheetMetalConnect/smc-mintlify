@@ -7,6 +7,12 @@ De calculatie begint in QuotationFactory. Controleer de overgenomen gegevens in 
 
 [English](/qf2oseon/workflow) · [Overzicht](/nl/qf2oseon/overview)
 
+<Frame caption="Illustratie met demogegevens: de statusbalk en portaalzichtbaarheid in een QF-project.">
+  <img src="/images/qf-project-status-nl.png" alt="Illustratieve QF-projectkop met statuslabels en portaalzichtbaarheid" />
+</Frame>
+
+De labels tonen mogelijke stappen; de afbeelding bewijst geen afronding of automatische statusfeedback.
+
 ## Kies de route
 
 Een klant kan een aanvraag starten in het portaal van QuotationFactory. Een medewerker kan ook een aanvraag die per e-mail binnenkomt als project invoeren. In beide gevallen vindt de calculatie en beoordeling plaats in QuotationFactory. Een zichtbaar project in het portaal betekent op zichzelf niet dat de klant een order heeft geplaatst of geaccepteerd.
@@ -25,6 +31,23 @@ De exportmomenten van de QF Edge Connector en de actieve routes hangen af van de
 De klantorderimport maakt een positie voor elk deel in de geëxporteerde stuklijst, met het totale aantal voor het project. Dit is een delenlijst: ga er niet van uit dat geneste samenstellingen of subsamenstellingen als structuur in Oseon worden opgebouwd. Vergelijk posities en aantallen met het project in QuotationFactory. De keuze van het werkplan hangt af van de bewerkingen en de inrichting.
 
 De artikelinterface verwerkt geschikte plaatdelen met een snijbewerking. Buizen volgen een aparte route als die is ingericht. Inkoop- en materiaalartikelen kunnen op de order voorkomen, maar een orderpositie betekent niet vanzelf dat ook een artikel in Oseon is aangemaakt. Controleer de beschikbaarheid van artikelen en materiaal in Oseon.
+
+## Welke gegevens komen in Oseon?
+
+| Bestemming | Gegevens uit het QF-project | Controle in Oseon |
+| --- | --- | --- |
+| Artikelstam, via de artikelinterface | Geschikte plaatdelen met snijbewerking: artikelnummer en omschrijving, tekeningnummer en revisie, gekozen materiaal, CAD-verwijzing en ingestelde werkplanstappen en documenten. | Controleer artikel, materiaal, tekening en de gekoppelde bewerkingen. Een bewerking zonder vertaaltabel kan ontbreken. |
+| Klantorder, via de orderimport | Project-ID en referentie, klant en adres, leveringsconditie en per geëxporteerd deel een positie met artikelnummer, aantal, stuksprijs, materiaal, gewenste datum en ingesteld werkplan. | Controleer de order en posities na import. Een positie bewijst niet dat het artikel is aangemaakt. |
+| Productieorder, indien ingeschakeld | Artikelnummer, projectaantal, klant en materiaal per geëxporteerd deel, met een productiewerkplan. | Controleer de geïmporteerde productieorders, datums en aantallen. |
+| Buisartikel, indien ingeschakeld | Buisgegevens via de bestandsimport van Oseon; CAD-bestanden volgen de ingerichte buisroute. | Controleer het buisartikel en de productiegegevens. |
+
+### Voor de export
+
+Controleer bij plaatdelen het artikelnummer en gekozen materiaal en zorg dat de benodigde bewerkingen aan Oseon zijn gekoppeld. De ingestelde validatie bepaalt of ontbrekend materiaal of een andere fout alleen wordt gemeld of dat het deel niet wordt verstuurd. CAD- en tekeningbestanden moeten in het project aanwezig zijn en door de ingerichte uitwisseling worden ondersteund. Documenten aan bewerkingen koppelen is optioneel. Werkplannen ontstaan alleen als die functie en de vertaaltabel zijn ingericht.
+
+Voor de klantorderimport zijn de projectidentiteit en een klantadres met straat, postcode, plaats en land nodig. Een afwijkend afleveradres kan mee als het aanwezig is. Leveringscondities, werkplankeuze en optionele documentverwerking hangen af van de inrichting. Controleer prijzen, aantallen en gewenste leverdatum in QF vóór export.
+
+Bij een bestaand plaatdeel kan de koppeling een wijziging sturen als QF de bijbehorende externe sleutel heeft. Die wijziging bevat minder velden dan een nieuw artikel: onder meer opmerkingen, tekeningnummer en revisie, klant, werkplan en documenten, maar geen materiaal of CAD-bestandsnaam. Een conflict bij aanmaken wordt overgeslagen. Controleer het bestaande artikel na een revisie; niet ieder gewijzigd veld wordt vanzelf bijgewerkt.
 
 ## Projectherkenning en voortgang
 
@@ -54,9 +77,11 @@ flowchart TD
  D --> E["Werk verder in Oseon"]
 ```
 
-1. Rond het project in QuotationFactory af en zet het op de afgesproken exportstatus.
-2. Open de order en artikelen in Oseon. Vergelijk aantallen, materiaal, tekeningen en werkplan met het project.
-3. Vul ontbrekende gegevens aan voordat de werkvoorbereiding verdergaat. Order en werkplan moeten aansluiten op het project.
+<Steps>
+  <Step title="Exporteer het project">Rond het project in QuotationFactory af en zet het op de afgesproken exportstatus.</Step>
+  <Step title="Controleer in Oseon">Open de order en artikelen. Vergelijk aantallen, materiaal, tekeningen en werkplan met het project.</Step>
+  <Step title="Maak de voorbereiding compleet">Vul ontbrekende gegevens aan voordat de werkvoorbereiding verdergaat.</Step>
+</Steps>
 
 Controleer de bestaande order in Oseon voordat een gewijzigd project opnieuw wordt geëxporteerd. Stel vast welke wijzigingen nodig zijn. Oseon bepaalt hoe de import een herhaalde order behandelt; een nieuwe export werkt de order niet noodzakelijk bij en voorkomt niet vanzelf dubbele orders.
 

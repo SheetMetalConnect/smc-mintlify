@@ -34,6 +34,7 @@
             "pages": [
               "qf2odoo/overview",
               "qf2odoo/workflow",
+              "qf2odoo/imported-data",
               "qf2odoo/settings",
               "qf2odoo/troubleshooting"
             ]
@@ -87,6 +88,7 @@
             "pages": [
               "nl/qf2odoo/overview",
               "nl/qf2odoo/workflow",
+              "nl/qf2odoo/imported-data",
               "nl/qf2odoo/settings",
               "nl/qf2odoo/troubleshooting"
             ]

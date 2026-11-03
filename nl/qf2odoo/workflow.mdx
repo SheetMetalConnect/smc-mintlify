@@ -28,6 +28,32 @@ flowchart TB
 
 Het facturatiebeleid bepaalt wanneer aantallen factureerbaar zijn. Bij **Bestelde hoeveelheden** kan dat al na orderbevestiging. Bij **Geleverde hoeveelheden** is een bevestigde levering nodig.
 
+## Waar begint de aanvraag?
+
+Een klant kan een aanvraag starten in het QuotationFactory-portaal. Een medewerker kan ook zelf een project opzetten en calculeren. Beide routes komen samen bij de ingestelde QF-export. De koppeling leest geen binnenkomende e-mail en maakt daar geen project van.
+
+### De klant gebruikt het portaal
+
+De klant maakt een aanvraag in het QF-portaal. Medewerkers beoordelen en calculeren het project in QuotationFactory en gebruiken de ingestelde exportwerkwijze. Na import komt de Odoo-referentie terug bij het project. Medewerkers controleren de conceptofferte in Odoo en verwerken het klantakkoord volgens het eigen verkoopproces voordat zij de order bevestigen.
+
+Het selectievakje voor zichtbaarheid bepaalt of de klant het project in QF kan zien. Dat staat los van de bronmarkering die aangeeft dat het project in het portaal is aangemaakt. Met de optionele Odoo-werkruimte en de standaard ingeschakelde bescherming zijn commerciële velden van portaaloffertes in concept of verzonden voor gewone gebruikers alleen-lezen. Verzending en werkvoorbereiding blijven bewerkbaar. Zichtbaarheid en bescherming zijn geen bewijs van klantakkoord.
+
+### Een aanvraag komt per e-mail binnen of ontstaat intern
+
+Een medewerker maakt en calculeert het project in QuotationFactory op basis van de aanvraag en tekeningen. Daarna volgt de ingestelde export. De koppeling leest de e-mail niet en maakt het project niet zelf aan. De conceptofferte in Odoo volgt dezelfde controle en bevestiging. Een project van een medewerker wordt niet automatisch een portaalproject doordat het zichtbaar wordt gemaakt voor de klant.
+
+### Een onderdeel of samenstelling voorbereiden
+
+Een project kan bestaan uit een enkel maakdeel of uit een samenstelling met meerdere niveaus. Bij import maakt QF2Odoo revisiespecifieke Odoo-artikelen, stuklijsten en bewerkingen aan, samen met de conceptofferte. Medewerkers kunnen die gegevens vóór orderbevestiging bekijken. De import zelf maakt geen productie- of voorraadbehoefte aan.
+
+De beschreven export importeert een project met een offerte. Een aparte import van alleen artikelen of stuklijsten, los van een offerte, is niet beschreven als ondersteunde werkwijze. Na bevestiging gelden de normale inkoop- en productieregels van Odoo.
+
+### Het project in beide systemen volgen
+
+QuotationFactory beheert het project, de calculatie, de zichtbaarheid voor de klant en de projectstatussen. Odoo beheert klanten en catalogusartikelen, orderbevestiging, productie en levering. In QF wordt ingesteld bij welke projectstatussen een export plaatsvindt; QF2Odoo filtert imports niet op status. Na een geslaagde import gaat de Odoo-referentie terug naar QF.
+
+Als statusterugmelding is ingeschakeld, stuurt Odoo de ingestelde productie- en leverstatussen terug naar QF. Statussen zoals verpakken kunnen in QF worden bijgehouden; de koppeling meldt geen verpakkingsstatus automatisch terug. Het portaal toont het QF-project volgens de zichtbaarheidsinstelling, geen live Odoo-scherm. Controleer aantallen en klantakkoord in het systeem waar ze worden vastgelegd.
+
 ## Calculatie en offerte
 
 <Steps>

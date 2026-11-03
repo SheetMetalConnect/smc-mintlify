@@ -1,13 +1,13 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mintlify Starter Kit",
+  "name": "Sheet Metal Connect",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#247EAA",
+    "light": "#47B5E2",
+    "dark": "#6658A3"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "https://sheetmetalconnect.com/favicon.svg",
   "navigation": {
     "global": {
       "anchors": [
@@ -33,48 +33,86 @@
               "index",
               "quickstart"
             ]
+          },
+          {
+            "group": "QF2Odoo",
+            "pages": []
+          },
+          {
+            "group": "Odoo UNS Connector",
+            "pages": []
           }
         ]
       },
       {
-        "language": "nl"
+        "language": "nl",
+        "groups": [
+          {
+            "group": "Aan de slag",
+            "pages": []
+          },
+          {
+            "group": "QF2Odoo",
+            "pages": []
+          },
+          {
+            "group": "Odoo UNS Connector",
+            "pages": []
+          }
+        ]
       }
     ]
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "https://sheetmetalconnect.com/brand/modern/modern-logo.svg",
+    "dark": "https://sheetmetalconnect.com/brand/modern/modern-logo-white.svg",
+    "href": "/index"
   },
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:support@mintlify.com"
+        "href": "https://sheetmetalconnect.com",
+        "label": "Website"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://app.mintlify.com"
+      "label": "Explore integrations",
+      "href": "https://sheetmetalconnect.com/integraties"
     }
   },
   "contextual": {
     "options": [
       "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
+      "view"
     ]
   },
   "footer": {
-    "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
-    }
+    "links": [
+      {
+        "header": "Sheet Metal Connect",
+        "items": [
+          {
+            "label": "QF2Odoo",
+            "href": "https://sheetmetalconnect.com/integratie-qf2odoo"
+          },
+          {
+            "label": "Odoo UNS Connector",
+            "href": "https://sheetmetalconnect.com/integratie-odoo-uns-connector"
+          },
+          {
+            "label": "All integrations",
+            "href": "https://sheetmetalconnect.com/integraties"
+          }
+        ]
+      }
+    ]
+  },
+  "description": "Practical guides to QF2Odoo and the Odoo UNS Connector for metalworking teams. Understand the workflows, data ownership and configured capabilities.",
+  "search": {
+    "prompt": "Search the user guides"
+  },
+  "seo": {
+    "indexing": "navigable"
   }
 }

@@ -24,13 +24,13 @@ QF2Odoo imports a QF project into an Odoo quotation and its related engineering 
 The connector creates engineering snapshots for manufactured work. The resulting products, bills of materials and operations are native Odoo records; the connector also adds QF source information and instructions. In the optional workspace, **QF BOMs** on the quotation opens the linked bills of materials. Without it, find them in standard Odoo Manufacturing.
 
 <Tabs>
-  <Tab title="Single manufactured part">
+  <Tab title="Single part">
     A manufactured part becomes a revision-specific Odoo product. A bill of materials is created when the source supplies components or operations; it contains the applicable components and operations. The material article links to an existing Odoo catalogue product.
   </Tab>
-  <Tab title="Assembly and multilevel BOM">
+  <Tab title="Assemblies">
     An assembly becomes a revision-specific product. Its native Odoo bill of materials contains its components; nested assemblies retain their own levels and applicable operations. A grouping-only wrapper is unpacked without a product of its own. 
   </Tab>
-  <Tab title="Purchased item">
+  <Tab title="Purchased">
     An item with purchasing steps only links to an existing Odoo article. The connector does not create a manufacturing bill of materials for it or replace the catalogue article's routes.
   </Tab>
 </Tabs>

@@ -25,10 +25,10 @@ The connector creates engineering snapshots for manufactured work. The resulting
 
 <Tabs>
   <Tab title="Single manufactured part">
-    A manufactured part becomes a revision-specific Odoo product with its bill of materials, material components and applicable operations. The material article links to an existing Odoo catalogue product.
+    A manufactured part becomes a revision-specific Odoo product. A bill of materials is created when the source supplies components or operations; it contains the applicable components and operations. The material article links to an existing Odoo catalogue product.
   </Tab>
   <Tab title="Assembly and multilevel BOM">
-    An assembly becomes a revision-specific product. Its native Odoo bill of materials contains the assembly components; nested assemblies retain their own levels and applicable operations.
+    A non-wrapper assembly becomes a revision-specific product. Its native Odoo bill of materials contains the assembly components; nested assemblies retain their own levels and applicable operations. Artificial wrapper assemblies are unwrapped.
   </Tab>
   <Tab title="Purchased item">
     An item with purchasing steps only links to an existing Odoo article. The connector does not create a manufacturing bill of materials for it or replace the catalogue article's routes.
@@ -43,9 +43,11 @@ The connector creates engineering snapshots for manufactured work. The resulting
 | Supplied project, product and operation comments | QF production instructions on relevant production and work orders | Connector-added instructions. Production and work orders arise through Odoo's normal rules after confirmation. |
 | Explicit outsourced operation and supplier | Subcontracting bill of materials and supplier | Native Odoo subcontracting structure, when the QF resource explicitly identifies a supplier. |
 
+For the standard Odoo structure, see [multilevel bills of materials](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/advanced_configuration/sub_assemblies.html) and [manufacturing product configuration](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/basic_setup/configure_manufacturing_product.html).
+
 ## What must exist and when?
 
-The required integration add-on and matching connector are needed for every import. The workspace is optional: it adds navigation and views, not the underlying native quotation and manufacturing records.
+The required integration add-on and matching connector are needed for every import. The project needs a customer and at least one top-level quotation line. The workspace is optional: it adds navigation and views, not the underlying native quotation and manufacturing records.
 
 | When | Requirement |
 | --- | --- |
@@ -53,6 +55,8 @@ The required integration add-on and matching connector are needed for every impo
 | When applicable to the export | In-house QF resource codes must match Odoo work centres; outsourced resources need matching suppliers. A supplied currency must be active and resolve to an appropriate Odoo pricelist, or to the company-currency default where supported. |
 | When synchronisation is enabled | QF requests the configured customer, supplier or article data from Odoo. These exchanges are optional and require the corresponding eligible master data. |
 | Confirmation and production | The import must be complete. Staff confirm the quotation in Odoo after their commercial checks. Odoo's configured routes, procurement and manufacturing rules determine the resulting work. |
+
+For the native replenishment process and the conditions on manufacturing and purchased products, see [Odoo’s replenish-on-order guide](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/inventory/warehouses_storage/replenishment/mto.html).
 
 A project import creates the draft and engineering data, but no manufacturing or stock demand. A standalone product-only or BOM-only import is not a documented mode.
 

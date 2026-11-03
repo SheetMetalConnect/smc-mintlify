@@ -14,9 +14,10 @@ flowchart TB
   QF["QuotationFactory"] -->|"Project export"| Edge["Official QF Edge Connector"]
   Edge -->|"JSON and ZIP"| Worker["QF2UNS worker"]
   Worker -->|"Original data and attachments"| Store["File storage"]
-  Worker -->|"Project entities and manifest"| MQTT["MQTT"]
+  Worker -->|"Project data and revision overview"| MQTT["MQTT"]
   MQTT -->|"Configured ingress"| UNS["Unified Namespace"]
   UNS --> Consumers["Connected applications"]
+  Consumers -.->|"Optional status message"| Worker
   Worker -->|"Confirmation and optional status files"| Edge
   Edge -->|"File exchange"| QF
 ```

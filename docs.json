@@ -81,16 +81,17 @@
         "footer": {
           "links": [
             {
-              "header": "Legal",
+              "header": "© 2026 Sheet Metal Connect e.U.",
               "items": [
-                {
-                  "label": "© 2026 Sheet Metal Connect e.U.",
-                  "href": "/disclaimer"
-                },
                 {
                   "label": "Disclaimer",
                   "href": "/disclaimer"
-                },
+                }
+              ]
+            },
+            {
+              "header": "Legal",
+              "items": [
                 {
                   "label": "Imprint",
                   "href": "https://sheetmetalconnect.com/imprint"
@@ -165,16 +166,17 @@
         "footer": {
           "links": [
             {
-              "header": "Juridisch",
+              "header": "© 2026 Sheet Metal Connect e.U.",
               "items": [
-                {
-                  "label": "© 2026 Sheet Metal Connect e.U.",
-                  "href": "/nl/disclaimer"
-                },
                 {
                   "label": "Disclaimer",
                   "href": "/nl/disclaimer"
-                },
+                }
+              ]
+            },
+            {
+              "header": "Juridisch",
+              "items": [
                 {
                   "label": "Colofon",
                   "href": "https://sheetmetalconnect.com/imprint?lang=nl"

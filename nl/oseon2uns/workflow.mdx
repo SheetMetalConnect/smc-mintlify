@@ -1,0 +1,39 @@
+---
+title: "Werken met Oseon2UNS"
+sidebarTitle: "Werkwijze"
+description: "Gebruik Oseon-gegevens in gekoppelde toepassingen en controleer terugmeldingen."
+---
+Oseon2UNS brengt de afgesproken brongegevens naar de datahub. Wat iemand ziet en kan doen, hangt af van de toepassing en de bijbehorende rechten.
+
+[English](/oseon2uns/workflow) · [Overzicht](/nl/oseon2uns/overview)
+
+## Volg productiegegevens
+
+```mermaid
+flowchart TD
+ A["Werk staat in Oseon"] --> B["Koppeling leest ingestelde bronnen"]
+ B --> C["Informatie komt op datahub"]
+ C --> D["Toepassing toont gegevens"]
+ D --> E["Vergelijk zo nodig met bron"]
+```
+
+Open de gekoppelde toepassing en zoek de order of bewerking met de getoonde referentie. Beschikbare velden en verversing hangen af van de toepassing. Vergelijk een onverwachte waarde met Oseon en het bronrecord.
+
+## Meld werk terug als dat is ingericht
+
+```mermaid
+flowchart TD
+ A["Gebruiker registreert werk in toepassing"] --> B["Toepassing stuurt ingesteld verzoek"]
+ B --> C["Koppeling ontvangt verzoek"]
+ C --> D["Oseon verwerkt actie"]
+ D --> E["Resultaat terug naar gekoppeld systeem"]
+ E --> F["Controleer toestand in Oseon"]
+```
+
+Als de toepassing en terugroute voor de actie zijn ingericht, registreert de gebruiker het werk met de gewone bediening van die toepassing. Afhankelijk van de inrichting gaat het om een bewerking starten, een aantal melden of een bewerking afronden. De toepassing bepaalt de bediening en rechten.
+
+Een ontvangstmelding betekent dat het verzoek bij de koppeling is aangekomen. Dat bewijst niet dat de actie in Oseon is geslaagd. Controleer het verwerkingsresultaat en de toestand in Oseon. Is het resultaat onzeker, stel dan eerst vast wat werkelijk is gebeurd voordat de actie opnieuw wordt aangeboden.
+
+## Als informatie ontbreekt
+
+Controleer of de order of bewerking in Oseon bestaat en of de toepassing het juiste record toont. De inrichting bepaalt welke brongegevens beschikbaar zijn. Ontbreekt een terugmeldresultaat of is het onduidelijk, geef support de order- en bewerkingsreferentie en controleer Oseon voordat de actie wordt herhaald. Een toepassing kan een deel van de brongegevens tonen.

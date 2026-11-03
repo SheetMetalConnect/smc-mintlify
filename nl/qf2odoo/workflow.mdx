@@ -68,9 +68,11 @@ Een project kan bestaan uit een enkel maakdeel of uit een samenstelling met meer
 
 De beschreven export importeert een project met een offerte. Een aparte import van alleen artikelen of stuklijsten, los van een offerte, is niet beschreven als ondersteunde werkwijze. Na bevestiging gelden de normale inkoop- en productieregels van Odoo.
 
-<Frame caption="Illustratie van QF-projectstatussen en zichtbaarheid voor de klant. De statusbalk bewijst geen afronding of akkoord. QF2Odoo kan Producing, Produced en Delivered terugmelden; Delivered kan een deellevering zijn. Packed wordt niet automatisch terug­gemeld.">
+<Frame caption="Illustratieve QF-projectkop met demogegevens.">
   <img src="/images/qf-project-status-nl.png" alt="Illustratie van projectstatussen en het selectievakje voor klantzichtbaarheid in QuotationFactory" />
 </Frame>
+
+De ingestelde terugmelding omvat produceren, geproduceerd en afgeleverd, niet verpakt.
 
 ### Het project in beide systemen volgen
 
@@ -162,11 +164,11 @@ Bij ingeschakelde statusterugmelding gelden standaard deze koppelingen:
 
 | Gebeurtenis in Odoo | Status in QuotationFactory |
 | --- | --- |
-| Productie is gestart | Producing |
-| Alle niet-geannuleerde productieorders zijn gereed | Produced |
-| Een uitgaande levering is gevalideerd | Delivered |
+| Productie is gestart | Produceren (Producing) |
+| Alle niet-geannuleerde productieorders zijn gereed | Geproduceerd (Produced) |
+| Een uitgaande levering is gevalideerd | Afgeleverd (Delivered) |
 
-**Delivered** kan al volgen op een deellevering. Controleer de werkelijke geleverde aantallen in Odoo.
+**Afgeleverd** kan al volgen op een deellevering. Controleer de werkelijke geleverde aantallen in Odoo.
 
 Een status kan teruggaan als de voortgang in Odoo verandert. Facturatie en betalingen blijven afzonderlijke processen.
 
@@ -180,5 +182,6 @@ Een status kan teruggaan als de voortgang in Odoo verandert. Facturatie en betal
 | Gewijzigde inhoud onder een bestaande exportreferentie | De conflicterende export wordt geweigerd. |
 
 <Warning>Een nieuw concept verandert de eerdere bevestigde order of productievraag niet. Controleer het actuele concept en bevestig het via het normale Odoo-proces.</Warning>
+
 
 Ontbreekt de verwachte revisie? Zie [problemen oplossen](/nl/qf2odoo/troubleshooting).

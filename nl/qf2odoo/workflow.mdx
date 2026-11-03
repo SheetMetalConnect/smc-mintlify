@@ -12,6 +12,13 @@ QF2Odoo draagt de calculatie uit QuotationFactory over aan Odoo. Daarna loopt de
 
 [English](/qf2odoo/workflow)
 
+Kies de situatie die bij de aanvraag past:
+
+- [Aanvraag via het klantportaal](#de-klant-gebruikt-het-portaal)
+- [Aanvraag per e-mail of intern](#een-aanvraag-komt-per-e-mail-binnen-of-ontstaat-intern)
+- [Een onderdeel of samenstelling voorbereiden](#een-onderdeel-of-samenstelling-voorbereiden)
+- [Een offerte wijzigen](#een-gewijzigde-export-verwerken)
+
 ## Het hele proces
 
 ```mermaid
@@ -47,6 +54,10 @@ Een medewerker maakt en calculeert het project in QuotationFactory op basis van 
 Een project kan bestaan uit een enkel maakdeel of uit een samenstelling met meerdere niveaus. Bij import maakt QF2Odoo revisiespecifieke Odoo-artikelen, stuklijsten en bewerkingen aan, samen met de conceptofferte. Medewerkers kunnen die gegevens vóór orderbevestiging bekijken. De import zelf maakt geen productie- of voorraadbehoefte aan.
 
 De beschreven export importeert een project met een offerte. Een aparte import van alleen artikelen of stuklijsten, los van een offerte, is niet beschreven als ondersteunde werkwijze. Na bevestiging gelden de normale inkoop- en productieregels van Odoo.
+
+<Frame caption="Illustratie van QF-projectstatussen en zichtbaarheid voor de klant. De statusbalk bewijst geen afronding of akkoord. QF2Odoo kan Producing, Produced en Delivered terugmelden; Delivered kan een deellevering zijn. Packed wordt niet automatisch terug­gemeld.">
+  <img src="/images/qf-project-status-nl.png" alt="Illustratie van projectstatussen en het selectievakje voor klantzichtbaarheid in QuotationFactory" />
+</Frame>
 
 ### Het project in beide systemen volgen
 

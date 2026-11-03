@@ -46,6 +46,28 @@
               "odoo-uns/settings",
               "odoo-uns/troubleshooting"
             ]
+          },
+          {
+            "group": "QF2Oseon",
+            "pages": [
+              "qf2oseon/overview",
+              "qf2oseon/workflow"
+            ]
+          },
+          {
+            "group": "QF2UNS",
+            "pages": [
+              "qf2uns/overview",
+              "qf2uns/workflow",
+              "qf2uns/troubleshooting"
+            ]
+          },
+          {
+            "group": "Oseon2UNS",
+            "pages": [
+              "oseon2uns/overview",
+              "oseon2uns/workflow"
+            ]
           }
         ],
         "default": true
@@ -77,6 +99,28 @@
               "nl/odoo-uns/settings",
               "nl/odoo-uns/troubleshooting"
             ]
+          },
+          {
+            "group": "QF2Oseon",
+            "pages": [
+              "nl/qf2oseon/overview",
+              "nl/qf2oseon/workflow"
+            ]
+          },
+          {
+            "group": "QF2UNS",
+            "pages": [
+              "nl/qf2uns/overview",
+              "nl/qf2uns/workflow",
+              "nl/qf2uns/troubleshooting"
+            ]
+          },
+          {
+            "group": "Oseon2UNS",
+            "pages": [
+              "nl/oseon2uns/overview",
+              "nl/oseon2uns/workflow"
+            ]
           }
         ]
       }
@@ -101,7 +145,7 @@
       "view"
     ]
   },
-  "description": "Practical guides to QF2Odoo and the Odoo UNS Connector for metalworking teams. Understand the workflows, data ownership and configured capabilities.",
+  "description": "Practical guides to Sheet Metal Connect integrations for quotation, production systems and the Unified Namespace.",
   "seo": {
     "indexing": "navigable",
     "metatags": {

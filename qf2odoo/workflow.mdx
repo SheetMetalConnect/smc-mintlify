@@ -12,6 +12,13 @@ QF2Odoo creates a draft in Odoo from your exported QuotationFactory project. Fol
 
 [Nederlands](/nl/qf2odoo/workflow)
 
+Start with the situation that matches the request:
+
+- [Customer portal request](#a-customer-uses-the-portal)
+- [Email or internal request](#a-request-arrives-by-email-or-is-started-internally)
+- [Prepare a part or assembly before an order](#prepare-a-part-or-assembly-before-an-order)
+- [Revise an existing quotation](#revisions-and-feedback)
+
 ```mermaid
 flowchart TB
   Q["Export QF project"] --> D["Review Odoo draft"]
@@ -42,6 +49,10 @@ An employee creates and calculates the project in QuotationFactory using the req
 A project can contain an individual manufactured part or an assembly with several levels. On import, QF2Odoo creates revision-specific Odoo products, bills of materials and operations alongside the draft quotation. Staff can inspect those engineering records before confirming the order. Import alone creates no manufacturing or stock demand.
 
 The documented export is a project-to-quotation import. A separate product-only or bill-of-materials-only import, independent of a quotation, is not described as a supported mode. Normal Odoo procurement and manufacturing rules apply after confirmation.
+
+<Frame caption="Illustration of QF project stages and customer visibility. The stage bar does not prove completion or acceptance. QF2Odoo can report Producing, Produced and Delivered; Delivered can be partial. It does not automatically report Packed.">
+  <img src="/images/qf-project-status-en.png" alt="Illustration of QuotationFactory project stage labels and customer visibility checkbox" />
+</Frame>
 
 ### Follow the project in both systems
 

@@ -47,12 +47,12 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-  F["Feedback arrives"] --> A{"Source authorized?"}
+  F["Feedback arrives"] --> A{"Source and requested action allowed?"}
   A -->|No| R["Rejected with reason"]
-  A -->|Yes| O["Observation recorded"]
-  O --> P{"Requested action enabled and Odoo checks pass?"}
-  P -->|Yes| N["Time, completion or stock booking"]
-  P -->|No| C["Check configured action and recorded reason"]
+  A -->|Yes| P{"Odoo checks pass?"}
+  P -->|No| R
+  P -->|Yes, observation| O["Observation recorded"]
+  P -->|Yes, enabled action| N["Time, completion or stock booking"]
 ```
 
 Observation alone does not complete production or change stock. Automatic completion supports the full planned quantity, not partial or scrap completion. Missing lot information, backorders, Odoo warnings or conflicting timers can prevent it.

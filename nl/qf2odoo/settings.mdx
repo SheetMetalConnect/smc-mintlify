@@ -31,7 +31,9 @@ De offerte-import is de basis van QF2Odoo. De werkruimte, uitwisseling van stamg
 flowchart LR
     Q["QF2Odoo: project importeren"] --> C["Odoo: offerte controleren en bevestigen"]
     C --> P["Odoo: productie en levering"]
-    P --> F["Odoo: facturatie en betaling"]
+    C --> F["Odoo: facturatie volgens facturatiebeleid"]
+    P --> F
+    F --> B["Odoo: betaling"]
     W["Optionele QF-werkruimte: projecten volgen"] --- Q
     R["Optionele uitwisseling: stamgegevens en statussen"] --- Q
 ```
@@ -63,9 +65,5 @@ Controleer de gekozen prijsbron bij prijsverschillen tussen QF en Odoo.
 Plaatprijzen en staffels kunnen in Odoo per vierkante meter zijn vastgelegd. Met expliciete plaatafmetingen kan QF2Odoo die omrekenen naar prijzen per plaat voor QF.
 
 De stamgegevens in Odoo blijven daarbij ongewijzigd.
-
-## Optionele controle bij levering
-
-Sommige installaties hebben een extra controle vóór het afronden van een levering. De beheerder richt deze optie in. Het is geen standaardstap voor iedere gebruiker.
 
 Bij een ontbrekend of onverwacht resultaat helpt de pagina [problemen oplossen](/nl/qf2odoo/troubleshooting).

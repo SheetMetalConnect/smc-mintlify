@@ -33,10 +33,10 @@ flowchart LR
     Open the quotation using the returned reference. If the optional workspace is installed, open **Sales → Orders → QF Projects**. The default **Current QF Projects** filter can hide older or incomplete imports; remove it if needed. The result is a normal Odoo quotation linked to its source.
   </Step>
   <Step title="Review the imported work">
-    Check customer, quantities, prices, terms and attachments against the source. Open **QF BOMs** to inspect the linked native bills of materials and operations. The **QuotationFactory** tab shows source information when the workspace is installed. If something is missing, check the [troubleshooting guide](/qf2odoo/troubleshooting) before confirming.
+    Check customer, quantities, prices, terms and attachments against the source. With the optional workspace installed, open **QF BOMs** to inspect the linked Odoo bills of materials and operations. Without it, find the bills of materials through standard Odoo Manufacturing. The **QuotationFactory** tab shows source information when the workspace is installed. If something is missing, check the [troubleshooting guide](/qf2odoo/troubleshooting) before confirming.
   </Step>
   <Step title="Confirm the order">
-    After your normal commercial checks, click **Confirm** on the Odoo quotation. Its state changes to a sales order and Odoo follows its configured procurement and manufacturing rules. A QF **Ordered** status alone does not do this. An incomplete import blocks confirmation.
+    After customer acceptance and your normal commercial checks, according to your company process, click **Confirm** on the Odoo quotation. Its state changes to a sales order and Odoo follows its configured procurement and manufacturing rules. A QF **Ordered** status alone does not do this. An incomplete import blocks confirmation.
   </Step>
   <Step title="Follow production and delivery">
     Open the linked manufacturing orders and work orders in Odoo. Use **Production x/y** on a QF-linked order when the optional workspace is installed. Complete production through the normal Odoo process, then open the delivery, check quantities and validate it. A partial delivery records only the quantities delivered.
@@ -66,11 +66,13 @@ Without that workspace, the core add-on can still show **QF Quotation**, **QF So
 
 ```mermaid
 flowchart TD
-  E["Export a project"] --> C{"Source content changed?"}
-  C -->|Yes| R["Linked draft revision"]
+  E["Export a project"] --> F{"First import?"}
+  F -->|Yes| D["Create draft or adopt a uniquely matching draft or sent quotation"]
+  F -->|No| C{"Source content changed?"}
+  C -->|Yes| R["Create linked draft revision"]
   C -->|No, verified replay| A["Reuse accepted result"]
-  R --> V["Review before confirmation"]
-  A --> V
+  D --> V["Review quotation"]
+  R --> V
 ```
 
 Confirmed orders are protected. An initial import can adopt a uniquely matching draft or sent quotation. The commercial protection setting can make draft and sent portal-origin commercial fields read-only for ordinary users; revise those at the QF source or through authorized administration. Shipping and work preparation remain editable. Protection is not evidence of customer acceptance.

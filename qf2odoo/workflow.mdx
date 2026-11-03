@@ -55,7 +55,9 @@ The QF project visibility checkbox controls whether the project is visible to th
   <Step title="Staff: create and calculate">Use the request and drawings to create and calculate a project in QuotationFactory.</Step>
   <Step title="Staff: export">Use the configured QF export process. The connector does not read email or create a project from it.</Step>
   <Step title="Staff: review in Odoo">Open the resulting draft using the returned reference. Review it and handle acceptance before confirming it.</Step>
-</Steps> A project made by staff is not automatically a portal-origin project merely because it is made visible to the customer.
+</Steps>
+
+A project made by staff is not automatically a portal-origin project merely because it is made visible to the customer.
 
 ### Prepare a part or assembly before an order
 
@@ -134,7 +136,9 @@ flowchart TD
 | Verified identical replay | The earlier accepted result is reused; no new revision is created. |
 | Changed content under an existing export reference | The conflicting export is refused. |
 
-<Warning>A new draft does not change the earlier confirmed order or its production demand. Review the current draft and handle confirmation through the normal Odoo process.</Warning> The commercial protection setting can make draft and sent portal-origin commercial fields read-only for ordinary users; revise those at the QF source or through authorized administration. Shipping and work preparation remain editable. Protection is not evidence of customer acceptance.
+<Warning>A new draft does not change the earlier confirmed order or its production demand. Review the current draft and handle confirmation through the normal Odoo process.</Warning>
+
+The commercial protection setting can make draft and sent portal-origin commercial fields read-only for ordinary users; revise those at the QF source or through authorized administration. Shipping and work preparation remain editable. Protection is not evidence of customer acceptance.
 
 If status feedback is enabled, the default mappings report **Producing** when manufacturing is underway, **Produced** when all non-cancelled manufacturing orders are done, and **Delivered** after any validated outgoing delivery. Delivered can mean a partial delivery. Status can also move backward as Odoo changes.
 

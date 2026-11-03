@@ -1,0 +1,36 @@
+---
+title: "QF2Oseon: van calculatie naar productie"
+sidebarTitle: "Overzicht"
+description: "Verbind QuotationFactory met TRUMPF Oseon en TruTops Boost."
+---
+QF2Oseon verbindt QuotationFactory met TRUMPF Oseon en TruTops Boost. Projectgegevens gaan naar de werkvoorbereiding en het resultaat van een kantcontrole komt terug bij de calculatie.
+
+[English](/qf2oseon/overview)
+
+## Hoe de koppeling werkt
+
+De officiële Edge Connector van QuotationFactory wisselt bestanden uit met twee integratiediensten. De orderkoppeling brengt projectgegevens naar Oseon. De aparte Boost-koppeling vraagt kantberekeningen aan en geeft resultaten terug aan QuotationFactory.
+
+```mermaid
+flowchart TD
+ Q["QuotationFactory"] --> E["Officiële QF Edge Connector"]
+ E --> I["Orderkoppeling"]
+ I --> O["Oseon: artikelen en orders"]
+ O -->|"Ingestelde orderstatus"| I
+ I -->|"Status terug"| E
+ E --> B["Kantcontrole"]
+ B --> T["TruTops Boost"]
+ T --> B
+ B --> E
+ E --> Q
+```
+
+Voor artikelen gebruikt de koppeling de TRUMPF-interface; klantorders gaan via de importinterface van Oseon. Voor de kantcontrole is een ingerichte Boost-omgeving nodig met de juiste machines en gereedschappen. Welke routes beschikbaar zijn, hangt af van de inrichting.
+
+## De rol van elk systeem
+
+In QuotationFactory staan de calculatie en het project. Oseon beheert de overgenomen productiegegevens en het vervolg van het werk. Boost berekent een kantoplossing met de ingestelde machine en gereedschappen. De koppeling draagt gegevens over en vertaalt die; controle in de toepassingen blijft nodig.
+
+De orderroute kan artikelen, werkplannen en klantorders aanmaken. Tekeningen en andere bijlagen gaan mee volgens de ingerichte uitwisseling. Een vertaaltabel koppelt bewerkingen uit QuotationFactory aan bestaande werkplekken en bewerkingen in Oseon.
+
+[Volg het proces](/nl/qf2oseon/workflow) · [QF2Oseon op de website](https://sheetmetalconnect.com/integratie-qf2oseon)

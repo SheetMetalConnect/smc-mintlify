@@ -1,14 +1,14 @@
 ---
 title: "Handleidingen voor calculatie en productie"
 sidebarTitle: "Overzicht"
-description: "Lees hoe QF2Odoo en de Odoo UNS Connector gegevens uitwisselen. Vind uitleg over dagelijks gebruik, instellingen en veelvoorkomende vragen."
+description: "Lees hoe koppelingen voor QuotationFactory, Odoo, Oseon en de Unified Namespace gegevens uitwisselen in het dagelijks werk."
 keywords:
   - "Sheet Metal Connect"
   - "integratie"
   - "handleiding"
 ---
 
-QF2Odoo brengt calculaties naar Odoo. De Odoo UNS Connector verbindt productieorders met de werkvloer. Deze handleidingen beschrijven wat de koppelingen doen en hoe de uitwisseling werkt.
+Sheet Metal Connect koppelt calculatie- en productiesystemen rechtstreeks of via een gedeelde datalaag. Deze handleidingen beschrijven wat de koppelingen doen en hoe de uitwisseling werkt.
 
 [English](/index)
 
@@ -19,24 +19,20 @@ QF2Odoo brengt calculaties naar Odoo. De Odoo UNS Connector verbindt productieor
   <Card title="Odoo UNS Connector" icon="industry" href="/nl/odoo-uns/overview">
     Productieorders naar aangesloten systemen. Voortgang, tijd en andere terugmeldingen naar Odoo, volgens de ingestelde bevoegdheden.
   </Card>
+  <Card title="QF2Oseon" icon="industry" href="/nl/qf2oseon/overview">
+    Controleer de maakbaarheid van kantdelen en geef QuotationFactory-exporten rechtstreeks door aan Oseon en Boost.
+  </Card>
+  <Card title="QF2UNS" icon="diagram-project" href="/nl/qf2uns/overview">
+    Maak QuotationFactory-exporten en bijlagen via de datahub beschikbaar voor aangesloten systemen.
+  </Card>
+  <Card title="Oseon2UNS" icon="diagram-project" href="/nl/oseon2uns/overview">
+    Breng Oseon-gegevens naar de datahub en gebruik terugschrijven waar dit is ingericht en ingeschakeld.
+  </Card>
 </Columns>
 
-## Waar beginnen?
+## Rechtstreeks of via de datahub
 
-| Vraag | Lees verder |
-| --- | --- |
-| Hoe een calculatie een order wordt | [Dagelijks gebruik van QF2Odoo](/nl/qf2odoo/workflow) |
-| Wat de werkvloer in Odoo mag terugmelden | [Instellingen van de Odoo UNS Connector](/nl/odoo-uns/settings) |
-| Wat nodig is voor het eerste gebruik | [Een eerste uitwisseling controleren](/nl/quickstart) |
-| Waarom gegevens ontbreken | [Problemen met QF2Odoo](/nl/qf2odoo/troubleshooting) of de [Odoo UNS Connector](/nl/odoo-uns/troubleshooting) |
-
-## Welk systeem doet wat?
-
-QuotationFactory beheert het calculatieproject. Odoo verzorgt de orderbevestiging, productie en administratie.
-
-Een **Unified Namespace (UNS)** is een gedeelde datalaag. Aangesloten productiesystemen wisselen daar hun informatie uit.
-
-QF2Odoo en de Odoo UNS Connector hebben elk een eigen functie. Met alleen QF2Odoo zijn machines nog niet aangesloten. Ook terugmelding vanaf de werkvloer vraagt een afzonderlijke inrichting.
+QF2Odoo en QF2Oseon verbinden QuotationFactory rechtstreeks met respectievelijk Odoo en Oseon. De UNS-koppelingen brengen gegevens naar een gedeelde datalaag; voor verwerking is een ingerichte ontvangende applicatie nodig. QF2UNS en Oseon2UNS vormen samen niet vanzelf een kant-en-klare route van QuotationFactory naar Oseon.
 
 <Note>
   De beschikbare schermen en functies hangen af van de geïnstalleerde versie en inrichting. Optionele functies staan in deze handleidingen afzonderlijk beschreven.

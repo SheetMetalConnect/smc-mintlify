@@ -1,37 +1,33 @@
 ---
 title: "Get started with your integration"
 sidebarTitle: "First use"
-description: "Follow an example from its source to the Odoo result, and find the guide for the next step."
+description: "Follow an example from its source to the receiving system, and find the guide for the next step."
 keywords:
   - "Sheet Metal Connect"
   - "Odoo 19"
   - "first use"
 ---
 
-Start with one example your team can recognize. Find it in the source system, follow it into Odoo and check the result in the normal business record.
+Start with one example your team can recognize. Find it in the source system, follow the configured exchange and check the result in the receiving system.
 
 [Nederlands](/nl/quickstart)
 
 <Steps>
   <Step title="Choose the integration">
-    For a quotation exported from QuotationFactory, use [QF2Odoo](/qf2odoo/overview). For Odoo manufacturing information and shop-floor feedback, use the [Odoo UNS Connector](/odoo-uns/overview).
+    Choose the route that matches the source and result:
+
+    - [QF2Odoo](/qf2odoo/workflow): QuotationFactory export to an Odoo draft quotation.
+    - [Odoo UNS Connector](/odoo-uns/workflow): Odoo production information and configured shop-floor feedback.
+    - [QF2Oseon](/qf2oseon/workflow): QuotationFactory export to Oseon and Boost.
+    - [QF2UNS](/qf2uns/workflow): QuotationFactory export and attachments to the UNS for connected consumers.
+    - [Oseon2UNS](/oseon2uns/workflow): Oseon data to the UNS and configured write-back where enabled.
   </Step>
   <Step title="Find the record">
-    For QF2Odoo, open the Odoo quotation using the returned reference. For the UNS connector, open the manufacturing order and its work order in Odoo. The guides show the added tabs and the standard Odoo records.
+    Use the source reference to find the project, order or data in the receiving system. The selected guide explains where to check the result.
   </Step>
   <Step title="Check the result">
-    Compare the source reference and quantities. A successful transfer is not the same as order confirmation, production completion or payment. Check each result in the relevant Odoo record.
+    Compare the source reference and quantities. A successful transfer is not the same as order confirmation, production completion or payment. Check each result in the relevant receiving system.
   </Step>
 </Steps>
 
-<Columns cols={2}>
-  <Card title="Quotation to payment" href="/qf2odoo/workflow">
-    Review the draft, then follow the standard Odoo sales process.
-  </Card>
-
-  <Card title="Production feedback" href="/odoo-uns/workflow">
-    See what the shop floor reported and check its effect in Odoo.
-  </Card>
-</Columns>
-
-If the result is missing, start with [QF2Odoo troubleshooting](/qf2odoo/troubleshooting) or [UNS troubleshooting](/odoo-uns/troubleshooting). Your administrator can confirm the enabled exchanges and access rights.
+The selected workflow above explains the next step and checks for a missing result.

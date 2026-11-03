@@ -1,0 +1,38 @@
+---
+title: "QF2Oseon: from calculation to production"
+sidebarTitle: "Overview"
+description: "Connect QuotationFactory projects and bend checks with TRUMPF Oseon and TruTops Boost."
+keywords: ["QF2Oseon", "QuotationFactory", "Oseon", "TruTops Boost"]
+---
+
+QF2Oseon connects QuotationFactory to TRUMPF Oseon and TruTops Boost. It carries project data into production preparation and returns bend feasibility results to the calculation, reducing repeated entry between systems.
+
+[Nederlands](/nl/qf2oseon/overview)
+
+## How the pieces connect
+
+QuotationFactory's official Edge Connector exchanges files with two integration services. The order service transfers project data to Oseon. The separate Boost service requests bend calculations and returns their results to QuotationFactory.
+
+```mermaid
+flowchart TD
+  Q["QuotationFactory"] --> E["Official QF Edge Connector"]
+  E --> I["Order integration"]
+  I --> O["Oseon: parts and orders"]
+  O -->|"Configured order status"| I
+  I -->|"Status feedback"| E
+  E --> B["Bend-check service"]
+  B --> T["TruTops Boost"]
+  T --> B
+  B --> E
+  E --> Q
+```
+
+The order route uses the TRUMPF interface for parts and the Oseon import interface for customer orders. The bend route needs a configured TruTops Boost environment, including the relevant machines and tools. The routes can serve different purposes; their availability depends on the installation.
+
+## What each system does
+
+QuotationFactory holds the calculation and project. Oseon holds the imported production data and manages the work that follows. Boost calculates a bend solution against its configured machine and tooling. The integration moves and translates information between them; it does not replace review in either application.
+
+The order route can create parts, working plans and customer orders from exported data. Drawings and other attachments follow the configured exchange. Mappings connect QuotationFactory operations to existing Oseon workplaces and worksteps. The details and enabled flows depend on the installation.
+
+[Follow the workflow](/qf2oseon/workflow) · [QF2Oseon on the website](https://sheetmetalconnect.com/integratie-qf2oseon?lang=en)

@@ -1,0 +1,45 @@
+---
+title: "Work with Oseon2UNS"
+sidebarTitle: "Workflow"
+description: "Use Oseon information in connected applications and check configured feedback."
+---
+Oseon2UNS brings configured source information to the data hub. What a person sees and can do depends on the connected application and its permissions.
+
+[Nederlands](/nl/oseon2uns/workflow) · [Overview](/oseon2uns/overview)
+
+## Follow production information
+
+```mermaid
+flowchart TD
+ A["Work is recorded in Oseon"] --> B["Integration reads configured sources"]
+ B --> C["Information reaches data hub"]
+ C --> D["Application presents its data"]
+ D --> E["Compare with source when needed"]
+```
+
+1. Open the connected application and find the order or operation using its reference.
+2. Check the displayed information. Available fields and update timing depend on the application.
+3. Compare an unexpected value with the source record in Oseon.
+
+## Report work back when enabled
+
+```mermaid
+flowchart TD
+ A["User records work in application"] --> B["Application sends configured request"]
+ B --> C["Integration receives request"]
+ C --> D["Oseon processes action"]
+ D --> E{"Processing result"}
+ E -->|"Completed"| F["Check state in Oseon"]
+ E -->|"Rejected or failed"| G["Review result and Oseon state"]
+ E -->|"Uncertain"| H["Check Oseon before repeating"]
+```
+
+1. Record work using the application’s normal controls, if the action is enabled. This can include starting an operation, reporting a quantity or finishing an operation.
+2. Check the processing result in the connected system.
+3. Check the resulting state in Oseon. Controls and permissions belong to the application.
+
+A receipt means the request reached the integration. It does not mean the action succeeded in Oseon. Check the processing result and Oseon state. If the result is uncertain, establish the actual state before submitting the action again.
+
+## If information is missing
+
+Check that the order or operation exists in Oseon and the application shows the expected record. The setup determines which source data is available. If a feedback result is missing or unclear, give support the order and operation reference and check Oseon before repeating the action. An application may show only part of the source information.

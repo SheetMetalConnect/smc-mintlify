@@ -24,7 +24,9 @@ flowchart LR
   O --> D["Odoo draft quotation"]
 ```
 
-This is a direct integration. It does not require a Unified Namespace (UNS).
+The service builds on QuotationFactory's official Edge exchange: QuotationFactory supplies its export and receives the result through that route, while the Odoo add-on handles the Odoo side. Keeping those responsibilities separate allows the optional workspace and exchanges to be added where needed. This direct integration does not require a Unified Namespace (UNS).
+
+After confirmation, Odoo's own procurement rules determine how work proceeds. Imported manufactured products use manufacture and replenishment on order; existing purchased products keep their Odoo routes. The setup can also use an explicit subcontracting flow where configured.
 
 ## What happens next?
 

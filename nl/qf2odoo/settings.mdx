@@ -1,37 +1,71 @@
 ---
-title: "Kies welke gegevens QF2Odoo uitwisselt"
+title: "Instellingen en opties van QF2Odoo"
 sidebarTitle: "Instellingen"
-description: "Lees wat bij de basisimport hoort, welke stamgegevens en statussen optioneel teruggaan en hoe commerciële inhoud op Odoo-conceptoffertes beschermd blijft."
-keywords: ["Sheet Metal Connect","QF2Odoo","handleiding"]
+description: "Lees welke uitwisselingen QF2Odoo naast de offerte-import biedt. Bekijk de bescherming van portaalgegevens en de afspraken over prijzen en eenheden."
+keywords:
+  - "Sheet Metal Connect"
+  - "QF2Odoo"
+  - "handleiding"
 ---
 
-QF2Odoo heeft een basiswerking voor offerte-import en afzonderlijk ingerichte terugkoppelingen. Uw beheerder bevestigt welke mogelijkheden in uw geïnstalleerde versie zijn ingeschakeld.
+De offerte-import is de basis van QF2Odoo. De werkruimte, uitwisseling van stamgegevens en statusterugmelding zijn afzonderlijk in te richten. De beheerder kan aangeven welke functies voor het bedrijf aanstaan.
 
 [English](/qf2odoo/settings)
 
-## Basiswerking en opties
+## Welke functies zijn beschikbaar?
 
-| Mogelijkheid | Wat dit voor uw team betekent |
+| Functie | Wat gebruikers ervan zien |
 | --- | --- |
-| Basisimport van offertes | Geëxporteerde projecten komen als concept in Odoo, met product- en productiegegevens. |
-| Optionele werkruimte | QF-projectoverzichten, bronkoppelingen en gekoppelde exporthistorie helpen u geïmporteerd werk terug te vinden. |
-| Optionele stamgegevensuitwisseling | QF vraagt de ingeschakelde momentopnamen van klanten, leveranciers of catalogusartikelen uit Odoo op. |
-| Optionele statusterugmelding | Voortgang in productie en levering gaat volgens de ingerichte koppelingen terug naar QF. |
+| Offerte-import | Een conceptofferte met product- en productiegegevens uit het geëxporteerde project. |
+| Optionele werkruimte | QF-projectoverzichten, bronkoppelingen en de gekoppelde exporthistorie. |
+| Optionele stamgegevensuitwisseling | Klanten, leveranciers of catalogusartikelen uit Odoo, op verzoek van QF. |
+| Optionele statusterugmelding | Productie- en leverstatussen uit Odoo volgens de ingerichte koppelingen. |
 
-Een wijziging van stamgegevens in Odoo betekent niet dat QF direct wordt bijgewerkt. De uitwisseling begint wanneer QF de gegevens opvraagt.
+<Note>
+  Een wijziging in Odoo werkt niet direct door in QF. De uitwisseling van stamgegevens begint wanneer QF een nieuwe momentopname opvraagt.
+</Note>
 
-## Bescherm commerciële portaalgegevens
+## Wat doet de koppeling, wat doet Odoo?
 
-Met de werkruimte geïnstalleerd kunnen beheerders **Commerciële inhoud van QF-portaal beschermen** gebruiken onder **Verkoop → Instellingen → QuotationFactory**.
+```mermaid
+flowchart LR
+    Q["QF2Odoo: project importeren"] --> C["Odoo: offerte controleren en bevestigen"]
+    C --> P["Odoo: productie en levering"]
+    P --> F["Odoo: facturatie en betaling"]
+    W["Optionele QF-werkruimte: projecten volgen"] --- Q
+    R["Optionele uitwisseling: stamgegevens en statussen"] --- Q
+```
 
-Deze instelling staat standaard per bedrijf aan. Gewone gebruikers kunnen daarmee de commerciële inhoud uit het portaal op conceptoffertes en verzonden offertes niet wijzigen. Gegevens voor verzending en werkvoorbereiding blijven bewerkbaar. De offerte kan op de gebruikelijke manier worden bevestigd.
+De opties hieronder veranderen de uitwisseling en de zichtbare QF-gegevens. Orderbevestiging en de verdere afhandeling blijven de gebruikelijke Odoo-processen.
 
-## Spreek prijzen en eenheden af
+## Commerciële portaalgegevens beschermen
 
-Voor artikelstamgegevens is de prijsbron instelbaar: leveranciersprijs met kostprijs als terugval, of kostprijs. Controleer die keuze voordat u een prijs in QF met Odoo vergelijkt.
+Met de werkruimte geïnstalleerd staat onder **Verkoop → Instellingen → QuotationFactory** de instelling **Commerciële inhoud van QF-portaal beschermen**.
 
-Plaatprijzen en staffels per vierkante meter in Odoo kunnen met expliciete plaatafmetingen worden omgerekend naar prijzen per plaat voor QF. De stamgegevens in Odoo veranderen daardoor niet.
+Deze instelling staat standaard per bedrijf aan. Op conceptoffertes en verzonden offertes kunnen gewone gebruikers de commerciële inhoud uit het portaal dan niet wijzigen.
 
-Sommige installaties hebben ook een controle vóór het afronden van een levering. Dit is een optionele beheerdersinstelling, geen standaardstap voor elke gebruiker.
+Wel mogelijk blijven:
 
-Gebruik [problemen oplossen](/nl/qf2odoo/troubleshooting) bij een ontbrekend of onverwacht resultaat.
+- Gegevens voor verzending en werkvoorbereiding aanpassen.
+- De offerte via de gebruikelijke werkwijze bevestigen.
+
+## Prijzen en eenheden afspreken
+
+Voor artikelstamgegevens is de prijsbron instelbaar:
+
+- Leveranciersprijs, met kostprijs als terugval.
+- Kostprijs.
+
+Controleer de gekozen prijsbron bij prijsverschillen tussen QF en Odoo.
+
+### Van vierkante meter naar plaat
+
+Plaatprijzen en staffels kunnen in Odoo per vierkante meter zijn vastgelegd. Met expliciete plaatafmetingen kan QF2Odoo die omrekenen naar prijzen per plaat voor QF.
+
+De stamgegevens in Odoo blijven daarbij ongewijzigd.
+
+## Optionele controle bij levering
+
+Sommige installaties hebben een extra controle vóór het afronden van een levering. De beheerder richt deze optie in. Het is geen standaardstap voor iedere gebruiker.
+
+Bij een ontbrekend of onverwacht resultaat helpt de pagina [problemen oplossen](/nl/qf2odoo/troubleshooting).

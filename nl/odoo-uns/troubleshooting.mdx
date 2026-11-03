@@ -1,38 +1,70 @@
 ---
-title: "Begrijp wachtende of afgewezen UNS-terugmeldingen"
+title: "Een order of terugmelding ontbreekt"
 sidebarTitle: "Problemen oplossen"
-description: "Onderzoek een wachtend bericht, afgewezen terugmelding of ontbrekende productieboeking met de Odoo-overzichten en de toestemming voor de gevraagde handeling."
-keywords: ["Odoo UNS Connector", "Odoo 19", "productie", "handleiding"]
+description: "Controleer een wachtend bericht, afgewezen terugmelding of ontbrekende boeking. Lees welke overzichten en instellingen helpen om de oorzaak te vinden."
+keywords:
+  - "Odoo UNS Connector"
+  - "Odoo 19"
+  - "productie"
+  - "handleiding"
 ---
 
-Zoek bij een ontbrekend resultaat van de Odoo UNS Connector eerst de order en het bijbehorende uitgaande of inkomende bericht. Een berichtstatus en de verwerking in Odoo geven verschillende informatie.
+Komt een order of terugmelding van de Odoo UNS Connector niet aan? Zoek eerst de order of bewerking. Controleer daarna het bijbehorende bericht en het resultaat in Odoo.
 
 [English](/odoo-uns/troubleshooting)
 
-## Het uitgaande bericht blijft in afwachting
+## Het uitgaande bericht blijft wachten
 
-Controleer **UNS → Uitgaande berichten** en de gekoppelde order. De verantwoordelijke beheerder kan met die referentie de verbinding en afleverstatus onderzoeken. Steeds nieuwe momentopnamen maken vervangt dat onderzoek niet.
+Zoek de order onder **UNS → Uitgaande berichten**. Controleer de status van het gekoppelde bericht.
 
-## Ontvangst is bevestigd, maar de werkvloer heeft geen order
+De beheerder kan met die referentie de verbinding en aflevering onderzoeken. Steeds nieuwe momentopnamen maken vervangt dat onderzoek niet.
 
-De bevestiging betekent dat de ingestelde integratiedienst verantwoordelijkheid voor duurzame bewaring heeft overgenomen. Het bewijst op zichzelf geen verwerking door de hub of uiteindelijke toepassing. De beheerder moet de ingerichte route tot de ontvangende toepassing controleren.
+## Ontvangst is bevestigd, maar de werkvloer mist de order
 
-## Een inkomende terugmelding is afgewezen
+De bevestiging betekent dat de ingestelde integratiedienst het bericht voor duurzame bewaring heeft overgenomen.
 
-Lees de reden bij **Inkomende berichten** of in het **Terugkoppelingslogboek**. Controleer het uitvoeringssysteem, de bronreferentie en toestemming voor de gevraagde handeling. Hetzelfde afgewezen bericht herhalen behoudt de oorspronkelijke uitkomst. Verhelp eerst de oorzaak.
+Dat bewijst nog niet dat de hub of de ontvangende toepassing de order heeft verwerkt. De beheerder controleert de route tot de betreffende toepassing.
 
-## Er is voortgang, maar geen tijd of gereedmelding geboekt
+## De terugmelding is afgewezen
 
-Een toegepaste waarneming garandeert geen tijdregistratie of gereedmelding. Controleer de productieve tijdcategorie en de afzonderlijke toestemmingen voor gereedmelding.
+Lees de reden onder **Inkomende berichten** of in het **Terugkoppelingslogboek**.
 
-Automatische gereedmelding vraagt de volledige geplande hoeveelheid. Deelproductie, uitval, ontbrekende partijgegevens, backorders, Odoo-waarschuwingen of conflicterende lokale tijdregistraties kunnen afronding tegenhouden. Gebruik voor zulke gevallen de afgesproken werkwijze in Odoo.
+Controleer vervolgens:
+
+- Is het juiste uitvoeringssysteem ingesteld?
+- Klopt de bronreferentie?
+- Heeft de gevraagde handeling toestemming?
+
+Hetzelfde afgewezen bericht houdt bij herhaling de oorspronkelijke uitkomst. Verhelp daarom eerst de oorzaak.
+
+## Er is voortgang, maar geen tijd of gereedmelding
+
+Een verwerkte waarneming is niet automatisch een tijdregistratie of gereedmelding. Controleer de productieve tijdcategorie en de afzonderlijke toestemmingen.
+
+Automatische gereedmelding vraagt de volledige geplande hoeveelheid. De volgende situaties kunnen afronding tegenhouden:
+
+- Deelproductie of uitval.
+- Ontbrekende partijgegevens of backorders.
+- Waarschuwingen uit Odoo.
+- Conflicterende lokale tijdregistraties.
+
+Volg hiervoor de afgesproken werkwijze in Odoo. De [instellingen](/nl/odoo-uns/settings) beschrijven de mogelijkheden en grenzen.
 
 ## Externe voorraad wijkt af van Odoo
 
-Vergelijk **Waargenomen externe voorraad** met **Partijvoorraad in Odoo**. Ze worden bewust apart gehouden. Voorraadboeking vraagt expliciete toestemming en geldige partijkoppelingen. Voor materiaalverbruik in productie gelden aanvullende voorwaarden.
+Vergelijk **Waargenomen externe voorraad** met **Partijvoorraad in Odoo**. Die overzichten houden waarnemingen en werkelijke boekingen apart.
+
+Voor een voorraadboeking zijn expliciete toestemming en geldige partijkoppelingen nodig. Voor materiaalverbruik in productie gelden aanvullende voorwaarden.
 
 ## Gegevens voor support
 
-Vermeld bedrijf, order of bewerking, zichtbare berichtreferentie, vastgelegde status, exacte reden, tijdstip en verwacht resultaat in Odoo. Neem geen inloggegevens op.
+Verzamel de gegevens waarmee de verantwoordelijke de terugmelding kan volgen:
 
-Lees de [instellingen](/nl/odoo-uns/settings) of de [productpagina](https://sheetmetalconnect.com/integratie-odoo-uns-connector) voor de ondersteunde mogelijkheden.
+- Bedrijf en referentie van de order of bewerking.
+- De zichtbare berichtreferentie en het tijdstip.
+- De vastgelegde status en exacte reden.
+- Het verwachte resultaat in Odoo.
+
+Neem geen inloggegevens op.
+
+De [productpagina](https://sheetmetalconnect.com/integratie-odoo-uns-connector) beschrijft de mogelijkheden voor uw bedrijf.

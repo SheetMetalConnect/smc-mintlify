@@ -1,40 +1,77 @@
 ---
-title: "Bepaal wat de werkvloer in Odoo mag wijzigen"
+title: "Wat mag een terugmelding in Odoo wijzigen?"
 sidebarTitle: "Instellingen"
-description: "Lees hoe uitvoeringsverantwoordelijkheid en afzonderlijke toestemmingen bepalen welke tijdregistraties, gereedmeldingen en voorraadboekingen Odoo verwerkt."
-keywords: ["Odoo UNS Connector", "Odoo 19", "productie", "handleiding"]
+description: "Bekijk de afzonderlijke instellingen voor voortgang, tijdregistratie, gereedmelding en voorraad. Lees ook de voorwaarden voor partijen en materiaalverbruik."
+keywords:
+  - "Odoo UNS Connector"
+  - "Odoo 19"
+  - "productie"
+  - "handleiding"
 ---
 
-De Odoo UNS Connector maakt onderscheid tussen informatie ontvangen en productie- of voorraadgegevens in Odoo wijzigen. Uw beheerder stelt per werkwijze de toegestane bron en handeling in.
+De Odoo UNS Connector kan voortgang vastleggen en, met de juiste instellingen, ook handelingen in Odoo uitvoeren. De beheerder stelt per werkwijze in welk systeem mag terugmelden en wat die terugmelding mag wijzigen.
 
 [English](/odoo-uns/settings)
 
-## Begin met het uitvoeringssysteem
+## Welk systeem meldt terug?
 
-**Verantwoordelijk UNS-uitvoeringssysteem** bepaalt welk systeem de voortgang van een bewerking mag terugmelden. Standaard is Odoo verantwoordelijk. Externe terugmeldingen worden afgewezen totdat de juiste bron is ingesteld.
+Het veld **Verantwoordelijk UNS-uitvoeringssysteem** bepaalt welk systeem de voortgang van een bewerking mag terugmelden.
 
-## Schakel de benodigde handelingen in
+Standaard is dat Odoo. Terugmeldingen van een extern systeem worden afgewezen totdat die bron is ingesteld.
 
-| Mogelijkheid | Benodigde inrichting |
+## Tijd en gereedmelding
+
+Elke handeling heeft eigen voorwaarden:
+
+| Handeling | Benodigde instelling |
 | --- | --- |
-| Bevoegde waarnemingen bij bewerkingen vastleggen | Het juiste uitvoeringssysteem voor de werkorder. |
+| Voortgang en aantallen bij een bewerking vastleggen | Het juiste uitvoeringssysteem voor de werkorder. |
 | Tijd in Odoo registreren | Een productieve **Categorie voor native UNS-tijd**. |
-| Een bewerking in Odoo afronden | **Native gereedmelding van bewerking toestaan**. |
-| Een productieorder in Odoo afronden | Toestemming voor zowel bewerkings- als productieordergereedmelding. Afronding volgt op de laatste open bewerking. |
-| Externe partijvoorraad in Odoo boeken | **Native voorraadboekingen toestaan**, met bevoegde bron en geldige partijkoppelingen. |
+| Een bewerking gereedmelden | **Native gereedmelding van bewerking toestaan**. |
+| Een productieorder gereedmelden | Toestemming voor zowel bewerkings- als productieordergereedmelding. De laatste open bewerking wordt gevolgd door afronding van de productieorder. |
 
-**Native** betekent hier dat de handeling de eigen bedrijfsregistratie van Odoo wijzigt. Alleen een externe waarneming opslaan is iets anders.
+**Native** betekent in deze instellingen dat de handeling de eigen registratie van Odoo wijzigt. Alleen een externe waarneming opslaan is een andere handeling.
 
-<Note>
-Automatische gereedmelding ondersteunt de volledige geplande hoeveelheid. Gedeeltelijke gereedmelding en uitval worden via deze route niet ondersteund. Odoo-waarschuwingen, ontbrekende partijgegevens en backorders kunnen afronding tegenhouden.
-</Note>
+```mermaid
+flowchart TB
+    B["Bron en uitvoeringssysteem kloppen"] --> V["Voortgang vastleggen"]
+    V --> T["Tijdregistratie: productieve tijdcategorie nodig"]
+    V --> G["Bewerking gereedmelden: eigen toestemming nodig"]
+    G --> P["Productieorder gereedmelden: ook toestemming voor productieorder nodig"]
+    E["Externe partijvoorraad"] --> L["Bevoegde bron en geldige partijkoppelingen"]
+    L --> S["Voorraad boeken: afzonderlijke toestemming nodig"]
+```
+
+### Grenzen aan automatische gereedmelding
+
+Automatische gereedmelding ondersteunt de **volledige geplande hoeveelheid**.
+
+Gedeeltelijke gereedmelding en uitval worden via deze route niet ondersteund. Odoo-waarschuwingen, ontbrekende partijgegevens en backorders kunnen de afronding tegenhouden.
 
 ## Voorraad en materiaalverbruik
 
-**Waargenomen externe voorraad** blijft apart van **Partijvoorraad in Odoo**. Waarnemingen veranderen de Odoo-voorraad niet vanzelf.
+**Waargenomen externe voorraad** en **Partijvoorraad in Odoo** blijven apart. Een waarneming verandert de voorraad in Odoo niet vanzelf.
 
-Productieverbruik vanuit een werkelijke materiaalpartij vraagt een aanvullend onderdeel en expliciete toestemming voor het betreffende materiaal. Alleen voorraadwaarneming inschakelen is daarvoor onvoldoende.
+Voor externe voorraadboekingen zijn nodig:
 
-**Ontvangen partijen naar UNS publiceren** is een keuze per product. Er moet ook een bestemming voor ontvangstberichten zijn ingericht. De uitwisseling betreft gevalideerde ontvangstregels van leveranciers. Eenmaal gepubliceerde ontvangstregels kunnen via deze route niet worden gewijzigd, verwijderd of geretourneerd. Correcties en retouren vragen een afzonderlijk afgesproken werkwijze.
+- **Native voorraadboekingen toestaan**.
+- Een bevoegde bron.
+- Geldige partijkoppelingen.
 
-Deze instellingen raken bedrijfsregistraties. Ze moeten passen bij de afgesproken werkwijze en geïnstalleerde onderdelen. Zie [dagelijks gebruik](/nl/odoo-uns/workflow) en [problemen oplossen](/nl/odoo-uns/troubleshooting).
+### Materiaalverbruik vanuit een werkelijke partij
+
+Voor productieverbruik vanuit een werkelijke materiaalpartij is een aanvullend onderdeel nodig. Ook moet het betreffende materiaal expliciet voor deze verwerking zijn toegestaan.
+
+Alleen voorraadwaarneming inschakelen is daarvoor onvoldoende.
+
+### Ontvangen partijen delen
+
+Met **Ontvangen partijen naar UNS publiceren** wordt dit per product ingeschakeld. Er moet ook een bestemming voor ontvangstberichten zijn ingericht.
+
+Deze uitwisseling betreft gevalideerde ontvangstregels van leveranciers.
+
+<Note>
+  Een gepubliceerde ontvangstregel kan via deze route niet worden gewijzigd, verwijderd of geretourneerd. Correcties en retouren volgen een afzonderlijk afgesproken werkwijze.
+</Note>
+
+Stem deze instellingen af op de werkwijze en de geïnstalleerde onderdelen. Zie [dagelijks gebruik](/nl/odoo-uns/workflow) voor de controle van resultaten en [problemen oplossen](/nl/odoo-uns/troubleshooting) bij afwijzingen.

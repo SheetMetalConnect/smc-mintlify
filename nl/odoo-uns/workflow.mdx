@@ -1,41 +1,81 @@
 ---
-title: "Volg een productieorder en zijn terugmeldingen"
+title: "Van productieorder naar terugmelding in Odoo"
 sidebarTitle: "Dagelijks gebruik"
-description: "Volg een momentopname uit Odoo en de terugmeldingen vanaf de werkvloer. Lees het verschil tussen ontvangstbevestiging en het bedrijfsresultaat in Odoo."
-keywords: ["Odoo UNS Connector", "Odoo 19", "productie", "handleiding"]
+description: "Volg een productieorder van Odoo naar de werkvloer en controleer de terugmelding. Lees waar u ordergegevens, berichtstatus en geboekte resultaten vindt."
+keywords:
+  - "Odoo UNS Connector"
+  - "Odoo 19"
+  - "productie"
+  - "handleiding"
 ---
 
-Gebruik de overzichten van de Odoo UNS Connector om een order naar buiten te volgen en de terugmeldingen in Odoo te controleren. Elk overzicht toont iets anders: wat is verzonden, wat is ontvangen en wat het effect was.
+Met de Odoo UNS Connector werkt de werkvloer met ordergegevens uit Odoo. Het aangesloten systeem meldt de voortgang terug. Controleer bij de order welke gegevens zijn ontvangen en welke handelingen in Odoo zijn uitgevoerd.
 
 [English](/odoo-uns/workflow)
 
+## De dagelijkse werkwijze
+
 <Steps>
-  <Step title="Maak of wijzig de productieorder">
-    Nieuwe productieorders en gevolgde wijzigingen aan orders of bewerkingen leveren uitgaande momentopnamen op. Het tabblad **UNS-integratie** toont de integratiegegevens. Met **Momentopname verzenden** zet een bevoegde gebruiker zo nodig een actuele weergave klaar.
+  <Step title="Maak of wijzig de productieorder in Odoo">
+    Nieuwe productieorders en gevolgde wijzigingen aan orders of bewerkingen leveren een uitgaande momentopname op.
+
+    Het tabblad **UNS-integratie** toont de **UNS-productieorderreferentie**. Deze referentie is alleen-lezen.
   </Step>
-  <Step title="Controleer het uitgaande bericht">
-    Zoek de order onder **UNS → Uitgaande berichten**. **In afwachting** betekent dat het bericht wacht. **Ontvangst bevestigd door hub** betekent dat de ingestelde integratiedienst verantwoordelijkheid voor duurzame bewaring heeft overgenomen.
+  <Step title="Volg de order in het aangesloten systeem">
+    Het werkvloersysteem ontvangt de ordergegevens via de ingerichte verbinding. De toepassing gebruikt die volgens de afgesproken werkwijze.
+
+    Een verzonden momentopname is op zichzelf geen opdracht om productie te starten.
   </Step>
-  <Step title="Volg het ontvangende systeem">
-    De ontvangende toepassing gebruikt de ordergegevens volgens de afgesproken werkwijze. De ontvangstbevestiging bewijst op zichzelf niet dat de hub of de uiteindelijke toepassing de order heeft verwerkt of werk heeft vrijgegeven.
-  </Step>
-  <Step title="Controleer de terugmelding en het effect">
-    Bekijk **UNS → Inkomende berichten** en het **Terugkoppelingslogboek**. Controleer de bijbehorende bewerking, tijdregistratie, productieorder of voorraadregistratie als die handeling is ingeschakeld.
+  <Step title="Controleer de terugmelding in Odoo">
+    Open de werkorder bij de productieorder. Op het tabblad **UNS-integratie** staan **Identiteit** en **Laatste terugkoppeling**.
+
+    Controleer **Externe UNS-status**, **Teruggekoppeld UNS-aantal** en **UNS-terugkoppelingsnotitie**. Bekijk daarna de werkelijke tijdregistratie en de status van de werkorder of productieorder.
+
+    Gaat het om materiaalverbruik? Controleer de bijbehorende componentmutaties. Een waarneming alleen bewijst geen boeking.
   </Step>
 </Steps>
 
-## Lees de uitkomst correct
+```mermaid
+flowchart LR
+    O["Productieorder in Odoo"] --> S["Momentopname versturen"]
+    S --> W["Order in aangesloten werkvloersysteem"]
+    W --> T["Voortgang terugmelden"]
+    T --> C["Resultaat bij de order in Odoo controleren"]
+```
 
-| Uitkomst | Wat u hieruit weet |
+## Toegang tot de schermen
+
+Voor de integratieschermen is de rol **UNS User** nodig. Productiebeheerders hebben die toegang via hun beheerdersrol.
+
+**Momentopname verzenden** en de instellingen voor tijdregistratie en gereedmelding zijn acties voor de beheerder of integratie. Ze horen niet bij de gewone gebruikersstappen.
+
+## Waar ziet u de uitwisseling?
+
+De overzichten helpen om de verwerking te volgen:
+
+- **UNS → Uitgaande berichten:** wat vanuit Odoo is klaargezet.
+- **UNS → Inkomende berichten:** welke terugmeldingen zijn ontvangen.
+- **Terugkoppelingslogboek:** hoe een terugmelding is verwerkt.
+
+Zoek steeds de betreffende order of bewerking. Controleer daarnaast de tijdregistratie, productieorder of voorraadregistratie die bij de ingeschakelde functie hoort.
+
+## Wat betekenen de statussen?
+
+| Status | Betekenis |
 | --- | --- |
-| Ontvangst bevestigd door hub | De ingestelde integratiedienst heeft de verantwoordelijkheid voor duurzame bewaring overgenomen. Dit bewijst geen verwerking op de eindbestemming. |
-| Toegepast | De ingestelde verwerking is uitgevoerd. Dit kan alleen het vastleggen van een waarneming zijn. |
-| Afgewezen | Het bericht voldoet niet aan de regels voor deze handeling. Lees de vastgelegde reden. |
+| In afwachting | Het uitgaande bericht wacht op verdere verwerking. |
+| Ontvangst bevestigd door hub | De ingestelde integratiedienst heeft het bericht overgenomen voor duurzame bewaring. |
+| Toegepast | De ingestelde handeling is uitgevoerd. Dit kan alleen een waarneming zijn. |
+| Afgewezen | De terugmelding voldoet niet aan de regels voor de gevraagde handeling. |
 
-Een herhaalde levering van dezelfde terugmelding behoudt de oorspronkelijke uitkomst, ook een afwijzing. Een afgewezen bericht ongewijzigd herhalen verhelpt de oorzaak niet.
+<Note>
+  **Ontvangst bevestigd door hub** bewijst nog niet dat de hub of de uiteindelijke toepassing de order heeft verwerkt. Ook vrijgave van werk volgt daar niet uit.
+</Note>
 
-## Houd waarnemingen en boekingen apart
+## Controleer wat werkelijk is geboekt
 
-Een waargenomen aantal is niet automatisch een voorraadmutatie. Vastgelegde voortgang is niet automatisch gereedgemelde productie. Vergelijk het resultaat met de ingeschakelde [instellingen](/nl/odoo-uns/settings).
+Vastgelegde voortgang is niet automatisch gereedgemelde productie. Een waargenomen aantal is niet automatisch een voorraadmutatie.
 
-Zie [problemen oplossen](/nl/odoo-uns/troubleshooting) bij een wachtende momentopname of afgewezen terugmelding.
+Welke handelingen zijn toegestaan, staat bij de [instellingen](/nl/odoo-uns/settings).
+
+Een herhaald bericht behoudt de oorspronkelijke uitkomst, ook bij een afwijzing. Ongewijzigd opnieuw versturen verhelpt de oorzaak niet. Zie [problemen oplossen](/nl/odoo-uns/troubleshooting) voor de controles per situatie.

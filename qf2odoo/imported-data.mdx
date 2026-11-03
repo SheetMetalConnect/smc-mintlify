@@ -45,6 +45,33 @@ The connector creates engineering snapshots for manufactured work. The resulting
 
 For the standard Odoo structure, see [multilevel bills of materials](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/advanced_configuration/sub_assemblies.html) and [manufacturing product configuration](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/basic_setup/configure_manufacturing_product.html).
 
+### Product and component details
+
+These are normal Odoo records populated by the connector. Source values that are not supplied remain absent; dimensions, weight and drawing revision are not universally required to import.
+
+| Data | Where in Odoo | Needed when |
+| --- | --- | --- |
+| Part or assembly name and reference | Product; top-level items also appear on quotation lines | The project needs a customer and at least one top-level quotation line for a quotation. |
+| Quantity and unit | Quotation lines and BOM component lines | Supplied quantities express the offer and components. Unsupported or mismatched material units stop import. |
+| Material article, grade and thickness | BOM component and product source details | A referenced material must match an existing Odoo article. For sheet-fraction conversion to square metres, consistent stock-sheet dimensions or area are required. |
+| Length, width, height, area and weight | Product; the optional workspace shows QF geometry on its **QuotationFactory** tab | When supplied. Weight uses the native product field; geometry details are QF additions. |
+| Component hierarchy and quantities | BOM components and child BOMs | When the export contains a structure. A grouping-only wrapper is unpacked: its contained parts and assemblies are handled, without creating a product for the wrapper. |
+| Operation, sequence and resource | BOM **Operations** and work centre | When supplied. An in-house resource must match an Odoo work-centre code; explicit outsourcing requires a matching supplier. |
+| Operation production and setup time | Operation and QF instruction details | When supplied. Setup time remains QF information; Odoo work-centre setup is a separate native setting. |
+| Drawing number, revision and source file | Attachments; optional product **QuotationFactory** tab, **QF Source** | When supplied. A drawing revision is separate from the QF export revision. |
+
+### QF details added to Odoo
+
+The core add-on retains source information and production instructions. The optional workspace exposes extra details on a product's **QuotationFactory** tab. The following are supplied source details, not universal import requirements.
+
+| Data | Where in Odoo | Needed when |
+| --- | --- | --- |
+| Nesting rotation and upper side | Product **QuotationFactory** tab; optional quotation-line columns | When supplied. Locked rotation or a selected upper side can produce a nonblocking attention warning. |
+| Geometric and angle tolerances, surface roughness | Product **QuotationFactory** tab, **Tolerances** | When supplied. |
+| RAL, coating process, sides and layers | Product **QuotationFactory** tab, **Material** and **Coating**; optional RAL quotation column | When supplied. A referenced powder article must resolve to an existing Odoo article. |
+| Holes, bends, cutting length and finishing details | Product **QuotationFactory** tab, **Features**, **Bending** and **Finishing** | When supplied. |
+| Project, product and operation comments | **QF Production Instructions** on applicable production and work orders | When supplied. Instructions supplement the native Odoo work order. |
+
 ## What must exist and when?
 
 The required integration add-on and matching connector are needed for every import. The project needs a customer and at least one top-level quotation line. The workspace is optional: it adds navigation and views, not the underlying native quotation and manufacturing records.

@@ -9,29 +9,37 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
-    "pages": [
-      {
-        "group": "Getting Started",
-        "pages": [
-          "index",
-          "quickstart"
-        ]
-      }
-    ],
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
+          "anchor": "All integrations",
+          "href": "https://sheetmetalconnect.com/integraties",
           "icon": "book-open-cover"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
+          "anchor": "Sheet Metal Connect",
+          "href": "https://sheetmetalconnect.com",
           "icon": "newspaper"
         }
       ]
-    }
+    },
+    "languages": [
+      {
+        "language": "en",
+        "pages": [
+          {
+            "group": "Get started",
+            "pages": [
+              "index",
+              "quickstart"
+            ]
+          }
+        ]
+      },
+      {
+        "language": "nl"
+      }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",

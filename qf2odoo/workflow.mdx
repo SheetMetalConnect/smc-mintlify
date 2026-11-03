@@ -23,6 +23,32 @@ flowchart TB
   I --> R["Payment and reconciliation"]
 ```
 
+## Choose how the request starts
+
+A project can begin with a customer in the QuotationFactory portal or with an employee preparing the calculation. Both routes meet at the configured QF export. The connector imports that export into Odoo; it does not turn an incoming email into a QF project.
+
+### A customer uses the portal
+
+The customer prepares a request in the QF portal. Staff review and calculate it in QuotationFactory, then follow the configured export process. QF returns the imported Odoo reference to the project. Staff review the Odoo draft and handle acceptance through their normal sales process before confirming it.
+
+The QF project visibility checkbox controls whether the project is visible to the customer in QF. It is separate from the source flag identifying a project created in the portal. With the optional Odoo workspace and its default protection enabled, that origin flag protects commercial fields on draft or sent quotations against ordinary edits. Shipping and work preparation remain editable. Neither visibility nor the protection flag proves customer acceptance.
+
+### A request arrives by email or is started internally
+
+An employee creates and calculates the project in QuotationFactory using the request and its drawings, then uses the configured export process. The connector does not read the email or create the project from it. The resulting Odoo draft follows the same review and confirmation process. A project made by staff is not automatically a portal-origin project merely because it is made visible to the customer.
+
+### Prepare a part or assembly before an order
+
+A project can contain an individual manufactured part or an assembly with several levels. On import, QF2Odoo creates revision-specific Odoo products, bills of materials and operations alongside the draft quotation. Staff can inspect those engineering records before confirming the order. Import alone creates no manufacturing or stock demand.
+
+The documented export is a project-to-quotation import. A separate product-only or bill-of-materials-only import, independent of a quotation, is not described as a supported mode. Normal Odoo procurement and manufacturing rules apply after confirmation.
+
+### Follow the project in both systems
+
+QuotationFactory owns its project, calculation, customer-facing visibility and project stages. Odoo owns the customer and catalogue records, order confirmation, manufacturing and delivery. QF decides which project stages trigger export; QF2Odoo does not filter imports by stage. A successful import returns an Odoo reference to QF.
+
+When enabled, Odoo sends the configured production and delivery statuses back to QF. QF stages such as packaging can be managed in QF; the integration does not automatically report a packaging stage. The portal shows the QF project according to its visibility setting, not a live Odoo screen. Verify quantities and acceptance in the relevant system.
+
 ## From quotation to payment
 
 <Steps>

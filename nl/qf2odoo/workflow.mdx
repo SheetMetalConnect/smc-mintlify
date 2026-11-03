@@ -1,0 +1,46 @@
+---
+title: "Volg een QF-offerte naar Odoo"
+sidebarTitle: "Dagelijks gebruik"
+description: "Volg een export uit QuotationFactory via conceptcontrole en orderbevestiging naar productie en levering, inclusief revisies en terugmelding van statussen."
+keywords: ["Sheet Metal Connect","QF2Odoo","handleiding"]
+---
+
+Met QF2Odoo neemt u de voorbereide offerte over in Odoo zonder de productstructuur opnieuw in te voeren. De beslissing om van die offerte een order te maken blijft in Odoo.
+
+[English](/qf2odoo/workflow)
+
+<Steps>
+  <Step title="Exporteer het project uit QuotationFactory">
+    Rond het calculatieproject af en gebruik de exportwerkwijze die voor uw bedrijf is ingericht. Bewaar de projectreferentie om het resultaat terug te vinden.
+  </Step>
+  <Step title="Zoek en controleer de conceptofferte in Odoo">
+    Controleer klant, aantallen, commerciële afspraken, artikelen, stuklijsten, bewerkingen en bijlagen aan de hand van de bron.
+    Met de optionele werkruimte vindt u projecten via **Sales → Orders → QF Projects**. Het tabblad **QuotationFactory** toont brongegevens en de koppeling naar het project. Menunamen hangen af van uw Odoo-taal.
+  </Step>
+  <Step title="Bevestig via de gebruikelijke werkwijze in Odoo">
+    Bevestig de offerte als de bedrijfscontroles zijn afgerond. Odoo volgt daarna zijn ingerichte inkoop- en productieregels. Er is geen afzonderlijke QF-knop om productie vrij te geven.
+  </Step>
+  <Step title="Werk verder in productie en levering">
+    Gebruik de gebruikelijke productie- en leverprocessen in Odoo. Als statusterugmelding is ingeschakeld, meldt de connector de ingerichte voortgang terug aan QuotationFactory.
+  </Step>
+</Steps>
+
+## Begrijp de teruggestuurde status
+
+De standaardkoppelingen zijn:
+
+| Gebeurtenis in Odoo | Status in QuotationFactory |
+| --- | --- |
+| Productie is gestart | Producing |
+| Alle niet-geannuleerde productieorders zijn gereed | Produced |
+| Een uitgaande levering is gevalideerd | Delivered |
+
+**Delivered** kan volgen op een deellevering. De status bewijst niet dat alle regels volledig zijn geleverd. Controleer de werkelijke geleverde aantallen in Odoo.
+
+Een status kan teruggaan als de onderliggende voortgang in Odoo verandert. Facturatie en betalingen blijven afzonderlijke Odoo-processen.
+
+## Verwerk een gewijzigde export
+
+Gewijzigde broninhoud levert een gekoppelde conceptrevisie op. Bevestigde orders blijven beschermd. Een gecontroleerde identieke herhaling gebruikt het geaccepteerde resultaat opnieuw.
+
+Controleer het actuele concept en de bronreferentie vóór bevestiging. Zie [problemen oplossen](/nl/qf2odoo/troubleshooting) als een verwachte revisie ontbreekt.

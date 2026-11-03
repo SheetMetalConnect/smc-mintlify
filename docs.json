@@ -59,11 +59,19 @@
         "groups": [
           {
             "group": "Aan de slag",
-            "pages": []
+            "pages": [
+              "nl/index",
+              "nl/quickstart"
+            ]
           },
           {
             "group": "QF2Odoo",
-            "pages": []
+            "pages": [
+              "nl/qf2odoo/overview",
+              "nl/qf2odoo/workflow",
+              "nl/qf2odoo/settings",
+              "nl/qf2odoo/troubleshooting"
+            ]
           },
           {
             "group": "Odoo UNS Connector",

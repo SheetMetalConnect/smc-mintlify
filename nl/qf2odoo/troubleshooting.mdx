@@ -1,0 +1,38 @@
+---
+title: "Vind een ontbrekend of onverwacht QF2Odoo-resultaat"
+sidebarTitle: "Problemen oplossen"
+description: "Controleer ontbrekende offertes, revisies, verouderde stamgegevens en productiestatussen. Verzamel de referenties om een QF2Odoo-uitwisseling te onderzoeken."
+keywords: ["Sheet Metal Connect","QF2Odoo","handleiding"]
+---
+
+Begin bij een onverwacht QF2Odoo-resultaat met de projectreferentie uit de bron en de bijbehorende registratie in Odoo. Controleer de bedrijfsstatus voordat u opnieuw exporteert.
+
+[English](/qf2odoo/troubleshooting)
+
+## De offerte ontbreekt
+
+Controleer of het project is geëxporteerd. Kies daarna het juiste bedrijf in Odoo en zoek op de bronreferentie. In de optionele werkruimte staat het filter **Current QF Projects** standaard aan. Verwijder dit filter om ook eerdere of onvolledige imports te zien.
+
+Meldt de import een onbekende klant-, artikel- of bewerkingscode, dan moet de beheerder de koppeling van die code controleren. Kies niet zomaar een ander record om verder te kunnen.
+
+## QF toont Ordered, maar productie is niet gestart
+
+Dat is te verwachten als de Odoo-offerte nog een concept is. **Ordered** in QF bevestigt de Odoo-offerte niet. Controleer de bevestiging en de gebruikelijke inkoop- en productieregels in Odoo.
+
+## Een gewijzigde export vervangt de bevestigde order niet
+
+Bevestigde orders blijven beschermd. Zoek de gekoppelde conceptrevisie en vergelijk de broninhoud. Een gecontroleerde identieke herhaling kan het bestaande resultaat opnieuw gebruiken.
+
+## Stamgegevens of prijzen verschillen
+
+Controleer of deze uitwisseling aanstaat en of QF een nieuwe momentopname heeft opgevraagd. Vergelijk de ingestelde prijsbron en eenheden, vooral bij prijzen per vierkante meter en per plaat.
+
+## Een teruggestuurde status lijkt onjuist
+
+Controleer of statusterugmelding aanstaat en welke koppeling is ingesteld. **Produced** vereist dat alle niet-geannuleerde productieorders gereed zijn. **Delivered** kan al volgen op een deellevering. Controleer de werkelijke aantallen in Odoo.
+
+## Gegevens voor support
+
+Vermeld de QF-projectreferentie, Odoo-offerte of order, het bedrijf, waargenomen en verwacht resultaat, en de exacte zichtbare foutmelding. Voeg het tijdstip van de export of wijziging toe. Neem geen inloggegevens op in afbeeldingen of berichten.
+
+Zie [instellingen](/nl/qf2odoo/settings) voor optioneel gedrag of de [productpagina](https://sheetmetalconnect.com/integratie-qf2odoo) voor de commerciële scope.

@@ -1,0 +1,41 @@
+---
+title: "QF2Odoo: van calculatie naar Odoo"
+sidebarTitle: "Overzicht"
+description: "Lees hoe QF2Odoo projecten als conceptofferte naar Odoo brengt, welk systeem verantwoordelijk is voor elke stap en welke terugkoppelingen optioneel zijn."
+keywords: ["Sheet Metal Connect","QF2Odoo","handleiding"]
+---
+
+QF2Odoo neemt een geëxporteerd QuotationFactory-project over als **conceptofferte** in Odoo, met artikelen, stuklijsten, bewerkingen en bijlagen. Uw team controleert het resultaat in Odoo voordat het de order bevestigt.
+
+[English](/qf2odoo/overview)
+
+```mermaid
+flowchart LR
+    Q["QuotationFactory"] -->|"Geëxporteerd project"| O["Conceptofferte in Odoo"]
+    O -->|"Uw controle en bevestiging"| S["Verkooporder in Odoo"]
+    M["Stamgegevens in Odoo"] -->|"Op verzoek van QF, indien ingeschakeld"| Q
+    P["Productie en levering in Odoo"] -->|"Status, indien ingeschakeld"| Q
+```
+
+## Welk systeem beheert wat?
+
+| Gegeven of beslissing | Waar het thuishoort |
+| --- | --- |
+| Calculatieproject, berekening en bronbestanden | QuotationFactory |
+| Stamgegevens van klanten, leveranciers en catalogusartikelen | Odoo |
+| Controle van de geïmporteerde offerte en orderbevestiging | Odoo |
+| Productie, levering, facturatie en betalingsverwerking | Odoo |
+
+De productiegegevens kunnen stuklijsten met meerdere niveaus, bewerkingen en tekeningen bevatten. De offerte blijft een concept tot de gebruikelijke bevestiging in Odoo. De status **Ordered** in QuotationFactory bevestigt de Odoo-offerte niet en maakt geen productievraag aan.
+
+## Optionele terugkoppelingen
+
+Als dit is ingericht, kan QuotationFactory momentopnamen van stamgegevens uit Odoo opvragen. Ook productie- en leverstatussen kunnen terug naar QuotationFactory. Dit zijn afgebakende uitwisselingen, geen onbeperkte synchronisatie van beide systemen.
+
+De connector automatiseert geen factuuraanmaak, inning of aflettering van betalingen.
+
+## Verder lezen
+
+Lees de [dagelijkse werkwijze](/nl/qf2odoo/workflow), bekijk de [instellingen en opties](/nl/qf2odoo/settings) of zoek hulp bij een [ontbrekend resultaat](/nl/qf2odoo/troubleshooting).
+
+Voor commerciële informatie kunt u naar [QF2Odoo op de website](https://sheetmetalconnect.com/integratie-qf2odoo).

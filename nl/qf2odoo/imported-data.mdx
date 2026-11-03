@@ -45,6 +45,33 @@ De koppeling maakt technische momentopnamen voor maakwerk. Artikelen, stuklijste
 
 De Odoo-handleiding beschrijft [stuklijsten met meerdere niveaus](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/advanced_configuration/sub_assemblies.html) en de [inrichting van maakartikelen](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/basic_setup/configure_manufacturing_product.html) (Engels).
 
+### Artikel- en componentgegevens
+
+Dit zijn standaard Odoo-records die de koppeling vult. Ontbrekende bronwaarden blijven leeg; afmetingen, gewicht en tekeningrevisie zijn niet altijd nodig voor import.
+
+| Gegevens | Waar in Odoo | Wanneer nodig? |
+| --- | --- | --- |
+| Naam en referentie van deel of samenstelling | Artikel; onderdelen op het hoogste niveau staan ook op de offerte | Voor een offerte zijn een klant en minstens één offertregel op het hoogste niveau nodig. |
+| Aantal en eenheid | Offertregels en componentregels van de stuklijst | Aangeleverde aantallen bepalen de offerte en componenten. Niet-ondersteunde of niet-passende materiaaleenheden stoppen de import. |
+| Materiaalartikel, kwaliteit en dikte | Stuklijstcomponent en brongegevens van het artikel | Een materiaalverwijzing moet overeenkomen met een bestaand Odoo-artikel. Voor omrekening van plaatfractie naar vierkante meters zijn consistente plaatafmetingen of plaatoppervlakte nodig. |
+| Lengte, breedte, hoogte, oppervlakte en gewicht | Artikel; de optionele werkruimte toont QF-geometrie op het tabblad **QuotationFactory** | Wanneer aangeleverd. Gewicht staat in het standaard artikelveld; geometriegegevens zijn QF-toevoegingen. |
+| Componentstructuur en aantallen | Stuklijstcomponenten en onderliggende stuklijsten | Wanneer de export een structuur bevat. Een mapachtige verzamelstructuur wordt uitgepakt: de delen en samenstellingen erin worden verwerkt zonder artikel voor die verzamelstructuur. |
+| Bewerking, volgorde en resource | **Bewerkingen** op de stuklijst en werkcentrum | Wanneer aangeleverd. Een interne resource moet overeenkomen met een Odoo-werkcentrumcode; expliciete uitbesteding vraagt een passende leverancier. |
+| Productie- en insteltijd van de bewerking | Bewerking en QF-instructiedetails | Wanneer aangeleverd. Insteltijd blijft QF-informatie; de standaard insteltijd van een Odoo-werkcentrum staat daar los van. |
+| Tekeningnummer, revisie en bronbestand | Bijlagen; optioneel tabblad **QuotationFactory** op het artikel, **QF Source** | Wanneer aangeleverd. Een tekeningrevisie staat los van de QF-exportrevisie. |
+
+### QF-gegevens toegevoegd aan Odoo
+
+De integratiemodule bewaart broninformatie en productie-instructies. De optionele werkruimte toont extra details op het tabblad **QuotationFactory** van een artikel. Dit zijn aangeleverde brongegevens, geen algemene importeisen.
+
+| Gegevens | Waar in Odoo | Wanneer nodig? |
+| --- | --- | --- |
+| Nestdraairichting en bovenzijde | Tabblad **QuotationFactory** op het artikel; optionele kolommen op de offertregel | Wanneer aangeleverd. Een vaste draairichting of gekozen bovenzijde kan een waarschuwing geven die de import niet blokkeert. |
+| Geometrische en hoektoleranties, oppervlakteruwheid | Tabblad **QuotationFactory**, **Tolerances** | Wanneer aangeleverd. |
+| RAL, coatingproces, zijden en lagen | Tabblad **QuotationFactory**, **Material** en **Coating**; optionele RAL-kolom op de offerte | Wanneer aangeleverd. Een poederartikel waarnaar wordt verwezen moet bestaan in Odoo. |
+| Gaten, zettingen, snijlengte en afwerking | Tabblad **QuotationFactory**, **Features**, **Bending** en **Finishing** | Wanneer aangeleverd. |
+| Project-, artikel- en bewerkingsopmerkingen | **QF-productie-instructies** op toepasselijke productieorders en werkorders | Wanneer aangeleverd. De instructies vullen de standaard Odoo-werkorder aan. |
+
 ## Wat is wanneer nodig?
 
 Voor iedere import zijn de integratiemodule en een overeenkomstige connector nodig. Het project heeft een klant en minstens één offertregel op het hoogste niveau nodig. De werkruimte is optioneel: die voegt navigatie en overzichten toe, niet de onderliggende standaardofferte en productierecords.

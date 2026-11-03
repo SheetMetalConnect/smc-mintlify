@@ -1,5 +1,6 @@
 ---
 title: "QF2UNS: QuotationFactory data in the UNS"
+sidebarTitle: "Overview"
 description: "Follow QuotationFactory exports through the official Edge Connector into a Unified Namespace, with original files and optional feedback."
 ---
 
@@ -17,7 +18,8 @@ flowchart TB
   Worker -->|"Project data and revision overview"| MQTT["MQTT"]
   MQTT -->|"Configured ingress"| UNS["Unified Namespace"]
   UNS --> Consumers["Connected applications"]
-  Consumers -.->|"Optional status message"| Worker
+  Consumers -.->|"Optional status message"| MQTT
+  MQTT -.->|"Configured status subscription"| Worker
   Worker -->|"Confirmation and optional status files"| Edge
   Edge -->|"File exchange"| QF
 ```

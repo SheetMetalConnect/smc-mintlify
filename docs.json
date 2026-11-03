@@ -43,7 +43,9 @@
             "group": "Odoo UNS Connector",
             "pages": [
               "odoo-uns/overview",
+              "odoo-uns/architecture",
               "odoo-uns/workflow",
+              "odoo-uns/external-stock",
               "odoo-uns/settings",
               "odoo-uns/troubleshooting"
             ]
@@ -129,7 +131,9 @@
             "group": "Odoo UNS Connector",
             "pages": [
               "nl/odoo-uns/overview",
+              "nl/odoo-uns/architecture",
               "nl/odoo-uns/workflow",
+              "nl/odoo-uns/external-stock",
               "nl/odoo-uns/settings",
               "nl/odoo-uns/troubleshooting"
             ]

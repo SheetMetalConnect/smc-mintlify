@@ -13,7 +13,7 @@ The Odoo UNS Connector adds information to the manufacturing and work orders you
 [Nederlands](/nl/odoo-uns/workflow)
 
 ```mermaid
-flowchart LR
+flowchart TD
   M["Create or update Odoo order"] --> S["Snapshot shared"]
   S --> F["Shop system follows configured process"]
   F --> B["Authorized feedback"]
@@ -57,4 +57,29 @@ flowchart TD
 
 Observation alone does not complete production or change stock. Automatic completion supports the full planned quantity, not partial or scrap completion. Missing lot information, backorders, Odoo warnings or conflicting timers can prevent it.
 
-For an unexpected result, see [troubleshooting](/odoo-uns/troubleshooting). An administrator can use the Outbox, Inbox and Feedback Audit when the normal records do not explain the issue.
+For an unexpected result, see [troubleshooting](/odoo-uns/troubleshooting). A UNS User can inspect the message journals when the normal records do not explain the issue.
+
+## Follow messages in Odoo
+
+The **UNS** app separates the outgoing snapshot, incoming request and feedback result. These screens help locate the handoff; the ordinary Odoo records remain the place to check production and stock.
+
+<Steps>
+  <Step title="Find the outgoing snapshot">
+    Open **UNS → Outbox** and find the order or message reference. **Pending** means it has not been acknowledged for custody. **Acknowledged by hub** means a caller reports that it has taken durable custody, not that the destination has processed it.
+  </Step>
+  <Step title="Find the incoming request">
+    Open **UNS → Inbox** and find the feedback reference. **Received**, **Applied** and **Rejected** describe the Odoo request. A malformed request can fail before an inbox row exists.
+  </Step>
+  <Step title="Read the feedback result">
+    Open **UNS → Feedback Audit** for the recorded feedback and outcome where an audit exists. Compare it with the work order's **Latest Feedback** and the normal time, order or stock records. A rejected request can have no feedback audit if processing failed before one was committed.
+  </Step>
+  <Step title="Compare external stock when relevant">
+    Open **UNS → External stock** for the source's observations and read history. See [external stock](/odoo-uns/external-stock) for location mappings and the distinction from native stock.
+  </Step>
+</Steps>
+
+<Frame caption="Illustration with demo data: separate outgoing and incoming messages, with the feedback audit below.">
+  <img src="/images/odoo-uns/message-views-en.png" alt="Illustrated Outbox, Inbox and Feedback Audit showing message states and feedback references" />
+</Frame>
+
+A UNS User can read these screens. Creating mappings, changing permissions and manually enqueueing snapshots require additional authority. See [architecture](/odoo-uns/architecture) for the meaning of each handoff.

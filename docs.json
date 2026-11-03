@@ -69,9 +69,36 @@
               "oseon2uns/overview",
               "oseon2uns/workflow"
             ]
+          },
+          {
+            "group": "Legal",
+            "pages": [
+              "disclaimer"
+            ]
           }
         ],
-        "default": true
+        "default": true,
+        "footer": {
+          "links": [
+            {
+              "header": "© 2026 Sheet Metal Connect e.U.",
+              "items": [
+                {
+                  "label": "Disclaimer",
+                  "href": "/disclaimer"
+                },
+                {
+                  "label": "Imprint",
+                  "href": "https://sheetmetalconnect.com/imprint"
+                },
+                {
+                  "label": "Privacy",
+                  "href": "https://sheetmetalconnect.com/privacy"
+                }
+              ]
+            }
+          ]
+        }
       },
       {
         "language": "nl",
@@ -123,8 +150,35 @@
               "nl/oseon2uns/overview",
               "nl/oseon2uns/workflow"
             ]
+          },
+          {
+            "group": "Juridisch",
+            "pages": [
+              "nl/disclaimer"
+            ]
           }
-        ]
+        ],
+        "footer": {
+          "links": [
+            {
+              "header": "© 2026 Sheet Metal Connect e.U.",
+              "items": [
+                {
+                  "label": "Disclaimer",
+                  "href": "/nl/disclaimer"
+                },
+                {
+                  "label": "Colofon",
+                  "href": "https://sheetmetalconnect.com/imprint?lang=nl"
+                },
+                {
+                  "label": "Privacy",
+                  "href": "https://sheetmetalconnect.com/privacy?lang=nl"
+                }
+              ]
+            }
+          ]
+        }
       }
     ]
   },

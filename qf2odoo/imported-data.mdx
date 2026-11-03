@@ -1,0 +1,86 @@
+---
+title: "What QF2Odoo imports"
+sidebarTitle: "Imported data"
+description: "Find QF quotation, part and assembly data in Odoo and understand which records the connector creates."
+---
+
+QF2Odoo imports a QF project into an Odoo quotation and its related engineering records. This page shows where to find the data and which system owns it.
+
+[Nederlands](/nl/qf2odoo/imported-data)
+
+## Quotation and customer
+
+| Data from QuotationFactory | Where in Odoo | Needed when |
+| --- | --- | --- |
+| Buying company and contacts | Customer on the quotation; Contacts | A matching company is needed to import. Supplied contacts are matched by email or created under it; the first is the order contact. |
+| Quoted items, quantities and unit prices | Quotation lines | At least one top-level quotation line is needed to import. Odoo owns taxes and financial processing. |
+| Requested delivery date | Quotation commitment date | When supplied. Estimated date is separate source information; it does not replace the requested date. |
+| Payment and delivery terms, quotation header and footer | Native terms where matched; **QF Quotation** tab for supplied source content | When supplied. Matching Odoo terms are linked; unsupported source terms remain visible on the QF tab. |
+| Drawings and source export | Quotation attachments and related records | Drawings are attached when supplied. Each imported quotation retains its source export; source information is for internal users. |
+| QF project, status and revision | Quotation source information; optional **QuotationFactory** tab and **QF Projects** | The import links the QF project and revision. Source status appears when supplied; it is informational and does not confirm the order. |
+
+## Parts, assemblies and purchased items
+
+The connector creates engineering snapshots for manufactured work. The resulting products, bills of materials and operations are native Odoo records; the connector also adds QF source information and instructions. In the optional workspace, **QF BOMs** on the quotation opens the linked bills of materials. Without it, find them in standard Odoo Manufacturing.
+
+<Tabs>
+  <Tab title="Single part">
+    A manufactured part becomes a revision-specific Odoo product. A bill of materials is created when the source supplies components or operations; it contains the applicable components and operations. The material article links to an existing Odoo catalogue product.
+  </Tab>
+  <Tab title="Assemblies">
+    An assembly becomes a revision-specific product. Its native Odoo bill of materials contains its components; nested assemblies retain their own levels and applicable operations. A grouping-only wrapper is unpacked without a product of its own. 
+  </Tab>
+  <Tab title="Purchased">
+    An item with purchasing steps only links to an existing Odoo article. The connector does not create a manufacturing bill of materials for it or replace the catalogue article's routes.
+  </Tab>
+</Tabs>
+
+For the standard Odoo structure, see [multilevel bills of materials](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/advanced_configuration/sub_assemblies.html) and [manufacturing product configuration](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/basic_setup/configure_manufacturing_product.html).
+
+### Product and component details
+
+These are normal Odoo records populated by the connector. Source values that are not supplied remain absent; dimensions, weight and drawing revision are not universally required to import.
+
+| Data | Where in Odoo | Needed when |
+| --- | --- | --- |
+| Part or assembly name and reference | Product; top-level items also appear on quotation lines | The connector fills product identity from the source, with fallbacks where needed. |
+| Quantity and unit | Quotation lines and BOM component lines | Supplied quantities express the offer and components. Unsupported or mismatched material units stop import. |
+| Material article, grade and thickness | BOM component and product source details | A referenced material must match an existing Odoo article. For sheet-fraction conversion to square metres, consistent stock-sheet dimensions or area are required. |
+| Length, width, height, area and weight | Product; the optional workspace shows QF geometry on its **QuotationFactory** tab | When supplied. Weight uses the native product field; geometry details are QF additions. |
+| Component hierarchy and quantities | BOM components and child BOMs | When the export contains a structure. A grouping-only wrapper is unpacked: its contained parts and assemblies are handled, without creating a product for the wrapper. |
+| Operation, sequence and resource | BOM **Operations** and work centre | When supplied. An in-house resource must match an Odoo work-centre code; explicit outsourcing requires a matching supplier. |
+| Operation production and setup time | Operation and QF instruction details | When supplied. Setup time remains QF information; Odoo work-centre setup is a separate native setting. |
+| Drawing number, revision and source file | Attachments; optional product **QuotationFactory** tab, **QF Source** | When supplied. A drawing revision is separate from the QF export revision. |
+
+### QF details added to Odoo
+
+The core add-on retains source information and production instructions. The optional workspace exposes extra details on a product's **QuotationFactory** tab. The following are supplied source details, not universal import requirements.
+
+| Data | Where in Odoo | Needed when |
+| --- | --- | --- |
+| Nesting rotation and upper side | Product **QuotationFactory** tab; optional quotation-line columns | When supplied. Locked rotation or a selected upper side can produce a nonblocking attention warning. |
+| Geometric and angle tolerances, surface roughness | Product **QuotationFactory** tab, **Tolerances** | When supplied. |
+| RAL, coating process, sides and layers | Product **QuotationFactory** tab, **Material** and **Coating**; optional RAL quotation column | When supplied. A referenced powder article must resolve to an existing Odoo article. |
+| Holes, bends, cutting length and finishing details | Product **QuotationFactory** tab, **Features**, **Bending** and **Finishing** | When supplied. |
+| Project, product and operation comments | **QF Production Instructions** on applicable production and work orders | When supplied. Instructions supplement the native Odoo work order. |
+
+## What must exist and when?
+
+The required integration add-on and matching connector are needed for every import. The project needs a customer and at least one top-level quotation line. The workspace is optional: it adds navigation and views, not the underlying native quotation and manufacturing records.
+
+| When | Requirement |
+| --- | --- |
+| Import | The buying company must resolve to an existing Odoo customer. Existing materials and purchased articles must match uniquely; the connector does not create catalogue companies or those articles. |
+| When applicable to the export | In-house QF resource codes must match Odoo work centres; outsourced resources need matching suppliers. A supplied currency must be active and resolve to an appropriate Odoo pricelist, or to the company-currency default where supported. |
+| When synchronisation is enabled | QF requests the configured customer, supplier or article data from Odoo. These exchanges are optional and require the corresponding eligible master data. |
+| Confirmation and production | The import must be complete. Staff confirm the quotation in Odoo after their commercial checks. Odoo's configured routes, procurement and manufacturing rules determine the resulting work. |
+
+For the native replenishment process and the conditions on manufacturing and purchased products, see [Odoo’s replenish-on-order guide](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/inventory/warehouses_storage/replenishment/mto.html).
+
+A project import creates the draft and engineering data, but no manufacturing or stock demand. A standalone product-only or BOM-only import is not a documented mode.
+
+## Who owns a revision?
+
+A changed export with a new reference creates a linked draft and its own engineering snapshots. Earlier quotations, manufacturing orders and their instructions remain intact. Shared catalogue articles stay under Odoo ownership. Shipping and manual preparation can be carried forward, while the new export supplies its own QF content. A verified identical replay returns the earlier result rather than creating another revision.
+
+Continue with the [daily workflow](/qf2odoo/workflow) or check [settings](/qf2odoo/settings).

@@ -7,6 +7,54 @@ Use QuotationFactory for calculation and review the imported information in Oseo
 
 [Nederlands](/nl/qf2oseon/workflow) · [Overview](/qf2oseon/overview)
 
+<Frame caption="Localized illustration with demo data, not a verified English vendor screen: the status bar and portal visibility control in a QF project.">
+  <img src="/images/qf-project-status-en.png" alt="Illustrative QF project header showing status labels and portal visibility" />
+</Frame>
+
+The labels show available stages. Check the actual project status and the configured feedback route.
+
+## Choose the route
+
+A customer can start a request in the QuotationFactory portal, or staff can enter a request received by email as a QuotationFactory project. In either case, the project is calculated and reviewed in QuotationFactory. Portal visibility does not by itself mean that the customer placed or accepted an order.
+
+| Situation | What happens |
+| --- | --- |
+| Check before a quote | The configured Boost check returns its verdict to QuotationFactory. It is separate from the Oseon order export. |
+| Prepare parts without a customer order | When part processing and an export at **Quoted** are configured, eligible parts can be sent to Oseon without a customer order. The parts-only configuration also processes eligible parts on Ordered or Producing exports. Review the resulting articles before reusing them. |
+| Customer order | Once the project reaches **Ordered** and is exported, the integration processes eligible parts and, if enabled, prepares a customer order for Oseon to import. |
+| Production order | An export at **Producing** can also prepare production orders when that route is enabled. |
+
+The QF Edge Connector's export triggers and enabled routes are configured per installation. After the configured export, check the corresponding result in Oseon.
+
+## Single parts and assemblies
+
+The customer-order import creates a position for each part in the exported bill of materials, using its total project quantity. This is a part list; do not assume that nested assemblies or subassemblies are recreated as an Oseon assembly structure. Check the positions and quantities against the QuotationFactory project. The selected working-plan mapping depends on the part's activities and the installation's settings.
+
+The parts interface processes eligible sheet-cutting parts; tube processing uses a separate configured route. Other purchased or material items may appear in order positions, but an order position does not guarantee creation of a corresponding Oseon article. Check article and material availability in Oseon.
+
+## What reaches Oseon
+
+| Destination | Data from the QF project | What to check |
+| --- | --- | --- |
+| Part master, through the parts interface | Eligible sheet-cutting parts: part number and description, drawing number and revision, selected material, CAD reference, and configured working-plan steps and documents. | Check the article, material, drawing and each mapped operation in Oseon. An operation without a mapping can be omitted. |
+| Customer order, through the order import | Project ID and reference, customer and address, delivery condition, and one position per exported part: part number, quantity, unit price, material, requested date and configured work-plan selection. | Check the order and positions after Oseon imports them. Check the corresponding article separately. |
+| Production order, when enabled | Part number, project quantity, customer and material for each exported part, with a production work plan. | Check the imported production orders and their dates and quantities in Oseon. |
+| Tube part, when enabled | Tube master data through the Oseon file import, with CAD files handled by the configured tube route. | Check the tube article and its production data in Oseon. |
+
+### Before export
+
+For sheet parts, check the part number and selected material and make sure the required operations have Oseon mappings. The validation mode determines whether a missing material or other error is reported or prevents that part from being sent. CAD and drawing documents must be present in the project and supported by the configured exchange to reach Oseon; document attachment to operations is optional. Working plans are created only when enabled and mapped.
+
+A customer-order import requires the project identity and a customer address with street, postal code, city and country. A different delivery address can be passed when present. Delivery conditions, work-plan selection and optional document handling depend on the setup. Check prices, quantities and requested delivery date in QF before export.
+
+For an existing sheet part, the integration can send an update when QF carries its matching external key. Its update payload is narrower than a new-part payload: it includes notes, drawing number and revision, customer, working plan and documents, but does not include the material or CAD filename. A create conflict is skipped. Check the existing article after a revision; do not assume every changed field was updated.
+
+## Project identity and progress
+
+The customer-order import carries the QuotationFactory project ID as its external identity and the project reference separately. The Oseon order number is an Oseon reference; use both when tracing an order.
+
+When customer-order status feedback is configured, Oseon **Released** maps to QF **Producing**, **Finished** to **Produced**, **Delivered** to **Delivered**, and **Cancelled** to **Cancelled**. Oseon Incomplete and Valid do not change the QF project status. Other Oseon states are not mapped by this feedback route. Check the configured feedback route and the actual project status in QF.
+
 ## Check a bent part
 
 ```mermaid
@@ -24,18 +72,20 @@ Boost uses the configured machine and tools to calculate a bend solution. Quotat
 ```mermaid
 flowchart TD
  A["Export project at configured status"] --> B["Integration processes project and attachments"]
- B --> C["Oseon receives parts and order"]
- C --> D["Review order, drawings and working plan"]
+ B --> C["Configured parts or order route"]
+ C --> D["Review the result in Oseon"]
  D --> E["Continue work in Oseon"]
 ```
 
-1. Complete the QuotationFactory project and move it through the configured export status.
-2. Open the resulting order and parts in Oseon. Compare quantities, material, drawings and working plan with the project.
-3. Resolve missing information before continuing work preparation. The order and working plan should match the project.
+<Steps>
+  <Step title="Export the project">Complete the QuotationFactory project and move it through the configured export status.</Step>
+  <Step title="Review in Oseon">For parts-only processing, check the resulting articles. For a customer-order route, check the order, positions and articles. For a production-order route, check the production orders. Compare the applicable quantities, material, drawings and working plan with the project.</Step>
+  <Step title="Complete preparation">Resolve missing information before continuing work preparation.</Step>
+</Steps>
 
 Before re-exporting a changed project, check the existing order in Oseon and establish which changes are needed. Oseon decides how its import handles a repeated order; do not assume a re-export updates it or avoids duplicates.
 
-Oseon processes the order import itself. A file delivered to its import interface does not prove the order is complete or ready for production. Configured status feedback can return Oseon progress to QuotationFactory.
+Oseon processes the order import itself after the integration delivers the file. Check the imported result and its completeness before production. Configured status feedback can return Oseon progress to QuotationFactory.
 
 ## If a result is missing
 

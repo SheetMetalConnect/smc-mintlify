@@ -29,7 +29,11 @@ flowchart TD
  D --> E["Continue work in Oseon"]
 ```
 
-Complete the QuotationFactory project and move it through the configured export status. Open the resulting order and parts in Oseon. Compare quantities, material, drawings and working plan with the project. Resolve missing information before continuing normal Oseon work preparation.
+1. Complete the QuotationFactory project and move it through the configured export status.
+2. Open the resulting order and parts in Oseon. Compare quantities, material, drawings and working plan with the project.
+3. Resolve missing information before continuing work preparation. The order and working plan should match the project.
+
+Before re-exporting a changed project, check the existing order in Oseon and establish which changes are needed. Oseon decides how its import handles a repeated order; do not assume a re-export updates it or avoids duplicates.
 
 Oseon processes the order import itself. A file delivered to its import interface does not prove the order is complete or ready for production. Configured status feedback can return Oseon progress to QuotationFactory.
 

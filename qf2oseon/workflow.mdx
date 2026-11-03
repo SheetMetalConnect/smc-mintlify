@@ -53,7 +53,7 @@ For an existing sheet part, the integration can send an update when QF carries i
 
 The customer-order import carries the QuotationFactory project ID as its external identity and the project reference separately. The Oseon order number is an Oseon reference; use both when tracing an order.
 
-When status feedback is configured, supported Oseon order states can update the QuotationFactory project. Incomplete and Valid are pre-production states and do not change its QF status. Later portal stages are visible in QuotationFactory, but their visibility alone does not establish which changes are automatic in a particular installation.
+When customer-order status feedback is configured, Oseon **Released** maps to QF **Producing**, **Finished** to **Produced**, **Delivered** to **Delivered**, and **Cancelled** to **Cancelled**. Oseon Incomplete and Valid do not change the QF project status. Other Oseon states are not mapped by this feedback route. Portal visibility alone does not establish whether feedback is enabled or received.
 
 ## Check a bent part
 

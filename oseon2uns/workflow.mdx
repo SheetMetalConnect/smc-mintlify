@@ -17,7 +17,9 @@ flowchart TD
  D --> E["Compare with source when needed"]
 ```
 
-Open the connected application and find the relevant order or operation using its reference. Available fields and update timing depend on the application. Compare an unexpected value with Oseon and the source record.
+1. Open the connected application and find the order or operation using its reference.
+2. Check the displayed information. Available fields and update timing depend on the application.
+3. Compare an unexpected value with the source record in Oseon.
 
 ## Report work back when enabled
 
@@ -26,11 +28,15 @@ flowchart TD
  A["User records work in application"] --> B["Application sends configured request"]
  B --> C["Integration receives request"]
  C --> D["Oseon processes action"]
- D --> E["Result returns to connected system"]
- E --> F["Check resulting state in Oseon"]
+ D --> E{"Processing result"}
+ E -->|"Completed"| F["Check state in Oseon"]
+ E -->|"Rejected or failed"| G["Review result and Oseon state"]
+ E -->|"Uncertain"| H["Check Oseon before repeating"]
 ```
 
-If the application and return route are configured for the action, record work with the application's normal controls. Depending on the setup this can include starting an operation, reporting a quantity or finishing an operation. Controls and permissions belong to the application.
+1. Record work using the application’s normal controls, if the action is enabled. This can include starting an operation, reporting a quantity or finishing an operation.
+2. Check the processing result in the connected system.
+3. Check the resulting state in Oseon. Controls and permissions belong to the application.
 
 A receipt means the request reached the integration. It does not mean the action succeeded in Oseon. Check the processing result and Oseon state. If the result is uncertain, establish the actual state before submitting the action again.
 

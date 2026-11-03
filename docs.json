@@ -12,11 +12,6 @@
     "global": {
       "anchors": [
         {
-          "anchor": "All integrations",
-          "href": "https://sheetmetalconnect.com/integraties",
-          "icon": "book-open-cover"
-        },
-        {
           "anchor": "Sheet Metal Connect",
           "href": "https://sheetmetalconnect.com",
           "icon": "newspaper"
@@ -52,7 +47,8 @@
               "odoo-uns/troubleshooting"
             ]
           }
-        ]
+        ],
+        "default": true
       },
       {
         "language": "nl",
@@ -97,12 +93,7 @@
         "href": "https://sheetmetalconnect.com",
         "label": "Website"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Explore integrations",
-      "href": "https://sheetmetalconnect.com/integraties"
-    }
+    ]
   },
   "contextual": {
     "options": [
@@ -110,31 +101,7 @@
       "view"
     ]
   },
-  "footer": {
-    "links": [
-      {
-        "header": "Sheet Metal Connect",
-        "items": [
-          {
-            "label": "QF2Odoo",
-            "href": "https://sheetmetalconnect.com/integratie-qf2odoo"
-          },
-          {
-            "label": "Odoo UNS Connector",
-            "href": "https://sheetmetalconnect.com/integratie-odoo-uns-connector"
-          },
-          {
-            "label": "All integrations",
-            "href": "https://sheetmetalconnect.com/integraties"
-          }
-        ]
-      }
-    ]
-  },
   "description": "Practical guides to QF2Odoo and the Odoo UNS Connector for metalworking teams. Understand the workflows, data ownership and configured capabilities.",
-  "search": {
-    "prompt": "Search the user guides"
-  },
   "seo": {
     "indexing": "navigable",
     "metatags": {

@@ -23,7 +23,9 @@ flowchart LR
   U <--> F["Connected shop-floor systems"]
 ```
 
-New manufacturing orders and tracked changes produce snapshots: records of the order at a point in time. A draft snapshot is information, not a command to release work or start a machine.
+New manufacturing orders and tracked changes produce snapshots: records of the order at a point in time. Odoo saves each snapshot in an outbox alongside the change. If the connection is interrupted, the delivery service can retry recorded changes when it resumes. A draft snapshot is information, not a command to release work or start a machine.
+
+**Pending** means the snapshot is awaiting collection. **Acknowledged by hub** means the integration service has accepted durable custody; it does not mean every destination has processed it. Repeated feedback preserves the original accepted or rejected result, rather than repeating the action.
 
 ## What changes in Odoo?
 
@@ -31,6 +33,6 @@ The manufacturing order gains a read-only **UNS Integration** tab with its work-
 
 Feedback can record an observation. Depending on separate permissions, it can also create time entries, complete an operation or manufacturing order, or book stock. Odoo is the default execution owner and rejects external operation feedback until a source is authorized.
 
-External stock observations remain separate from Odoo stock. The [settings guide](/odoo-uns/settings) explains the boundaries.
+Optional stock extensions keep external stock observations separate from native Odoo bookings. Additional capabilities can support authorized stock corrections, consumption using actual lots, and publication of received lots for products configured to participate. Manufacturing-order completion from feedback is limited to the full planned quantity. The [settings guide](/odoo-uns/settings) explains the boundaries.
 
 Continue with the [daily workflow](/odoo-uns/workflow) or [troubleshooting](/odoo-uns/troubleshooting). See the [product page](https://sheetmetalconnect.com/integratie-odoo-uns-connector?lang=en) for commercial information.

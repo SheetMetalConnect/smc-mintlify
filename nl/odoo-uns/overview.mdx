@@ -41,7 +41,9 @@ flowchart LR
     D -->|"Verwerking volgens ingestelde bevoegdheden"| O
 ```
 
-Odoo verstuurt een **momentopname**: de stand van de order op een bepaald moment. Ook een conceptorder kan zo'n momentopname opleveren.
+Bij een nieuwe productieorder of bijgehouden wijziging legt Odoo een **momentopname** vast: de stand van de order op dat moment. De opname wordt samen met de wijziging opgeslagen in een uitgaande berichtenlijst, de outbox. Ook een conceptorder kan zo'n opname opleveren. Valt de verbinding weg, dan kan de afleverdienst de vastgelegde wijzigingen opnieuw ophalen zodra de verbinding terug is.
+
+**In afwachting** betekent dat een opname nog op ophalen wacht. **Ontvangst bevestigd door hub** betekent dat de integratiedienst de opname duurzaam in beheer heeft genomen. Het betekent niet dat alle ontvangers deze al hebben verwerkt. Een herhaalde terugmelding behoudt het oorspronkelijke resultaat: geaccepteerd of afgewezen.
 
 <Note>
   Een momentopname versturen geeft geen werk vrij en start geen machine. De ontvangende toepassing volgt de afgesproken productieaansturing.
@@ -71,7 +73,9 @@ Onder het menu **UNS** staan de uitgaande en inkomende berichten. Het **Terugkop
 | Gereedmelding, indien toegestaan | Afronden van de bewerking of productieorder. |
 | Partijvoorraad, indien ingeschakeld | Vastleggen van waargenomen voorraad. Werkelijke voorraadboekingen vragen aparte toestemming. |
 
-Per bewerking is één systeem ingesteld dat voortgang mag terugmelden. Een bericht ontvangen geeft niet automatisch toestemming om ook tijd, gereedmelding of voorraad te boeken.
+Odoo is standaard eigenaar van de uitvoering en wijst externe bewerkingsterugmeldingen af totdat een bron is toegestaan. Een bericht ontvangen geeft niet automatisch toestemming om ook tijd, gereedmelding of voorraad te boeken. Een productieorder kan via terugmelding alleen voor de volledige geplande hoeveelheid worden afgerond.
+
+De optionele voorraaduitbreiding houdt waargenomen voorraad gescheiden van voorraadboekingen in Odoo. Aanvullende functies ondersteunen toegestane voorraadcorrecties, materiaalverbruik uit werkelijk gebruikte partijen en publicatie van ontvangen partijen voor artikelen waarvoor dat is ingeschakeld.
 
 ## Wat blijft standaard Odoo?
 

@@ -159,8 +159,8 @@ Een status kan teruggaan als de voortgang in Odoo verandert. Facturatie en betal
 
 ## Een gewijzigde export verwerken
 
-Bij gewijzigde broninhoud maakt de koppeling een gekoppelde conceptrevisie. Een bevestigde order blijft beschermd.
+Bij de eerste import kan de koppeling een uniek overeenkomende conceptofferte of verzonden offerte aanvullen. Bij meerdere overeenkomsten stopt de import.
 
-Een gecontroleerde, identieke herhaling gebruikt het eerder geaccepteerde resultaat opnieuw. Controleer vóór bevestiging welk concept actueel is en bij welke bronreferentie het hoort.
+Een export met gewijzigde inhoud en een nieuwe exportreferentie maakt een gekoppelde conceptrevisie, ook als de eerdere offerte is verzonden of de order bevestigd. De eerdere order blijft beschermd. Een gecontroleerde, identieke herhaling gebruikt het eerder geaccepteerde resultaat opnieuw zonder nieuwe revisie. Gewijzigde inhoud onder een bestaande exportreferentie wordt geweigerd. Controleer vóór bevestiging welk concept actueel is en bij welke bronreferentie het hoort.
 
 Ontbreekt de verwachte revisie? Zie [problemen oplossen](/nl/qf2odoo/troubleshooting).

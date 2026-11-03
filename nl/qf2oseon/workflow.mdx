@@ -53,7 +53,7 @@ Bij een bestaand plaatdeel kan de koppeling een wijziging sturen als QF de bijbe
 
 De klantorderimport gebruikt de project-ID van QuotationFactory als externe identificatie en geeft de projectreferentie apart mee. Het Oseon-ordernummer is een referentie van Oseon; beide helpen bij het terugzoeken.
 
-Als statusfeedback is ingericht, kunnen ondersteunde orderstatussen uit Oseon het project in QuotationFactory bijwerken. Incomplete en Valid zijn statussen vóór productie en wijzigen de QF-status niet. Latere stappen kunnen zichtbaar zijn in het portaal, maar die zichtbaarheid bewijst niet welke wijzigingen in een specifieke inrichting automatisch verlopen.
+Als statusfeedback voor klantorders is ingericht, wordt Oseon **Released** vertaald naar QF **Producing**, **Finished** naar **Produced**, **Delivered** naar **Delivered** en **Cancelled** naar **Cancelled**. Oseon Incomplete en Valid wijzigen de QF-projectstatus niet. Andere Oseon-statussen zijn in deze feedbackroute niet gekoppeld. Zichtbaarheid in het portaal bewijst niet dat feedback is ingeschakeld of ontvangen.
 
 ## Controleer een kantdeel
 

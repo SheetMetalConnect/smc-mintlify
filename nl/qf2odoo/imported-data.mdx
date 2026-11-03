@@ -16,8 +16,8 @@ QF2Odoo importeert een QF-project naar een Odoo-offerte met bijbehorende technis
 | Offertedelen, aantallen en stukprijzen | Offertregels | Voor import is minstens één offertregel op het hoogste niveau nodig. Odoo beheert belastingen en financiële verwerking. |
 | Gewenste leverdatum | Toegezegde datum op de offerte | Wanneer aangeleverd. De geschatte datum blijft afzonderlijke broninformatie en vervangt de gewenste datum niet. |
 | Betalings- en levervoorwaarden, offerteheader en -footer | Standaardvoorwaarden waar herkend; tabblad **QF-offerte** voor broninhoud | Wanneer aangeleverd. Overeenkomende Odoo-voorwaarden worden gekoppeld; niet-herkende blijven zichtbaar op het QF-tabblad. |
-| Tekeningen en bronexport | Bijlagen bij de offerte en gekoppelde records | Wanneer aangeleverd. De oorspronkelijke export hangt aan de offerte; broninformatie is alleen voor interne gebruikers toegankelijk. |
-| QF-project, status en revisie | Broninformatie op de offerte; optioneel tabblad **QuotationFactory** en **QF-projecten** | Wanneer aangeleverd. De bronstatus is informatief en bevestigt de order niet. |
+| Tekeningen en bronexport | Bijlagen bij de offerte en gekoppelde records | Tekeningen worden toegevoegd wanneer ze zijn aangeleverd. Elke geïmporteerde offerte bewaart de bronexport; broninformatie is alleen voor interne gebruikers toegankelijk. |
+| QF-project, status en revisie | Broninformatie op de offerte; optioneel tabblad **QuotationFactory** en **QF-projecten** | De import koppelt het QF-project en de revisie. De bronstatus is zichtbaar als die is aangeleverd; die is informatief en bevestigt de order niet. |
 
 ## Onderdelen, samenstellingen en inkoopdelen
 
@@ -28,7 +28,7 @@ De koppeling maakt technische momentopnamen voor maakwerk. Artikelen, stuklijste
     Een maakdeel wordt een revisiespecifiek Odoo-artikel. Als de bron componenten of bewerkingen bevat, ontstaat ook een stuklijst met die componenten en bewerkingen. Het materiaal verwijst naar een bestaand catalogusartikel in Odoo.
   </Tab>
   <Tab title="Samenstelling met meerdere niveaus">
-    Een samenstelling wordt een revisiespecifiek artikel. Een mapachtige verzamelstructuur wordt uitgepakt zonder eigen artikel. De standaard Odoo-stuklijst bevat de componenten; onderliggende samenstellingen behouden hun eigen niveaus en toepasselijke bewerkingen. 
+    Een samenstelling wordt een revisiespecifiek artikel. De standaard Odoo-stuklijst bevat de componenten; onderliggende samenstellingen behouden hun eigen niveaus en toepasselijke bewerkingen. Een mapachtige verzamelstructuur wordt uitgepakt zonder eigen artikel. 
   </Tab>
   <Tab title="Inkoopdeel">
     Een deel met uitsluitend inkoopstappen verwijst naar een bestaand Odoo-artikel. De koppeling maakt daarvoor geen productiestuklijst en vervangt de routes van het catalogusartikel niet.

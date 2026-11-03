@@ -63,9 +63,11 @@ A project can contain an individual manufactured part or an assembly with severa
 
 The documented export is a project-to-quotation import. A separate product-only or bill-of-materials-only import, independent of a quotation, is not described as a supported mode. Normal Odoo procurement and manufacturing rules apply after confirmation.
 
-<Frame caption="Localized illustration with demo data, not a verified English vendor screen, of QF project stages and customer visibility. The stage bar does not prove completion or acceptance. QF2Odoo can report Producing, Produced and Delivered; Delivered can be partial. It does not automatically report Packed.">
+<Frame caption="Illustrative QF header with demo data; English labels are localized.">
   <img src="/images/qf-project-status-en.png" alt="Illustration of QuotationFactory project stage labels and customer visibility checkbox" />
 </Frame>
+
+The configured feedback covers Producing, Produced and Delivered, not Packed.
 
 ### Follow the project in both systems
 
@@ -135,3 +137,5 @@ flowchart TD
 <Warning>A new draft does not change the earlier confirmed order or its production demand. Review the current draft and handle confirmation through the normal Odoo process.</Warning> The commercial protection setting can make draft and sent portal-origin commercial fields read-only for ordinary users; revise those at the QF source or through authorized administration. Shipping and work preparation remain editable. Protection is not evidence of customer acceptance.
 
 If status feedback is enabled, the default mappings report **Producing** when manufacturing is underway, **Produced** when all non-cancelled manufacturing orders are done, and **Delivered** after any validated outgoing delivery. Delivered can mean a partial delivery. Status can also move backward as Odoo changes.
+
+See Odoo’s guides to [invoicing policies](https://www.odoo.com/documentation/19.0/applications/sales/sales/invoicing/invoicing_policy.html) and [payments](https://www.odoo.com/documentation/19.0/applications/finance/accounting/payments.html) for the standard financial process.

@@ -112,6 +112,6 @@ flowchart TD
   R --> V
 ```
 
-Confirmed orders are protected. An initial import can adopt a uniquely matching draft or sent quotation. The commercial protection setting can make draft and sent portal-origin commercial fields read-only for ordinary users; revise those at the QF source or through authorized administration. Shipping and work preparation remain editable. Protection is not evidence of customer acceptance.
+Confirmed orders are protected. An initial import can adopt a uniquely matching draft or sent quotation; an ambiguous match blocks the import. Changed content under a new export reference creates a linked draft even when the earlier quotation was sent or the order was confirmed. An identical verified replay returns the earlier accepted result without creating a revision. Changed content under an existing export reference is refused. The commercial protection setting can make draft and sent portal-origin commercial fields read-only for ordinary users; revise those at the QF source or through authorized administration. Shipping and work preparation remain editable. Protection is not evidence of customer acceptance.
 
 If status feedback is enabled, the default mappings report **Producing** when manufacturing is underway, **Produced** when all non-cancelled manufacturing orders are done, and **Delivered** after any validated outgoing delivery. Delivered can mean a partial delivery. Status can also move backward as Odoo changes.

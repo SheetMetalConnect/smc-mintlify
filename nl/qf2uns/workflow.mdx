@@ -24,19 +24,19 @@ flowchart TB
 
 ## Als een project opnieuw wordt geëxporteerd
 
-Een nieuwe export wordt als revisie verwerkt. De worker bewaart een revisiekenmerk en publiceert een manifest met de verwachte gegevens. Een ontvangend systeem kan die kenmerken en het manifest gebruiken om revisies te onderscheiden en de projectgegevens te controleren.
+Een nieuwe export wordt als revisie verwerkt. De worker bewaart een revisiekenmerk en publiceert een overzicht van de verwachte projectgegevens. Een ontvangend systeem kan die kenmerken en het overzicht gebruiken om revisies te onderscheiden en de projectgegevens te controleren.
 
 ```mermaid
 flowchart TB
   A["Projectexport"] --> B["Revisiekenmerk reserveren"]
-  B --> C["Gegevens en manifest publiceren"]
+  B --> C["Projectgegevens en revisieoverzicht publiceren"]
   C --> D{"Publicatie onderbroken?"}
   D -->|"Nee"| E["Bevestigen en archiveren"]
   D -->|"Ja"| F["Opnieuw proberen kan berichten herhalen"]
-  F --> G["Afnemer ontdubbelt op gegevens en revisie"]
+  F --> G["Ontvangend systeem herkent herhaalde gegevens"]
   F --> C
 ```
 
-Bij een storing kunnen berichten opnieuw worden aangeboden. Afnemers moeten die ontdubbelen; de bevestiging garandeert geen eenmalige aflevering. Gebruikt een export dezelfde bestandsnaam met andere inhoud, dan weigert de worker het gewijzigde bestand.
+Bij een storing kunnen berichten opnieuw worden aangeboden. Het ontvangende systeem moet herhaalde gegevens herkennen, zodat dezelfde revisie niet dubbel wordt verwerkt. De bevestiging garandeert geen eenmalige aflevering. Gebruikt een export dezelfde bestandsnaam met andere inhoud, dan weigert de worker het gewijzigde bestand.
 
 [Overzicht](/nl/qf2uns/overview) · [Problemen oplossen](/nl/qf2uns/troubleshooting) · [English](/qf2uns/workflow)

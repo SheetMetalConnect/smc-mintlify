@@ -1,0 +1,70 @@
+---
+title: "Een order of terugmelding ontbreekt"
+sidebarTitle: "Problemen oplossen"
+description: "Controleer een wachtend bericht, afgewezen terugmelding of ontbrekende boeking. Lees welke overzichten en instellingen helpen om de oorzaak te vinden."
+keywords:
+  - "Odoo UNS Connector"
+  - "Odoo 19"
+  - "productie"
+  - "handleiding"
+---
+
+Komt een order of terugmelding van de Odoo UNS Connector niet aan? Zoek eerst de order of bewerking. Controleer daarna het bijbehorende bericht en het resultaat in Odoo.
+
+[English](/odoo-uns/troubleshooting)
+
+## Het uitgaande bericht blijft wachten
+
+Zoek de order onder **UNS → Uitgaande berichten**. Controleer de status van het gekoppelde bericht.
+
+De beheerder kan met die referentie de verbinding en aflevering onderzoeken. Steeds nieuwe momentopnamen maken vervangt dat onderzoek niet.
+
+## Ontvangst is bevestigd, maar de werkvloer mist de order
+
+De bevestiging betekent dat de ingestelde integratiedienst het bericht voor duurzame bewaring heeft overgenomen.
+
+Dat bewijst nog niet dat de hub of de ontvangende toepassing de order heeft verwerkt. De beheerder controleert de route tot de betreffende toepassing.
+
+## De terugmelding is afgewezen
+
+Lees de reden onder **Inkomende berichten** of in het **Terugkoppelingslogboek**.
+
+Controleer vervolgens:
+
+- Is het juiste uitvoeringssysteem ingesteld?
+- Klopt de bronreferentie?
+- Heeft de gevraagde handeling toestemming?
+
+Hetzelfde afgewezen bericht houdt bij herhaling de oorspronkelijke uitkomst. Verhelp daarom eerst de oorzaak.
+
+## Er is voortgang, maar geen tijd of gereedmelding
+
+Een verwerkte waarneming is niet automatisch een tijdregistratie of gereedmelding. Controleer de productieve tijdcategorie en de afzonderlijke toestemmingen.
+
+Automatische gereedmelding vraagt de volledige geplande hoeveelheid. De volgende situaties kunnen afronding tegenhouden:
+
+- Deelproductie of uitval.
+- Ontbrekende partijgegevens of backorders.
+- Waarschuwingen uit Odoo.
+- Conflicterende lokale tijdregistraties.
+
+Volg hiervoor de afgesproken werkwijze in Odoo. De [instellingen](/nl/odoo-uns/settings) beschrijven de mogelijkheden en grenzen.
+
+## Externe voorraad wijkt af van Odoo
+
+Vergelijk **Waargenomen externe voorraad** met **Partijvoorraad in Odoo**. Die overzichten houden waarnemingen en werkelijke boekingen apart.
+
+Voor een voorraadboeking zijn expliciete toestemming en geldige partijkoppelingen nodig. Voor materiaalverbruik in productie gelden aanvullende voorwaarden.
+
+## Gegevens voor support
+
+Verzamel de gegevens waarmee de verantwoordelijke de terugmelding kan volgen:
+
+- Bedrijf en referentie van de order of bewerking.
+- De zichtbare berichtreferentie en het tijdstip.
+- De vastgelegde status en exacte reden.
+- Het verwachte resultaat in Odoo.
+
+Neem geen inloggegevens op.
+
+De [productpagina](https://sheetmetalconnect.com/integratie-odoo-uns-connector) beschrijft de mogelijkheden en de inrichting.

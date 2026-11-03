@@ -1,47 +1,37 @@
 ---
-title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+title: "Get started with your integration"
+sidebarTitle: "First use"
+description: "Follow an example from its source to the Odoo result, and find the guide for the next step."
+keywords:
+  - "Sheet Metal Connect"
+  - "Odoo 19"
+  - "first use"
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
+Start with one example your team can recognize. Find it in the source system, follow it into Odoo and check the result in the normal business record.
 
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
-
-## Prerequisites
-
-Before you begin, you must have:
-
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
-
-## Get started
+[Nederlands](/nl/quickstart)
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
-
-    ```bash
-    npm install your-package
-    ```
+  <Step title="Choose the integration">
+    For a quotation exported from QuotationFactory, use [QF2Odoo](/qf2odoo/overview). For Odoo manufacturing information and shop-floor feedback, use the [Odoo UNS Connector](/odoo-uns/overview).
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
-
-    ```bash
-    your-cli init
-    ```
+  <Step title="Find the record">
+    For QF2Odoo, open the Odoo quotation using the returned reference. For the UNS connector, open the manufacturing order and its work order in Odoo. The guides show the added tabs and the standard Odoo records.
   </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
-
-    ```bash
-    your-cli start
-    ```
+  <Step title="Check the result">
+    Compare the source reference and quantities. A successful transfer is not the same as order confirmation, production completion or payment. Check each result in the relevant Odoo record.
   </Step>
 </Steps>
 
-<Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
+<Columns cols={2}>
+  <Card title="Quotation to payment" href="/qf2odoo/workflow">
+    Review the draft, then follow the standard Odoo sales process.
+  </Card>
 
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
-</Tip>
+  <Card title="Production feedback" href="/odoo-uns/workflow">
+    See what the shop floor reported and check its effect in Odoo.
+  </Card>
+</Columns>
+
+If the result is missing, start with [QF2Odoo troubleshooting](/qf2odoo/troubleshooting) or [UNS troubleshooting](/odoo-uns/troubleshooting). Your administrator can confirm the enabled exchanges and access rights.

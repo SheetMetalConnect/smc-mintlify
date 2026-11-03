@@ -1,0 +1,68 @@
+---
+title: "Een QF-offerte of terugmelding ontbreekt"
+sidebarTitle: "Problemen oplossen"
+description: "Controleer waarom een QF-offerte, revisie of terugmelding ontbreekt. Lees waar de gegevens in Odoo staan en welke gegevens nodig zijn om het probleem te onderzoeken."
+keywords:
+  - "Sheet Metal Connect"
+  - "QF2Odoo"
+  - "handleiding"
+---
+
+Ontbreekt een offerte of klopt een terugmelding van QF2Odoo niet? Zoek eerst het QuotationFactory-project en de bijbehorende registratie in Odoo. Controleer de huidige status vóór een nieuwe export.
+
+[English](/qf2odoo/troubleshooting)
+
+## De offerte is niet te vinden
+
+1. Controleer of het project in QuotationFactory is geëxporteerd.
+2. Kies het juiste bedrijf in Odoo.
+3. Zoek de offerte op de bronreferentie.
+
+In de optionele werkruimte staat **Actuele QF-projecten** standaard aan. Zet dit filter uit om ook eerdere of onvolledige imports te zien.
+
+### Een code wordt niet herkend
+
+Bij een onbekende klant-, artikel- of bewerkingscode controleert de beheerder hoe die code aan Odoo is gekoppeld. Kies geen andere registratie alleen om de import te laten doorgaan.
+
+## QF toont Ordered, maar de productie start niet
+
+**Ordered** in QuotationFactory bevestigt de offerte in Odoo niet.
+
+Open de Odoo-offerte en controleer of deze is bevestigd. Bekijk daarna de gebruikelijke inkoop- en productieregels. Zolang de offerte een concept is, is het uitblijven van productie te verwachten.
+
+## De gewijzigde export vervangt de order niet
+
+Een bevestigde order blijft beschermd. Bij gewijzigde broninhoud hoort een gekoppelde conceptrevisie. Zoek die revisie en vergelijk deze met het QuotationFactory-project.
+
+Een gecontroleerde, identieke herhaling kan het bestaande resultaat opnieuw gebruiken.
+
+## Stamgegevens of prijzen wijken af
+
+Controleer met de beheerder:
+
+- Staat de betreffende uitwisseling aan?
+- Heeft QF een nieuwe momentopname opgevraagd?
+- Welke prijsbron is ingesteld?
+- Wordt dezelfde eenheid gebruikt, bijvoorbeeld per vierkante meter of per plaat?
+
+De [instellingen](/nl/qf2odoo/settings) lichten de prijsbron en omrekening toe.
+
+## De teruggestuurde status lijkt onjuist
+
+Controleer eerst of statusterugmelding aanstaat en welke koppeling is ingesteld.
+
+- **Produced:** alle niet-geannuleerde productieorders moeten gereed zijn.
+- **Delivered:** kan al na een deellevering worden gemeld. Controleer de werkelijke geleverde aantallen in Odoo.
+
+## Gegevens voor support
+
+Met deze gegevens kan de verantwoordelijke het probleem gericht onderzoeken:
+
+- QF-projectreferentie en Odoo-offerte of order.
+- Het bedrijf en het tijdstip van de export of wijziging.
+- Wat er gebeurde en welk resultaat werd verwacht.
+- De exacte foutmelding.
+
+Neem geen inloggegevens op in berichten of schermafbeeldingen.
+
+De [productpagina](https://sheetmetalconnect.com/integratie-qf2odoo) beschrijft de mogelijkheden en de inrichting van QF2Odoo.

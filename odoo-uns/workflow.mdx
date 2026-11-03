@@ -1,0 +1,60 @@
+---
+title: "Follow an order and its production feedback"
+sidebarTitle: "Daily workflow"
+description: "Find integration information on an Odoo manufacturing order and work order, then check the actual production result."
+keywords:
+  - "Odoo UNS Connector"
+  - "Odoo 19"
+  - "work orders"
+---
+
+The Odoo UNS Connector adds information to the manufacturing and work orders your team already uses. Start there to follow an order and its feedback.
+
+[Nederlands](/nl/odoo-uns/workflow)
+
+```mermaid
+flowchart LR
+  M["Create or update Odoo order"] --> S["Snapshot shared"]
+  S --> F["Shop system follows configured process"]
+  F --> B["Authorized feedback"]
+  B --> W["Review work order in Odoo"]
+  W --> R["Check time, state or stock result"]
+```
+
+<Steps>
+  <Step title="Open the manufacturing order">
+    In Odoo Manufacturing, open the order. Its **UNS Integration** tab shows the read-only **UNS Work-order Reference**. Creating an order or changing tracked order or operation information produces a snapshot.
+  </Step>
+  <Step title="Follow the work in the receiving system">
+    The configured shop-floor system receives order information through the integration route. A snapshot of a draft is not a release command. Follow your agreed process to decide when work starts.
+  </Step>
+  <Step title="Open the work order">
+    Open the relevant work order and its **UNS Integration** tab. **Identity** shows the operation reference, execution owner and work-center slug. **Latest Feedback** shows the latest type and time, external state, reported quantity, note and observed duration.
+  </Step>
+  <Step title="Check what changed in Odoo">
+    Look at normal Odoo time tracking, work-order and manufacturing-order states, or component stock movements, as appropriate. The feedback fields show what was reported; the normal Odoo records show whether a booking or completion occurred.
+  </Step>
+</Steps>
+
+<Frame caption="Illustrative mockup of a work order's UNS Integration tab. Layout and available fields vary by installation.">
+  <img
+    src="/images/uns-work-order-en.png"
+    alt="Illustrative work order showing UNS identity and latest feedback"
+  />
+</Frame>
+
+## How feedback becomes an Odoo result
+
+```mermaid
+flowchart TD
+  F["Feedback arrives"] --> A{"Source and requested action allowed?"}
+  A -->|No| R["Rejected with reason"]
+  A -->|Yes| P{"Odoo checks pass?"}
+  P -->|No| R
+  P -->|Yes, observation| O["Observation recorded"]
+  P -->|Yes, enabled action| N["Time, completion or stock booking"]
+```
+
+Observation alone does not complete production or change stock. Automatic completion supports the full planned quantity, not partial or scrap completion. Missing lot information, backorders, Odoo warnings or conflicting timers can prevent it.
+
+For an unexpected result, see [troubleshooting](/odoo-uns/troubleshooting). An administrator can use the Outbox, Inbox and Feedback Audit when the normal records do not explain the issue.

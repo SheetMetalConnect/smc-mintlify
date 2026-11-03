@@ -1,0 +1,36 @@
+---
+title: "Odoo UNS Connector: connect production work"
+sidebarTitle: "Overview"
+description: "See how Odoo production information reaches connected systems and how authorized feedback returns to Odoo."
+keywords:
+  - "Odoo UNS Connector"
+  - "Odoo 19"
+  - "production"
+---
+
+The Odoo UNS Connector shares manufacturing information with connected shop-floor systems and brings authorized feedback back to Odoo. Your team can follow the work without treating every observation as an automatic production booking.
+
+[Nederlands](/nl/odoo-uns/overview)
+
+## How the pieces connect
+
+A Unified Namespace (UNS) is a shared data layer for connected systems. The Odoo add-on works with a configured external integration and delivery service; the add-on itself is not the transport.
+
+```mermaid
+flowchart LR
+  O["Odoo Manufacturing and UNS add-on"] <--> S["Integration and delivery service"]
+  S <--> U["UNS or data hub"]
+  U <--> F["Connected shop-floor systems"]
+```
+
+New manufacturing orders and tracked changes produce snapshots: records of the order at a point in time. A draft snapshot is information, not a command to release work or start a machine.
+
+## What changes in Odoo?
+
+The manufacturing order gains a read-only **UNS Integration** tab with its work-order reference. A work order gains its own **UNS Integration** tab, with identity and latest feedback. Your usual Odoo manufacturing, time and stock records remain where you check the business result.
+
+Feedback can record an observation. Depending on separate permissions, it can also create time entries, complete an operation or manufacturing order, or book stock. Odoo is the default execution owner and rejects external operation feedback until a source is authorized.
+
+External stock observations remain separate from Odoo stock. The [settings guide](/odoo-uns/settings) explains the boundaries.
+
+Continue with the [daily workflow](/odoo-uns/workflow) or [troubleshooting](/odoo-uns/troubleshooting). See the [product page](https://sheetmetalconnect.com/integratie-odoo-uns-connector?lang=en) for commercial information.

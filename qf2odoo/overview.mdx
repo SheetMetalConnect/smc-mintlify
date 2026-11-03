@@ -1,0 +1,45 @@
+---
+title: "QF2Odoo: from quotation to Odoo"
+sidebarTitle: "Overview"
+description: "See how a QuotationFactory project becomes an Odoo draft and how each system supports the work that follows."
+keywords:
+  - "QF2Odoo"
+  - "QuotationFactory"
+  - "Odoo 19"
+---
+
+QF2Odoo carries a QuotationFactory project into Odoo as a draft quotation. Products, multilevel bills of materials, operations and attachments come with it, so your team can review the work without rebuilding its structure by hand.
+
+[Nederlands](/nl/qf2odoo/overview)
+
+## How the pieces connect
+
+The official QuotationFactory Edge Connector links the cloud to the QF2Odoo service. That service imports the project through the required Odoo integration add-on. An optional Odoo workspace adds views and reports.
+
+```mermaid
+flowchart LR
+  Q["QuotationFactory cloud"] <--> E["Official QF Edge Connector"]
+  E <--> S["QF2Odoo service"]
+  S <--> O["Odoo integration add-on"]
+  O --> D["Odoo draft quotation"]
+```
+
+This is a direct integration. It does not require a Unified Namespace (UNS).
+
+## What happens next?
+
+QuotationFactory holds the quotation project and calculation. Odoo holds customer, supplier and catalogue master data, and owns order confirmation, production, delivery and accounting.
+
+A successful import returns its result and Odoo reference to QuotationFactory. Marking a project **Ordered** in QuotationFactory does not confirm the Odoo quotation or create manufacturing demand. Your team reviews and confirms it in Odoo.
+
+Optional exchanges let QuotationFactory request selected master-data snapshots and receive configured production and delivery statuses. Invoicing, payment and reconciliation remain standard Odoo processes.
+
+## What changes in Odoo?
+
+The core add-on adds QF information to the quotation, manufacturing order and work order when relevant. The optional workspace adds **Sales → Orders → QF Projects**, source and production links, and a **QuotationFactory** tab. The quotation itself remains the normal Odoo form.
+
+<Note>
+  These guides describe Odoo 19. Screens and exchanges depend on your installed release and configuration.
+</Note>
+
+Follow the [daily workflow](/qf2odoo/workflow), explore [settings](/qf2odoo/settings), or find a [missing result](/qf2odoo/troubleshooting). See also [QF2Odoo on the website](https://sheetmetalconnect.com/integratie-qf2odoo?lang=en).

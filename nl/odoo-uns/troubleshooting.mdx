@@ -1,0 +1,38 @@
+---
+title: "Begrijp wachtende of afgewezen UNS-terugmeldingen"
+sidebarTitle: "Problemen oplossen"
+description: "Onderzoek een wachtend bericht, afgewezen terugmelding of ontbrekende productieboeking met de Odoo-overzichten en de toestemming voor de gevraagde handeling."
+keywords: ["Odoo UNS Connector", "Odoo 19", "productie", "handleiding"]
+---
+
+Zoek bij een ontbrekend resultaat van de Odoo UNS Connector eerst de order en het bijbehorende uitgaande of inkomende bericht. Een berichtstatus en een bedrijfsresultaat geven verschillende informatie.
+
+[English](/odoo-uns/troubleshooting)
+
+## Het uitgaande bericht blijft in afwachting
+
+Controleer **UNS → Uitgaande berichten** en de gekoppelde order. De verantwoordelijke beheerder kan met die referentie de verbinding en afleverstatus onderzoeken. Steeds nieuwe momentopnamen maken vervangt dat onderzoek niet.
+
+## Ontvangst is bevestigd, maar de werkvloer heeft geen order
+
+De bevestiging betekent dat de ingestelde integratiedienst verantwoordelijkheid voor duurzame bewaring heeft overgenomen. Het bewijst op zichzelf geen verwerking door de hub of uiteindelijke toepassing. De beheerder moet de ingerichte route tot de ontvangende toepassing controleren.
+
+## Een inkomende terugmelding is afgewezen
+
+Lees de reden bij **Inkomende berichten** of in het **Terugkoppelingslogboek**. Controleer het uitvoeringssysteem, de bronreferentie en toestemming voor de gevraagde handeling. Hetzelfde afgewezen bericht herhalen behoudt de oorspronkelijke uitkomst. Verhelp eerst de oorzaak.
+
+## Er is voortgang, maar geen tijd of gereedmelding geboekt
+
+Een toegepaste waarneming garandeert geen tijdregistratie of gereedmelding. Controleer de productieve tijdcategorie en de afzonderlijke toestemmingen voor gereedmelding.
+
+Automatische gereedmelding vraagt de volledige geplande hoeveelheid. Deelproductie, uitval, ontbrekende partijgegevens, backorders, Odoo-waarschuwingen of conflicterende lokale tijdregistraties kunnen afronding tegenhouden. Gebruik voor zulke gevallen de afgesproken werkwijze in Odoo.
+
+## Externe voorraad wijkt af van Odoo
+
+Vergelijk **Waargenomen externe voorraad** met **Partijvoorraad in Odoo**. Ze worden bewust apart gehouden. Voorraadboeking vraagt expliciete toestemming en geldige partijkoppelingen. Voor materiaalverbruik in productie gelden aanvullende voorwaarden.
+
+## Gegevens voor support
+
+Vermeld bedrijf, order of bewerking, zichtbare berichtreferentie, vastgelegde status, exacte reden, tijdstip en verwacht bedrijfsresultaat. Neem geen inloggegevens op.
+
+Lees de [instellingen](/nl/odoo-uns/settings) of de [productpagina](https://sheetmetalconnect.com/integratie-odoo-uns-connector) voor de ondersteunde mogelijkheden.

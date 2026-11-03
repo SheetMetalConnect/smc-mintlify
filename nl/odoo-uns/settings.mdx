@@ -1,0 +1,40 @@
+---
+title: "Bepaal wat de werkvloer in Odoo mag wijzigen"
+sidebarTitle: "Instellingen"
+description: "Lees hoe uitvoeringsverantwoordelijkheid en afzonderlijke toestemmingen bepalen welke tijdregistraties, gereedmeldingen en voorraadboekingen Odoo verwerkt."
+keywords: ["Odoo UNS Connector", "Odoo 19", "productie", "handleiding"]
+---
+
+De Odoo UNS Connector maakt onderscheid tussen informatie ontvangen en productie- of voorraadgegevens in Odoo wijzigen. Uw beheerder stelt per werkwijze de toegestane bron en handeling in.
+
+[English](/odoo-uns/settings)
+
+## Begin met het uitvoeringssysteem
+
+**Verantwoordelijk UNS-uitvoeringssysteem** bepaalt welk systeem de voortgang van een bewerking mag terugmelden. Standaard is Odoo verantwoordelijk. Externe terugmeldingen worden afgewezen totdat de juiste bron is ingesteld.
+
+## Schakel de benodigde handelingen in
+
+| Mogelijkheid | Benodigde inrichting |
+| --- | --- |
+| Bevoegde waarnemingen bij bewerkingen vastleggen | Het juiste uitvoeringssysteem voor de werkorder. |
+| Tijd in Odoo registreren | Een productieve **Categorie voor native UNS-tijd**. |
+| Een bewerking in Odoo afronden | **Native gereedmelding van bewerking toestaan**. |
+| Een productieorder in Odoo afronden | Toestemming voor zowel bewerkings- als productieordergereedmelding. Afronding volgt op de laatste open bewerking. |
+| Externe partijvoorraad in Odoo boeken | **Native voorraadboekingen toestaan**, met bevoegde bron en geldige partijkoppelingen. |
+
+**Native** betekent hier dat de handeling de eigen bedrijfsregistratie van Odoo wijzigt. Alleen een externe waarneming opslaan is iets anders.
+
+<Note>
+Automatische gereedmelding ondersteunt de volledige geplande hoeveelheid. Gedeeltelijke gereedmelding en uitval worden via deze route niet ondersteund. Odoo-waarschuwingen, ontbrekende partijgegevens en backorders kunnen afronding tegenhouden.
+</Note>
+
+## Voorraad en materiaalverbruik
+
+**Waargenomen externe voorraad** blijft apart van **Partijvoorraad in Odoo**. Waarnemingen veranderen de Odoo-voorraad niet vanzelf.
+
+Productieverbruik vanuit een werkelijke materiaalpartij vraagt een aanvullend onderdeel en expliciete toestemming voor het betreffende materiaal. Alleen voorraadwaarneming inschakelen is daarvoor onvoldoende.
+
+**Ontvangen partijen naar UNS publiceren** is een keuze per product. Er moet ook een bestemming voor ontvangstberichten zijn ingericht. De uitwisseling betreft gevalideerde ontvangstregels van leveranciers.
+
+Deze instellingen raken bedrijfsregistraties. Ze moeten passen bij de afgesproken werkwijze en geïnstalleerde onderdelen. Zie [dagelijks gebruik](/nl/odoo-uns/workflow) en [problemen oplossen](/nl/odoo-uns/troubleshooting).

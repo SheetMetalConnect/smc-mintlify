@@ -1,0 +1,41 @@
+---
+title: "Volg een productieorder en zijn terugmeldingen"
+sidebarTitle: "Dagelijks gebruik"
+description: "Volg een momentopname uit Odoo en de terugmeldingen vanaf de werkvloer. Lees het verschil tussen ontvangstbevestiging en het bedrijfsresultaat in Odoo."
+keywords: ["Odoo UNS Connector", "Odoo 19", "productie", "handleiding"]
+---
+
+Gebruik de overzichten van de Odoo UNS Connector om een order naar buiten te volgen en de terugmeldingen in Odoo te controleren. Elk overzicht toont iets anders: wat is verzonden, wat is ontvangen en wat het effect was.
+
+[English](/odoo-uns/workflow)
+
+<Steps>
+  <Step title="Maak of wijzig de productieorder">
+    Nieuwe productieorders en gevolgde wijzigingen aan orders of bewerkingen leveren uitgaande momentopnamen op. Het tabblad **UNS-integratie** toont de integratiegegevens. Met **Momentopname verzenden** zet een bevoegde gebruiker zo nodig een actuele weergave klaar.
+  </Step>
+  <Step title="Controleer het uitgaande bericht">
+    Zoek de order onder **UNS → Uitgaande berichten**. **In afwachting** betekent dat het bericht wacht. **Ontvangst bevestigd door hub** betekent dat de ingestelde integratiedienst verantwoordelijkheid voor duurzame bewaring heeft overgenomen.
+  </Step>
+  <Step title="Volg het ontvangende systeem">
+    De ontvangende toepassing gebruikt de ordergegevens volgens de afgesproken werkwijze. De ontvangstbevestiging bewijst op zichzelf niet dat de hub of de uiteindelijke toepassing de order heeft verwerkt of werk heeft vrijgegeven.
+  </Step>
+  <Step title="Controleer de terugmelding en het effect">
+    Bekijk **UNS → Inkomende berichten** en het **Terugkoppelingslogboek**. Controleer de bijbehorende bewerking, tijdregistratie, productieorder of voorraadregistratie als die handeling is ingeschakeld.
+  </Step>
+</Steps>
+
+## Lees de uitkomst correct
+
+| Uitkomst | Wat u hieruit weet |
+| --- | --- |
+| Ontvangst bevestigd door hub | De ingestelde integratiedienst heeft de verantwoordelijkheid voor duurzame bewaring overgenomen. Dit bewijst geen verwerking op de eindbestemming. |
+| Toegepast | De ingestelde verwerking is uitgevoerd. Dit kan alleen het vastleggen van een waarneming zijn. |
+| Afgewezen | Het bericht voldoet niet aan de regels voor deze handeling. Lees de vastgelegde reden. |
+
+Een herhaalde levering van dezelfde terugmelding behoudt de oorspronkelijke uitkomst, ook een afwijzing. Een afgewezen bericht ongewijzigd herhalen verhelpt de oorzaak niet.
+
+## Houd waarnemingen en boekingen apart
+
+Een waargenomen aantal is niet automatisch een voorraadmutatie. Vastgelegde voortgang is niet automatisch gereedgemelde productie. Vergelijk het resultaat met de ingeschakelde [instellingen](/nl/odoo-uns/settings).
+
+Zie [problemen oplossen](/nl/odoo-uns/troubleshooting) bij een wachtende momentopname of afgewezen terugmelding.

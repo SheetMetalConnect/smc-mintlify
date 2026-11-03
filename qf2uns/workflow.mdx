@@ -24,19 +24,19 @@ flowchart TB
 
 ## When a project is exported again
 
-A new export is handled as a revision. The worker keeps a revision identity and publishes a manifest describing the expected entities. A receiving system can use those identities and the manifest to distinguish revisions and reconcile the project.
+A new export is handled as a revision. The worker keeps a revision identity and publishes an overview of the expected project data. A receiving system can use those identities and the overview to distinguish revisions and reconcile the project.
 
 ```mermaid
 flowchart TB
   A["Project export"] --> B["Reserve revision identity"]
-  B --> C["Publish entities and manifest"]
+  B --> C["Publish project data and revision overview"]
   C --> D{"Publication interrupted?"}
   D -->|"No"| E["Confirmation and archive"]
   D -->|"Yes"| F["Retry may repeat messages"]
-  F --> G["Consumer deduplicates by entity and revision"]
+  F --> G["Receiving system recognizes repeated data"]
   F --> C
 ```
 
-A retry can repeat messages around a failure. Consumers must deduplicate them; the confirmation is not a guarantee of exactly-once delivery. If an export reuses a filename with different contents, the worker rejects it rather than treating the changed file as the earlier export.
+A retry can repeat messages around a failure. The receiving system needs to recognize repeated data so the same revision is not processed twice. The confirmation does not guarantee a single delivery. If an export reuses a filename with different contents, the worker rejects it rather than treating the changed file as the earlier export.
 
 [Overview](/qf2uns/overview) · [Troubleshooting](/qf2uns/troubleshooting) · [Nederlands](/nl/qf2uns/workflow)

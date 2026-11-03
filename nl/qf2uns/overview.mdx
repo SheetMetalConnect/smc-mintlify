@@ -14,9 +14,10 @@ flowchart TB
   QF["QuotationFactory"] -->|"Projectexport"| Edge["Officiële QF Edge Connector"]
   Edge -->|"JSON en ZIP"| Worker["QF2UNS-worker"]
   Worker -->|"Originele data en bijlagen"| Store["Bestandsopslag"]
-  Worker -->|"Projectgegevens en manifest"| MQTT["MQTT"]
+  Worker -->|"Projectgegevens en revisieoverzicht"| MQTT["MQTT"]
   MQTT -->|"Ingerichte ingang"| UNS["Unified Namespace"]
   UNS --> Consumers["Gekoppelde applicaties"]
+  Consumers -.->|"Optioneel statusbericht"| Worker
   Worker -->|"Bevestiging en optionele statusbestanden"| Edge
   Edge -->|"Bestandsuitwisseling"| QF
 ```

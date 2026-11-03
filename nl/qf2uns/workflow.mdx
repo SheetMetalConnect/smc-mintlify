@@ -34,7 +34,7 @@ flowchart TB
   D -->|"Nee"| E["Bevestigen en archiveren"]
   D -->|"Ja"| F["Opnieuw proberen kan berichten herhalen"]
   F --> G["Afnemer ontdubbelt op gegevens en revisie"]
-  G --> E
+  F --> C
 ```
 
 Bij een storing kunnen berichten opnieuw worden aangeboden. Afnemers moeten die ontdubbelen; de bevestiging garandeert geen eenmalige aflevering. Gebruikt een export dezelfde bestandsnaam met andere inhoud, dan weigert de worker het gewijzigde bestand.

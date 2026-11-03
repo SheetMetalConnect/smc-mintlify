@@ -7,11 +7,11 @@ Use QuotationFactory for calculation and review the imported information in Oseo
 
 [Nederlands](/nl/qf2oseon/workflow) · [Overview](/qf2oseon/overview)
 
-<Frame caption="Illustration with demo data: the status bar and portal visibility control in a QF project.">
+<Frame caption="Localized illustration with demo data, not a verified English vendor screen: the status bar and portal visibility control in a QF project.">
   <img src="/images/qf-project-status-en.png" alt="Illustrative QF project header showing status labels and portal visibility" />
 </Frame>
 
-The labels show available stages; the image does not establish completion or automated status feedback.
+The labels show available stages. Check the actual project status and the configured feedback route.
 
 ## Choose the route
 
@@ -24,7 +24,7 @@ A customer can start a request in the QuotationFactory portal, or staff can ente
 | Customer order | Once the project reaches **Ordered** and is exported, the integration processes eligible parts and, if enabled, prepares a customer order for Oseon to import. |
 | Production order | An export at **Producing** can also prepare production orders when that route is enabled. |
 
-The QF Edge Connector's export triggers and enabled routes are configured per installation. A status in QuotationFactory alone does not prove that an export or an Oseon import succeeded.
+The QF Edge Connector's export triggers and enabled routes are configured per installation. After the configured export, check the corresponding result in Oseon.
 
 ## Single parts and assemblies
 
@@ -37,7 +37,7 @@ The parts interface processes eligible sheet-cutting parts; tube processing uses
 | Destination | Data from the QF project | What to check |
 | --- | --- | --- |
 | Part master, through the parts interface | Eligible sheet-cutting parts: part number and description, drawing number and revision, selected material, CAD reference, and configured working-plan steps and documents. | Check the article, material, drawing and each mapped operation in Oseon. An operation without a mapping can be omitted. |
-| Customer order, through the order import | Project ID and reference, customer and address, delivery condition, and one position per exported part: part number, quantity, unit price, material, requested date and configured work-plan selection. | Check the order and positions after Oseon imports them. A position is not proof that its article was created. |
+| Customer order, through the order import | Project ID and reference, customer and address, delivery condition, and one position per exported part: part number, quantity, unit price, material, requested date and configured work-plan selection. | Check the order and positions after Oseon imports them. Check the corresponding article separately. |
 | Production order, when enabled | Part number, project quantity, customer and material for each exported part, with a production work plan. | Check the imported production orders and their dates and quantities in Oseon. |
 | Tube part, when enabled | Tube master data through the Oseon file import, with CAD files handled by the configured tube route. | Check the tube article and its production data in Oseon. |
 
@@ -53,7 +53,7 @@ For an existing sheet part, the integration can send an update when QF carries i
 
 The customer-order import carries the QuotationFactory project ID as its external identity and the project reference separately. The Oseon order number is an Oseon reference; use both when tracing an order.
 
-When customer-order status feedback is configured, Oseon **Released** maps to QF **Producing**, **Finished** to **Produced**, **Delivered** to **Delivered**, and **Cancelled** to **Cancelled**. Oseon Incomplete and Valid do not change the QF project status. Other Oseon states are not mapped by this feedback route. Portal visibility alone does not establish whether feedback is enabled or received.
+When customer-order status feedback is configured, Oseon **Released** maps to QF **Producing**, **Finished** to **Produced**, **Delivered** to **Delivered**, and **Cancelled** to **Cancelled**. Oseon Incomplete and Valid do not change the QF project status. Other Oseon states are not mapped by this feedback route. Check the configured feedback route and the actual project status in QF.
 
 ## Check a bent part
 
@@ -72,20 +72,20 @@ Boost uses the configured machine and tools to calculate a bend solution. Quotat
 ```mermaid
 flowchart TD
  A["Export project at configured status"] --> B["Integration processes project and attachments"]
- B --> C["Oseon receives parts and order"]
- C --> D["Review order, drawings and working plan"]
+ B --> C["Configured parts or order route"]
+ C --> D["Review the result in Oseon"]
  D --> E["Continue work in Oseon"]
 ```
 
 <Steps>
   <Step title="Export the project">Complete the QuotationFactory project and move it through the configured export status.</Step>
-  <Step title="Review in Oseon">Open the resulting order and parts. Compare quantities, material, drawings and working plan with the project.</Step>
+  <Step title="Review in Oseon">For parts-only processing, check the resulting articles. For a customer-order route, check the order, positions and articles. For a production-order route, check the production orders. Compare the applicable quantities, material, drawings and working plan with the project.</Step>
   <Step title="Complete preparation">Resolve missing information before continuing work preparation.</Step>
 </Steps>
 
 Before re-exporting a changed project, check the existing order in Oseon and establish which changes are needed. Oseon decides how its import handles a repeated order; do not assume a re-export updates it or avoids duplicates.
 
-Oseon processes the order import itself. A file delivered to its import interface does not prove the order is complete or ready for production. Configured status feedback can return Oseon progress to QuotationFactory.
+Oseon processes the order import itself after the integration delivers the file. Check the imported result and its completeness before production. Configured status feedback can return Oseon progress to QuotationFactory.
 
 ## If a result is missing
 

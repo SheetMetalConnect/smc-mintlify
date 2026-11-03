@@ -1,0 +1,63 @@
+---
+title: "Welke gegevens QF2Odoo importeert"
+sidebarTitle: "Geïmporteerde gegevens"
+description: "Vind QF-offertegegevens, onderdelen en samenstellingen in Odoo en zie welke records de koppeling maakt."
+---
+
+QF2Odoo importeert een QF-project naar een Odoo-offerte met bijbehorende technische gegevens. Hier staat waar de gegevens terechtkomen en welk systeem ze beheert.
+
+[English](/qf2odoo/imported-data)
+
+## Offerte en klant
+
+| Uit QuotationFactory | Vindplaats in Odoo | Wat gebeurt er? |
+| --- | --- | --- |
+| Inkopen­de organisatie en contactpersonen | Klant op de offerte; Contacten | De organisatie moet al bestaan. Contactpersonen worden op e-mailadres gekoppeld of daaronder aangemaakt. De eerste aangeleverde contactpersoon wordt het ordercontact. |
+| Offertedelen, aantallen en stukprijzen | Offertregels | De koppeling levert QF-regels en prijzen. Odoo beheert belastingen en financiële verwerking. |
+| Gewenste leverdatum | Toegezegde datum op de offerte | De geschatte datum blijft afzonderlijke broninformatie en vervangt de gewenste datum niet. |
+| Betalings- en levervoorwaarden, offerteheader en -footer | Standaardvoorwaarden waar herkend; tabblad **QF-offerte** voor broninhoud | De koppeling verbindt overeenkomende Odoo-voorwaarden. Niet-herkende bronvoorwaarden blijven zichtbaar op het QF-tabblad. |
+| Tekeningen en bronexport | Bijlagen bij de offerte en gekoppelde records | De oorspronkelijke export hangt aan de offerte; broninformatie is alleen voor interne gebruikers toegankelijk. |
+| QF-project, status en revisie | Broninformatie op de offerte; optioneel tabblad **QuotationFactory** en **QF-projecten** | De bronstatus is informatief en bevestigt de order niet. |
+
+## Onderdelen, samenstellingen en inkoopdelen
+
+De koppeling maakt technische momentopnamen voor maakwerk. Artikelen, stuklijsten en bewerkingen zijn standaard Odoo-records; de koppeling voegt QF-broninformatie en instructies toe. Met de optionele werkruimte opent **QF-stuklijsten** op de offerte de gekoppelde stuklijsten. Zonder werkruimte staan ze in de standaard Odoo-productieomgeving.
+
+<Tabs>
+  <Tab title="Eén maakdeel">
+    Een maakdeel wordt een revisiespecifiek Odoo-artikel met stuklijst, materiaalcomponenten en toepasselijke bewerkingen. Het materiaal verwijst naar een bestaand catalogusartikel in Odoo.
+  </Tab>
+  <Tab title="Samenstelling met meerdere niveaus">
+    Een samenstelling wordt een revisiespecifiek artikel. De standaard Odoo-stuklijst bevat de componenten; onderliggende samenstellingen behouden hun eigen niveaus en toepasselijke bewerkingen.
+  </Tab>
+  <Tab title="Inkoopdeel">
+    Een deel met uitsluitend inkoopstappen verwijst naar een bestaand Odoo-artikel. De koppeling maakt daarvoor geen productiestuklijst en vervangt de routes van het catalogusartikel niet.
+  </Tab>
+</Tabs>
+
+| Uit QuotationFactory | Vindplaats in Odoo | Standaard of toegevoegd |
+| --- | --- | --- |
+| Identiteit, afmetingen en aangeleverde technische details | Artikel en bijbehorende QF-broninformatie | Standaardartikel met QF-velden en broninformatie. De inhoud hangt af van de aangeleverde gegevens. |
+| Samenstellingsstructuur, materiaal en componentaantallen | Productie → Stuklijsten | Standaardstuklijst en componentregels. Bestaande catalogusmaterialen blijven van Odoo. |
+| Volgorde van bewerkingen en resourcecodes | Stuklijst → Bewerkingen en gekoppeld werkcentrum | Standaardbewerkingen en werkcentra, aangevuld met QF-instructies en details. |
+| Aangeleverde project-, artikel- en bewerkingsopmerkingen | QF-productie-instructies op relevante productieorders en werkorders | Door de koppeling toegevoegde instructies. Orders ontstaan na bevestiging volgens de normale Odoo-regels. |
+| Expliciete uitbesteding met leverancier | Uitbestedingsstuklijst en leverancier | Standaard Odoo-uitbesteding als de QF-resource expliciet een leverancier aanwijst. |
+
+## Wat is wanneer nodig?
+
+Voor iedere import zijn de integratiemodule en een overeenkomstige connector nodig. De werkruimte is optioneel: die voegt navigatie en overzichten toe, niet de onderliggende standaardofferte en productierecords.
+
+| Moment | Voorwaarde |
+| --- | --- |
+| Import | Het inkopende bedrijf moet overeenkomen met een bestaande klant in Odoo. Bestaande materialen en inkoopartikelen moeten uniek te vinden zijn; de koppeling maakt die catalogusartikelen of klantorganisaties niet aan. |
+| Als het in de export voorkomt | Codes van interne QF-resources moeten overeenkomen met Odoo-werkcentra; uitbesteding vraagt een passende leverancier. Een aangeleverde valuta moet actief zijn en passen bij een Odoo-prijslijst, of bij de bedrijfsvaluta waar die standaardroute geldt. |
+| Bij ingeschakelde synchronisatie | QF vraagt de ingestelde klant-, leveranciers- of artikelgegevens op uit Odoo. Deze uitwisselingen zijn optioneel en vragen de bijbehorende geschikte stamgegevens. |
+| Bevestiging en productie | De import moet compleet zijn. Medewerkers bevestigen de offerte in Odoo na de commerciële controles. De ingerichte routes, inkoop- en productieregels bepalen wat daarna ontstaat. |
+
+Een projectimport maakt de conceptofferte en technische gegevens aan, maar geen productie- of voorraadbehoefte. Een losse import van alleen artikelen of stuklijsten is geen beschreven werkwijze.
+
+## Wie beheert een revisie?
+
+Een gewijzigde export met een nieuwe referentie maakt een gekoppeld concept en eigen technische momentopnamen. Eerdere offertes, productieorders en instructies blijven behouden. Gedeelde catalogusartikelen blijven van Odoo. Verzendgegevens en handmatige voorbereiding kunnen meegaan; de nieuwe export levert de eigen QF-inhoud. Een gecontroleerde identieke herhaling gebruikt het eerdere resultaat opnieuw.
+
+Verder met het [dagelijkse proces](/nl/qf2odoo/workflow) of de [instellingen](/nl/qf2odoo/settings).

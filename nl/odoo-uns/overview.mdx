@@ -34,7 +34,7 @@ De connector scheidt berichtenverkeer, productie en voorraad. Zo gebruikt iedere
 ## Hoe lopen de gegevens?
 
 ```mermaid
-flowchart LR
+flowchart TD
     O["Odoo met integratie-uitbreiding"] -->|"Order en bewerkingen"| D["Integratie- en afleverdienst"]
     D --> U["UNS of datahub"]
     U --> W["Aangesloten werkvloersystemen"]

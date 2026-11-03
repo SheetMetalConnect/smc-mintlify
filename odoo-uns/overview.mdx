@@ -29,7 +29,7 @@ The connector separates message handling from manufacturing and stock so each in
 A Unified Namespace (UNS) is a shared data layer for connected systems. The Odoo add-on works with a configured external integration and delivery service; the add-on itself is not the transport.
 
 ```mermaid
-flowchart LR
+flowchart TD
   O["Odoo Manufacturing and UNS add-on"] <--> S["Integration and delivery service"]
   S <--> U["UNS or data hub"]
   U <--> F["Connected shop-floor systems"]

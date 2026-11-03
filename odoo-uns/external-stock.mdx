@@ -11,10 +11,10 @@ The optional Odoo UNS Connector stock extension shows what an external system re
 
 ## One scope, specific locations
 
-Suppose an external storage system reports sheets in two locations: a rack and a cutting area. A configured source and scope identify the external query. Article mappings connect each external article, location and unit to an existing Odoo product, an existing **internal location** and the product's stock unit. The location on a mapping is specific: it does not select an entire warehouse or automatically include other locations.
+Suppose an external storage system reports sheets in two locations: two racks. A configured source and scope identify the external query. Article mappings connect each external article, location and unit to an existing Odoo product, an existing **internal location** and the product's stock unit. The location on a mapping is specific: it does not select an entire warehouse or automatically include other locations.
 
 ```mermaid
-flowchart LR
+flowchart TD
   E["External storage system"] -->|"Read for configured scope"| S["Stock source"]
   S --> M["Article and location mappings"]
   M --> O["Observed external stock"]
@@ -26,10 +26,14 @@ For one product, the mappings can distinguish two positions:
 
 | External location | Odoo internal location |
 | --- | --- |
-| `RACK-A` | `WH/Stock/Rack A` |
-| `CUTTING` | `WH/Stock/Cutting` |
+| `RACK-A` | `WH/Stock/Sheet-A` |
+| `RACK-B` | `WH/Stock/Sheet-B` |
 
 The integration service is configured to query the intended external scope and send the matching location references. A UNS Manager creates the corresponding Odoo mappings. The scope identifies that query; it is not an Odoo warehouse selector. Odoo distinguishes warehouses from their locations in its [inventory documentation](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/inventory/warehouses_storage/inventory_management.html).
+
+<Frame caption="Illustration with demo data: external positions and manager-only article mappings.">
+  <img src="/images/odoo-uns/external-stock-locations-en.png" alt="Two external rack locations mapped to separate internal Odoo stock locations" />
+</Frame>
 
 ## Read the external position
 
@@ -83,6 +87,6 @@ flowchart TD
   A -->|"Yes, all checks pass"| P["Odoo stock action"]
 ```
 
-<Note>Enabling **Authorize native stock booking** authorizes the source for its supported native stock contracts together. It is not a per-location switch. Separate mapping and business checks still apply.</Note>
+<Note>Enabling **Authorize native stock booking** authorizes the source for initial stock, stock corrections, internal transfers and production material consumption together. It is not a separate switch for each action or location. Mappings, any additional authority and Odoo business checks still apply.</Note>
 
 See [settings](/odoo-uns/settings) for production consumption and receipt publication, and [troubleshooting](/odoo-uns/troubleshooting) when a stock read or booking is rejected.

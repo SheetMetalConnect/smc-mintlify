@@ -13,7 +13,7 @@ The Odoo UNS Connector adds information to the manufacturing and work orders you
 [Nederlands](/nl/odoo-uns/workflow)
 
 ```mermaid
-flowchart LR
+flowchart TD
   M["Create or update Odoo order"] --> S["Snapshot shared"]
   S --> F["Shop system follows configured process"]
   F --> B["Authorized feedback"]
@@ -77,5 +77,9 @@ The **UNS** app separates the outgoing snapshot, incoming request and feedback r
     Open **UNS → External stock** for the source's observations and read history. See [external stock](/odoo-uns/external-stock) for location mappings and the distinction from native stock.
   </Step>
 </Steps>
+
+<Frame caption="Illustration with demo data: separate outgoing and incoming messages, with the feedback audit below.">
+  <img src="/images/odoo-uns/message-views-en.png" alt="Illustrated Outbox, Inbox and Feedback Audit showing message states and feedback references" />
+</Frame>
 
 A UNS User can read these screens. Creating mappings, changing permissions and manually enqueueing snapshots require additional authority. See [architecture](/odoo-uns/architecture) for the meaning of each handoff.

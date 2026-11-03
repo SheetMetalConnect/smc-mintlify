@@ -11,10 +11,10 @@ De optionele voorraaduitbreiding van de Odoo UNS Connector toont wat een extern 
 
 ## Eén bereik, specifieke locaties
 
-Een extern opslagsysteem meldt bijvoorbeeld plaatmateriaal op twee plekken: een rek en een snijzone. Een ingestelde bron en een bereik identificeren de externe uitlezing. Artikelkoppelingen verbinden elk extern artikel, elke locatie en eenheid met een bestaand Odoo-product, een bestaande **interne locatie** en de voorraadeenheid van dat product. De locatie in een koppeling is specifiek: daarmee wordt niet het hele magazijn of automatisch elke andere locatie geselecteerd.
+Een extern opslagsysteem meldt bijvoorbeeld plaatmateriaal op twee plekken: twee rekken. Een ingestelde bron en een bereik identificeren de externe uitlezing. Artikelkoppelingen verbinden elk extern artikel, elke locatie en eenheid met een bestaand Odoo-product, een bestaande **interne locatie** en de voorraadeenheid van dat product. De locatie in een koppeling is specifiek: daarmee wordt niet het hele magazijn of automatisch elke andere locatie geselecteerd.
 
 ```mermaid
-flowchart LR
+flowchart TD
   E["Extern opslagsysteem"] -->|"Uitlezing binnen ingesteld bereik"| S["Voorraadbron"]
   S --> M["Artikel- en locatiekoppelingen"]
   M --> O["Waargenomen externe voorraad"]
@@ -26,10 +26,14 @@ Voor één product kunnen de koppelingen twee posities onderscheiden:
 
 | Externe locatie | Interne locatie in Odoo |
 | --- | --- |
-| `RACK-A` | `WH/Stock/Rack A` |
-| `CUTTING` | `WH/Stock/Cutting` |
+| `RACK-A` | `WH/Stock/Sheet-A` |
+| `RACK-B` | `WH/Stock/Sheet-B` |
 
 De integratiedienst wordt ingericht om het bedoelde externe bereik uit te lezen en de bijbehorende locatiereferenties aan te leveren. Een UNS-beheerder maakt de bijbehorende koppelingen in Odoo. Het bereik benoemt de uitlezing; het is geen magazijnkiezer in Odoo. De [voorraaddocumentatie van Odoo](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/inventory/warehouses_storage/inventory_management.html) legt het onderscheid tussen magazijnen en locaties uit.
+
+<Frame caption="Illustratie met voorbeeldgegevens: externe posities en artikelkoppelingen voor beheerders.">
+  <img src="/images/odoo-uns/external-stock-locations-nl.png" alt="Twee externe reklocaties gekoppeld aan afzonderlijke interne voorraadlocaties in Odoo" />
+</Frame>
 
 ## De externe voorraad bekijken
 
@@ -83,6 +87,6 @@ flowchart TD
   A -->|"Ja, alle controles geslaagd"| P["Voorraadhandeling in Odoo"]
 ```
 
-<Note>Met **Native voorraadboekingen toestaan** krijgt de bron toestemming voor de ondersteunde native voorraadcontracten samen. Het is geen schakelaar per locatie. De afzonderlijke koppelingen en bedrijfscontroles blijven gelden.</Note>
+<Note>Met **Native voorraadboekingen toestaan** krijgt de bron samen toestemming voor beginvoorraad, voorraadcorrecties, interne overboekingen en materiaalverbruik in productie. Er is geen afzonderlijke schakelaar per handeling of locatie. De koppelingen, eventuele aanvullende bevoegdheden en Odoo-controles blijven gelden.</Note>
 
 De [instellingen](/nl/odoo-uns/settings) beschrijven ook productieverbruik en publicatie van ontvangsten. Zie [problemen oplossen](/nl/odoo-uns/troubleshooting) als een uitlezing of boeking wordt afgewezen.

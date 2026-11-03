@@ -25,13 +25,13 @@ For example, Odoo creates a production order for six panels. Each message carrie
 The connector's manufacturing contract names are `_work_order` and `_operation`. Odoo owns the order and operation identities and their source snapshots. The installation's integration service maps these to the agreed hub contract and routes them to the intended systems. A hub may use a versioned contract of its own; that mapping must be explicit. The base snapshot names are unversioned, so changing an agreement requires coordinated mapping between the participants.
 
 ```mermaid
-flowchart LR
+flowchart TD
   O["Odoo order"] --> B["Saved outbox snapshot"]
   B --> A["Integration service"] --> U["UNS and receiving system"]
 ```
 
 ```mermaid
-flowchart LR
+flowchart TD
   S["Shop-floor feedback"] --> A["Integration service"]
   A --> I["Odoo inbox"] --> R["Observation or authorized action"]
 ```
@@ -40,7 +40,11 @@ The add-on provides the Odoo records and interface. A separately configured inte
 
 ## Why save an outbox instead of only calling a webhook?
 
-A direct notification can fail after an order change has been saved. Reading the order again later may return a newer state instead of the state that caused the notification. The transactional outbox saves the snapshot in the same Odoo transaction as the tracked change. If that transaction rolls back, the snapshot rolls back too. Odoo can save the change without waiting for the receiving system. After an interruption, the separately configured service can resume collecting pending snapshots; each retains the content saved with its change.
+A direct notification can fail after an order change has been saved. Reading the order again later may return a newer state instead of the state that caused the notification.
+
+The transactional outbox saves the snapshot in the same Odoo transaction as the tracked change. If that transaction rolls back, the snapshot rolls back too.
+
+Odoo can save the change without waiting for the receiving system. After an interruption, the separately configured service can resume collecting pending snapshots; each retains the content saved with its change.
 
 A webhook can still be useful as a notification or to wake a worker. It is not by itself a durable record of the exact change. The external service needs its own durable custody and retry process. Neither the outbox nor a retry mechanism promises exactly-once delivery.
 

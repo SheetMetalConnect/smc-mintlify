@@ -25,13 +25,13 @@ Een voorbeeld: Odoo maakt een productieorder voor zes panelen. Elk bericht besch
 De contractnamen voor productie in de connector zijn `_work_order` en `_operation`. Odoo beheert de identiteiten en de momentopnamen van orders en bewerkingen. De integratiedienst van de inrichting vertaalt die gegevens naar het afgesproken hubcontract en stuurt ze door. Een hub kan een eigen versie van een contract gebruiken; die vertaling moet expliciet zijn vastgelegd. De basisnamen van de momentopnamen bevatten geen versienummer. Een wijziging in de afspraak vraagt daarom afstemming tussen de deelnemers.
 
 ```mermaid
-flowchart LR
+flowchart TD
   O["Order in Odoo"] --> B["Opgeslagen momentopname"]
   B --> A["Integratiedienst"] --> U["UNS en ontvangend systeem"]
 ```
 
 ```mermaid
-flowchart LR
+flowchart TD
   S["Terugmelding werkvloer"] --> A["Integratiedienst"]
   A --> I["Inkomend bericht in Odoo"] --> R["Waarneming of toegestane handeling"]
 ```
@@ -40,7 +40,11 @@ De Odoo-uitbreiding verzorgt de registraties en de interface. Een afzonderlijk i
 
 ## Waarom een outbox en niet alleen een webhook?
 
-Een directe melding kan mislukken nadat een orderwijziging is opgeslagen. Wie de order later opnieuw ophaalt, kan een nieuwere stand krijgen dan de stand die de melding veroorzaakte. De transactionele outbox slaat de momentopname in dezelfde Odoo-transactie op als de gevolgde wijziging. Wordt die transactie teruggedraaid, dan verdwijnt ook de opname. Odoo kan de wijziging opslaan zonder op het ontvangende systeem te wachten. Na een onderbreking kan de afzonderlijk ingerichte dienst wachtende momentopnamen weer ophalen. Elke opname behoudt de inhoud die bij de wijziging is opgeslagen.
+Een directe melding kan mislukken nadat een orderwijziging is opgeslagen. Wie de order later opnieuw ophaalt, kan een nieuwere stand krijgen dan de stand die de melding veroorzaakte.
+
+De transactionele outbox slaat de momentopname in dezelfde Odoo-transactie op als de gevolgde wijziging. Wordt die transactie teruggedraaid, dan verdwijnt ook de opname.
+
+Odoo kan de wijziging opslaan zonder op het ontvangende systeem te wachten. Na een onderbreking kan de afzonderlijk ingerichte dienst wachtende momentopnamen weer ophalen. Elke opname behoudt de inhoud die bij de wijziging is opgeslagen.
 
 Een webhook kan nog steeds dienen als melding of om een dienst te activeren. Op zichzelf bewaart die niet duurzaam de exacte wijziging. De externe dienst heeft eigen duurzame opslag en een manier om opnieuw te proberen nodig. De outbox en herhaling garanderen geen eenmalige aflevering.
 

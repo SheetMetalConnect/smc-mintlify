@@ -36,7 +36,7 @@ Met de Odoo UNS Connector werkt de werkvloer met ordergegevens uit Odoo. Het aan
 </Steps>
 
 ```mermaid
-flowchart LR
+flowchart TD
     O["Productieorder in Odoo"] --> S["Momentopname versturen"]
     S --> W["Order in aangesloten werkvloersysteem"]
     W --> T["Voortgang terugmelden"]
@@ -59,6 +59,10 @@ De overzichten helpen om de verwerking te volgen:
 - **UNS → Externe voorraad:** waarnemingen en leeshistorie per voorraadbron.
 
 Zoek steeds de betreffende order of bewerking. Controleer daarnaast de tijdregistratie, productieorder of voorraadregistratie die bij de ingeschakelde functie hoort.
+
+<Frame caption="Illustratie met voorbeeldgegevens: uitgaande en inkomende berichten en het terugkoppelingslogboek.">
+  <img src="/images/odoo-uns/message-views-nl.png" alt="Illustratie van uitgaande berichten, inkomende berichten en het terugkoppelingslogboek met statussen en referenties" />
+</Frame>
 
 ## Wat betekenen de statussen?
 

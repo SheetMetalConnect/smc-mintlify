@@ -40,13 +40,22 @@ A project can begin with a customer in the QuotationFactory portal or with an em
 
 ### A customer uses the portal
 
-The customer prepares a request in the QF portal. Staff review and calculate it in QuotationFactory, then follow the configured export process. QF returns the imported Odoo reference to the project. Staff review the Odoo draft and handle acceptance through their normal sales process before confirming it.
+<Steps>
+  <Step title="Customer: start the request">The customer prepares a request in the QF portal.</Step>
+  <Step title="Staff: calculate and export">Review and calculate the project in QuotationFactory. Use the configured export process.</Step>
+  <Step title="Staff: review the Odoo quotation">The import returns an Odoo reference to the QF project. Open the draft in Odoo and check its contents.</Step>
+  <Step title="Staff: handle acceptance">Handle acceptance through the normal sales process before confirming the quotation in Odoo.</Step>
+</Steps>
 
 The QF project visibility checkbox controls whether the project is visible to the customer in QF. It is separate from the source flag identifying a project created in the portal. With the optional Odoo workspace and its default protection enabled, that origin flag protects commercial fields on draft or sent quotations against ordinary edits. Shipping and work preparation remain editable. Neither visibility nor the protection flag proves customer acceptance.
 
 ### A request arrives by email or is started internally
 
-An employee creates and calculates the project in QuotationFactory using the request and its drawings, then uses the configured export process. The connector does not read the email or create the project from it. The resulting Odoo draft follows the same review and confirmation process. A project made by staff is not automatically a portal-origin project merely because it is made visible to the customer.
+<Steps>
+  <Step title="Staff: create and calculate">Use the request and drawings to create and calculate a project in QuotationFactory.</Step>
+  <Step title="Staff: export">Use the configured QF export process. The connector does not read email or create a project from it.</Step>
+  <Step title="Staff: review in Odoo">Open the resulting draft using the returned reference. Review it and handle acceptance before confirming it.</Step>
+</Steps> A project made by staff is not automatically a portal-origin project merely because it is made visible to the customer.
 
 ### Prepare a part or assembly before an order
 
@@ -54,7 +63,7 @@ A project can contain an individual manufactured part or an assembly with severa
 
 The documented export is a project-to-quotation import. A separate product-only or bill-of-materials-only import, independent of a quotation, is not described as a supported mode. Normal Odoo procurement and manufacturing rules apply after confirmation.
 
-<Frame caption="Illustration of QF project stages and customer visibility. The stage bar does not prove completion or acceptance. QF2Odoo can report Producing, Produced and Delivered; Delivered can be partial. It does not automatically report Packed.">
+<Frame caption="Localized illustration with demo data, not a verified English vendor screen, of QF project stages and customer visibility. The stage bar does not prove completion or acceptance. QF2Odoo can report Producing, Produced and Delivered; Delivered can be partial. It does not automatically report Packed.">
   <img src="/images/qf-project-status-en.png" alt="Illustration of QuotationFactory project stage labels and customer visibility checkbox" />
 </Frame>
 
@@ -116,6 +125,13 @@ flowchart TD
   R --> V
 ```
 
-Confirmed orders are protected. An initial import can adopt a uniquely matching draft or sent quotation; an ambiguous match blocks the import. Changed content under a new export reference creates a linked draft even when the earlier quotation was sent or the order was confirmed. An identical verified replay returns the earlier accepted result without creating a revision. Changed content under an existing export reference is refused. The commercial protection setting can make draft and sent portal-origin commercial fields read-only for ordinary users; revise those at the QF source or through authorized administration. Shipping and work preparation remain editable. Protection is not evidence of customer acceptance.
+| Export situation | Result in Odoo |
+| --- | --- |
+| First import and one matching draft or sent quotation | The import can add QF data to that quotation. An ambiguous match blocks import. |
+| Changed content with a new export reference | A linked draft revision is created, including after a sent quotation or confirmed order. |
+| Verified identical replay | The earlier accepted result is reused; no new revision is created. |
+| Changed content under an existing export reference | The conflicting export is refused. |
+
+<Warning>A new draft does not change the earlier confirmed order or its production demand. Review the current draft and handle confirmation through the normal Odoo process.</Warning> The commercial protection setting can make draft and sent portal-origin commercial fields read-only for ordinary users; revise those at the QF source or through authorized administration. Shipping and work preparation remain editable. Protection is not evidence of customer acceptance.
 
 If status feedback is enabled, the default mappings report **Producing** when manufacturing is underway, **Produced** when all non-cancelled manufacturing orders are done, and **Delivered** after any validated outgoing delivery. Delivered can mean a partial delivery. Status can also move backward as Odoo changes.

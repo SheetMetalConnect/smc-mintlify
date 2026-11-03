@@ -45,13 +45,22 @@ Een klant kan een aanvraag starten in het QuotationFactory-portaal. Een medewerk
 
 ### De klant gebruikt het portaal
 
-De klant maakt een aanvraag in het QF-portaal. Medewerkers beoordelen en calculeren het project in QuotationFactory en gebruiken de ingestelde exportwerkwijze. Na import komt de Odoo-referentie terug bij het project. Medewerkers controleren de conceptofferte in Odoo en verwerken het klantakkoord volgens het eigen verkoopproces voordat zij de order bevestigen.
+<Steps>
+  <Step title="Klant: start de aanvraag">De klant maakt een aanvraag in het QF-portaal.</Step>
+  <Step title="Medewerker: calculeer en exporteer">Beoordeel en calculeer het project in QuotationFactory. Gebruik de ingestelde exportwerkwijze.</Step>
+  <Step title="Medewerker: controleer de Odoo-offerte">Na import staat de Odoo-referentie bij het QF-project. Open en controleer het concept in Odoo.</Step>
+  <Step title="Medewerker: verwerk het akkoord">Verwerk het klantakkoord volgens het eigen verkoopproces voordat de offerte in Odoo wordt bevestigd.</Step>
+</Steps>
 
 Het selectievakje voor zichtbaarheid bepaalt of de klant het project in QF kan zien. Dat staat los van de bronmarkering die aangeeft dat het project in het portaal is aangemaakt. Met de optionele Odoo-werkruimte en de standaard ingeschakelde bescherming zijn commerciële velden van portaaloffertes in concept of verzonden voor gewone gebruikers alleen-lezen. Verzending en werkvoorbereiding blijven bewerkbaar. Zichtbaarheid en bescherming zijn geen bewijs van klantakkoord.
 
 ### Een aanvraag komt per e-mail binnen of ontstaat intern
 
-Een medewerker maakt en calculeert het project in QuotationFactory op basis van de aanvraag en tekeningen. Daarna volgt de ingestelde export. De koppeling leest de e-mail niet en maakt het project niet zelf aan. De conceptofferte in Odoo volgt dezelfde controle en bevestiging. Een project van een medewerker wordt niet automatisch een portaalproject doordat het zichtbaar wordt gemaakt voor de klant.
+<Steps>
+  <Step title="Medewerker: maak en calculeer">Maak en calculeer een project in QuotationFactory op basis van de aanvraag en tekeningen.</Step>
+  <Step title="Medewerker: exporteer">Gebruik de ingestelde QF-export. De koppeling leest de e-mail niet en maakt het project niet zelf aan.</Step>
+  <Step title="Medewerker: controleer in Odoo">Open de conceptofferte met de teruggegeven referentie. Controleer die en verwerk het akkoord vóór bevestiging.</Step>
+</Steps> Een project van een medewerker wordt niet automatisch een portaalproject doordat het zichtbaar wordt gemaakt voor de klant.
 
 ### Een onderdeel of samenstelling voorbereiden
 
@@ -163,8 +172,13 @@ Een status kan teruggaan als de voortgang in Odoo verandert. Facturatie en betal
 
 ## Een gewijzigde export verwerken
 
-Bij de eerste import kan de koppeling een uniek overeenkomende conceptofferte of verzonden offerte aanvullen. Bij meerdere overeenkomsten stopt de import.
+| Situatie bij export | Resultaat in Odoo |
+| --- | --- |
+| Eerste import met één overeenkomende conceptofferte of verzonden offerte | De koppeling kan die offerte aanvullen. Bij meerdere overeenkomsten stopt de import. |
+| Gewijzigde inhoud met een nieuwe exportreferentie | Een gekoppelde conceptrevisie ontstaat, ook na een verzonden offerte of bevestigde order. |
+| Gecontroleerde identieke herhaling | Het eerdere geaccepteerde resultaat wordt opnieuw gebruikt, zonder nieuwe revisie. |
+| Gewijzigde inhoud onder een bestaande exportreferentie | De conflicterende export wordt geweigerd. |
 
-Een export met gewijzigde inhoud en een nieuwe exportreferentie maakt een gekoppelde conceptrevisie, ook als de eerdere offerte is verzonden of de order bevestigd. De eerdere order blijft beschermd. Een gecontroleerde, identieke herhaling gebruikt het eerder geaccepteerde resultaat opnieuw zonder nieuwe revisie. Gewijzigde inhoud onder een bestaande exportreferentie wordt geweigerd. Controleer vóór bevestiging welk concept actueel is en bij welke bronreferentie het hoort.
+<Warning>Een nieuw concept verandert de eerdere bevestigde order of productievraag niet. Controleer het actuele concept en bevestig het via het normale Odoo-proces.</Warning>
 
 Ontbreekt de verwachte revisie? Zie [problemen oplossen](/nl/qf2odoo/troubleshooting).

@@ -81,8 +81,12 @@
         "footer": {
           "links": [
             {
-              "header": "© 2026 Sheet Metal Connect e.U.",
+              "header": "Legal",
               "items": [
+                {
+                  "label": "© 2026 Sheet Metal Connect e.U.",
+                  "href": "/disclaimer"
+                },
                 {
                   "label": "Disclaimer",
                   "href": "/disclaimer"
@@ -161,8 +165,12 @@
         "footer": {
           "links": [
             {
-              "header": "© 2026 Sheet Metal Connect e.U.",
+              "header": "Juridisch",
               "items": [
+                {
+                  "label": "© 2026 Sheet Metal Connect e.U.",
+                  "href": "/nl/disclaimer"
+                },
                 {
                   "label": "Disclaimer",
                   "href": "/nl/disclaimer"

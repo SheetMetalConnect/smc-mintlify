@@ -176,6 +176,18 @@ Een status kan teruggaan als de voortgang in Odoo verandert. Facturatie en betal
 
 ## Een gewijzigde export verwerken
 
+```mermaid
+flowchart TD
+    E["Project exporteren"] --> F{"Eerste import?"}
+    F -->|Ja| D["Concept maken of één passende offerte aanvullen"]
+    F -->|Nee| C{"Exportreferentie en inhoud"}
+    C -->|"Nieuwe referentie, gewijzigde inhoud"| R["Gekoppelde conceptrevisie maken"]
+    C -->|"Gecontroleerde identieke herhaling"| A["Eerder resultaat hergebruiken"]
+    C -->|"Bestaande referentie, gewijzigde inhoud"| X["Conflicterende export weigeren"]
+    D --> V["Offerte controleren"]
+    R --> V
+```
+
 | Situatie bij export | Resultaat in Odoo |
 | --- | --- |
 | Eerste import met één overeenkomende conceptofferte of verzonden offerte | De koppeling kan die offerte aanvullen. Bij meerdere overeenkomsten stopt de import. |

@@ -16,8 +16,8 @@ QF2Odoo imports a QF project into an Odoo quotation and its related engineering 
 | Quoted items, quantities and unit prices | Quotation lines | At least one top-level quotation line is needed to import. Odoo owns taxes and financial processing. |
 | Requested delivery date | Quotation commitment date | When supplied. Estimated date is separate source information; it does not replace the requested date. |
 | Payment and delivery terms, quotation header and footer | Native terms where matched; **QF Quotation** tab for supplied source content | When supplied. Matching Odoo terms are linked; unsupported source terms remain visible on the QF tab. |
-| Drawings and source export | Quotation attachments and related records | When supplied. The original export is attached; source information is for internal users. |
-| QF project, status and revision | Quotation source information; optional **QuotationFactory** tab and **QF Projects** | When supplied. Source status is informational and does not confirm the order. |
+| Drawings and source export | Quotation attachments and related records | Drawings are attached when supplied. Each imported quotation retains its source export; source information is for internal users. |
+| QF project, status and revision | Quotation source information; optional **QuotationFactory** tab and **QF Projects** | The import links the QF project and revision. Source status appears when supplied; it is informational and does not confirm the order. |
 
 ## Parts, assemblies and purchased items
 
@@ -28,7 +28,7 @@ The connector creates engineering snapshots for manufactured work. The resulting
     A manufactured part becomes a revision-specific Odoo product. A bill of materials is created when the source supplies components or operations; it contains the applicable components and operations. The material article links to an existing Odoo catalogue product.
   </Tab>
   <Tab title="Assembly and multilevel BOM">
-    An assembly becomes a revision-specific product. A grouping-only wrapper is unpacked without a product of its own. Its native Odoo bill of materials contains the assembly components; nested assemblies retain their own levels and applicable operations. 
+    An assembly becomes a revision-specific product. Its native Odoo bill of materials contains its components; nested assemblies retain their own levels and applicable operations. A grouping-only wrapper is unpacked without a product of its own. 
   </Tab>
   <Tab title="Purchased item">
     An item with purchasing steps only links to an existing Odoo article. The connector does not create a manufacturing bill of materials for it or replace the catalogue article's routes.

@@ -28,20 +28,12 @@ De koppeling maakt technische momentopnamen voor maakwerk. Artikelen, stuklijste
     Een maakdeel wordt een revisiespecifiek Odoo-artikel. Als de bron componenten of bewerkingen bevat, ontstaat ook een stuklijst met die componenten en bewerkingen. Het materiaal verwijst naar een bestaand catalogusartikel in Odoo.
   </Tab>
   <Tab title="Samenstelling met meerdere niveaus">
-    Een samenstelling die geen kunstmatige verzamelstructuur is, wordt een revisiespecifiek artikel. De standaard Odoo-stuklijst bevat de componenten; onderliggende samenstellingen behouden hun eigen niveaus en toepasselijke bewerkingen. Kunstmatige verzamelstructuren worden uitgepakt.
+    Een samenstelling wordt een revisiespecifiek artikel. Een mapachtige verzamelstructuur wordt uitgepakt zonder eigen artikel. De standaard Odoo-stuklijst bevat de componenten; onderliggende samenstellingen behouden hun eigen niveaus en toepasselijke bewerkingen. 
   </Tab>
   <Tab title="Inkoopdeel">
     Een deel met uitsluitend inkoopstappen verwijst naar een bestaand Odoo-artikel. De koppeling maakt daarvoor geen productiestuklijst en vervangt de routes van het catalogusartikel niet.
   </Tab>
 </Tabs>
-
-| Gegevens uit QuotationFactory | Waar in Odoo | Wanneer nodig? |
-| --- | --- | --- |
-| Identiteit, afmetingen en aangeleverde technische details | Artikel en bijbehorende QF-broninformatie | Wanneer aangeleverd: een standaardartikel met QF-velden en broninformatie. |
-| Samenstellingsstructuur, materiaal en componentaantallen | Productie → Stuklijsten | Wanneer aangeleverd; Odoo heeft een stuklijst nodig om voor een maakartikel een productieorder aan te maken. Bestaande catalogusmaterialen blijven van Odoo. |
-| Volgorde van bewerkingen en resourcecodes | Stuklijst → Bewerkingen en gekoppeld werkcentrum | Bij aangeleverde bewerkingen moeten resourcecodes overeenkomen met Odoo-werkcentra. |
-| Aangeleverde project-, artikel- en bewerkingsopmerkingen | QF-productie-instructies op relevante productieorders en werkorders | Wanneer aangeleverd. Productieorders en werkorders ontstaan na bevestiging volgens de normale Odoo-regels. |
-| Expliciete uitbesteding met leverancier | Uitbestedingsstuklijst en leverancier | Als een uitbestede QF-resource expliciet een leverancier aanwijst; die leverancier moet overeenkomen met Odoo. |
 
 De Odoo-handleiding beschrijft [stuklijsten met meerdere niveaus](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/advanced_configuration/sub_assemblies.html) en de [inrichting van maakartikelen](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/basic_setup/configure_manufacturing_product.html) (Engels).
 
@@ -51,14 +43,14 @@ Dit zijn standaard Odoo-records die de koppeling vult. Ontbrekende bronwaarden b
 
 | Gegevens | Waar in Odoo | Wanneer nodig? |
 | --- | --- | --- |
-| Naam en referentie van deel of samenstelling | Artikel; onderdelen op het hoogste niveau staan ook op de offerte | Voor een offerte zijn een klant en minstens één offertregel op het hoogste niveau nodig. |
+| Naam en referentie van deel of samenstelling | Artikel; onderdelen op het hoogste niveau staan ook op de offerte | De koppeling vult de artikelidentiteit uit de bron, met terugvalwaarden waar nodig. |
 | Aantal en eenheid | Offertregels en componentregels van de stuklijst | Aangeleverde aantallen bepalen de offerte en componenten. Niet-ondersteunde of niet-passende materiaaleenheden stoppen de import. |
 | Materiaalartikel, kwaliteit en dikte | Stuklijstcomponent en brongegevens van het artikel | Een materiaalverwijzing moet overeenkomen met een bestaand Odoo-artikel. Voor omrekening van plaatfractie naar vierkante meters zijn consistente plaatafmetingen of plaatoppervlakte nodig. |
 | Lengte, breedte, hoogte, oppervlakte en gewicht | Artikel; de optionele werkruimte toont QF-geometrie op het tabblad **QuotationFactory** | Wanneer aangeleverd. Gewicht staat in het standaard artikelveld; geometriegegevens zijn QF-toevoegingen. |
 | Componentstructuur en aantallen | Stuklijstcomponenten en onderliggende stuklijsten | Wanneer de export een structuur bevat. Een mapachtige verzamelstructuur wordt uitgepakt: de delen en samenstellingen erin worden verwerkt zonder artikel voor die verzamelstructuur. |
 | Bewerking, volgorde en resource | **Bewerkingen** op de stuklijst en werkcentrum | Wanneer aangeleverd. Een interne resource moet overeenkomen met een Odoo-werkcentrumcode; expliciete uitbesteding vraagt een passende leverancier. |
 | Productie- en insteltijd van de bewerking | Bewerking en QF-instructiedetails | Wanneer aangeleverd. Insteltijd blijft QF-informatie; de standaard insteltijd van een Odoo-werkcentrum staat daar los van. |
-| Tekeningnummer, revisie en bronbestand | Bijlagen; optioneel tabblad **QuotationFactory** op het artikel, **QF Source** | Wanneer aangeleverd. Een tekeningrevisie staat los van de QF-exportrevisie. |
+| Tekeningnummer, revisie en bronbestand | Bijlagen; optioneel tabblad **QuotationFactory** op het artikel, de QF-brongegevens | Wanneer aangeleverd. Een tekeningrevisie staat los van de QF-exportrevisie. |
 
 ### QF-gegevens toegevoegd aan Odoo
 
@@ -67,9 +59,9 @@ De integratiemodule bewaart broninformatie en productie-instructies. De optionel
 | Gegevens | Waar in Odoo | Wanneer nodig? |
 | --- | --- | --- |
 | Nestdraairichting en bovenzijde | Tabblad **QuotationFactory** op het artikel; optionele kolommen op de offertregel | Wanneer aangeleverd. Een vaste draairichting of gekozen bovenzijde kan een waarschuwing geven die de import niet blokkeert. |
-| Geometrische en hoektoleranties, oppervlakteruwheid | Tabblad **QuotationFactory**, **Tolerances** | Wanneer aangeleverd. |
-| RAL, coatingproces, zijden en lagen | Tabblad **QuotationFactory**, **Material** en **Coating**; optionele RAL-kolom op de offerte | Wanneer aangeleverd. Een poederartikel waarnaar wordt verwezen moet bestaan in Odoo. |
-| Gaten, zettingen, snijlengte en afwerking | Tabblad **QuotationFactory**, **Features**, **Bending** en **Finishing** | Wanneer aangeleverd. |
+| Geometrische en hoektoleranties, oppervlakteruwheid | Tabblad **QuotationFactory**, de toleranties | Wanneer aangeleverd. |
+| RAL, coatingproces, zijden en lagen | Tabblad **QuotationFactory**, de materiaal- en coatinggegevens; optionele RAL-kolom op de offerte | Wanneer aangeleverd. Een poederartikel waarnaar wordt verwezen moet bestaan in Odoo. |
+| Gaten, zettingen, snijlengte en afwerking | Tabblad **QuotationFactory**, de gegevens over kenmerken, zetten en afwerking | Wanneer aangeleverd. |
 | Project-, artikel- en bewerkingsopmerkingen | **QF-productie-instructies** op toepasselijke productieorders en werkorders | Wanneer aangeleverd. De instructies vullen de standaard Odoo-werkorder aan. |
 
 ## Wat is wanneer nodig?

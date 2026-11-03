@@ -136,6 +136,9 @@
     "prompt": "Search the user guides"
   },
   "seo": {
-    "indexing": "navigable"
+    "indexing": "navigable",
+    "metatags": {
+      "canonical": "https://docs.sheetmetalconnect.com"
+    }
   }
 }

@@ -1,41 +1,53 @@
 ---
 title: "Follow an order and its production feedback"
 sidebarTitle: "Daily workflow"
-description: "Follow an Odoo order snapshot to the hub, inspect incoming production feedback, and distinguish message receipt from the business result in Odoo."
-keywords: ["Odoo UNS Connector", "Odoo 19", "production", "user guide"]
+description: "Find integration information on an Odoo manufacturing order and work order, then check the actual production result."
+keywords:
+  - "Odoo UNS Connector"
+  - "Odoo 19"
+  - "work orders"
 ---
 
-Use the Odoo UNS Connector journals to follow an order outward and its production feedback back into Odoo. Each journal answers a different question: what was sent, what arrived, and what effect it had.
+The Odoo UNS Connector adds information to the manufacturing and work orders your team already uses. Start there to follow an order and its feedback.
 
 [Nederlands](/nl/odoo-uns/workflow)
 
+```mermaid
+flowchart LR
+  M["Create or update Odoo order"] --> S["Snapshot shared"]
+  S --> F["Shop system follows configured process"]
+  F --> B["Authorized feedback"]
+  B --> W["Review work order in Odoo"]
+  W --> R["Check time, state or stock result"]
+```
+
 <Steps>
-  <Step title="Create or update the manufacturing order">
-    Creating manufacturing orders and making tracked order or operation changes creates outgoing snapshots. The order's **UNS Integration** tab gives access to the integration information. **Enqueue Snapshot** queues a fresh view when an authorized user needs one.
+  <Step title="Open the manufacturing order">
+    In Odoo Manufacturing, open the order. Its **UNS Integration** tab shows the read-only **UNS Work-order Reference**. Creating an order or changing tracked order or operation information produces a snapshot.
   </Step>
-  <Step title="Check the outgoing snapshot">
-    In **UNS → Outbox**, identify the relevant order. **Pending** means it is waiting. **Acknowledged by hub** means the configured integration service has taken responsibility for durable storage of the message.
+  <Step title="Follow the work in the receiving system">
+    The configured shop-floor system receives order information through the integration route. A snapshot of a draft is not a release command. Follow your agreed process to decide when work starts.
   </Step>
-  <Step title="Follow the configured receiving system">
-    The receiving application uses the order information according to your agreed process. This receipt alone does not prove that the hub or the receiving application has processed the order or released work.
+  <Step title="Open the work order">
+    Open the relevant work order and its **UNS Integration** tab. **Identity** shows the operation reference, execution owner and work-center slug. **Latest Feedback** shows the latest type and time, external state, reported quantity, note and observed duration.
   </Step>
-  <Step title="Check feedback and its effect">
-    Use **UNS → Inbox** and **Feedback Audit** to inspect incoming results. Check the corresponding Odoo operation, time entry, order or stock record when that action is enabled.
+  <Step title="Check what changed in Odoo">
+    Look at normal Odoo time tracking, work-order and manufacturing-order states, or component stock movements, as appropriate. The feedback fields show what was reported; the normal Odoo records show whether a booking or completion occurred.
   </Step>
 </Steps>
 
-## Read the result correctly
+## How feedback becomes an Odoo result
 
-| Result | What it tells you |
-| --- | --- |
-| Acknowledged by hub | The configured integration service has taken durable custody. This is not proof of processing at the destination. |
-| Applied | The incoming handler performed its configured effect. This may be an observation only. |
-| Rejected | The message did not pass the rules for that action. Inspect the recorded reason. |
+```mermaid
+flowchart TD
+  F["Feedback arrives"] --> A{"Source authorized?"}
+  A -->|No| R["Rejected with reason"]
+  A -->|Yes| O["Observation recorded"]
+  O --> P{"Requested action enabled and Odoo checks pass?"}
+  P -->|Yes| N["Time, completion or stock booking"]
+  P -->|No| C["Check configured action and recorded reason"]
+```
 
-Repeated delivery of the same feedback retains its original result, including a rejection. Repeating a rejected message unchanged does not correct its cause.
+Observation alone does not complete production or change stock. Automatic completion supports the full planned quantity, not partial or scrap completion. Missing lot information, backorders, Odoo warnings or conflicting timers can prevent it.
 
-## Keep observations and bookings apart
-
-An observed quantity is not automatically a stock movement. Recorded progress is not automatically completed production. Compare the result with the capabilities enabled in [settings](/odoo-uns/settings).
-
-For a pending snapshot or rejected message, use [troubleshooting](/odoo-uns/troubleshooting).
+For an unexpected result, see [troubleshooting](/odoo-uns/troubleshooting). An administrator can use the Outbox, Inbox and Feedback Audit when the normal records do not explain the issue.

@@ -1,37 +1,36 @@
 ---
 title: "Odoo UNS Connector: connect production work"
 sidebarTitle: "Overview"
-description: "Understand how Odoo production information reaches connected systems and how authorized feedback can record progress, time, completion and stock."
-keywords: ["Odoo UNS Connector", "Odoo 19", "production", "user guide"]
+description: "See how Odoo production information reaches connected systems and how authorized feedback returns to Odoo."
+keywords:
+  - "Odoo UNS Connector"
+  - "Odoo 19"
+  - "production"
 ---
 
-The Odoo UNS Connector connects Odoo Manufacturing with the shared production data layer. It sends order information outward and receives feedback from authorized systems, so your team can follow work across Odoo and the shop floor.
+The Odoo UNS Connector shares manufacturing information with connected shop-floor systems and brings authorized feedback back to Odoo. Your team can follow the work without treating every observation as an automatic production booking.
 
 [Nederlands](/nl/odoo-uns/overview)
 
+## How the pieces connect
+
+A Unified Namespace (UNS) is a shared data layer for connected systems. The Odoo add-on works with a configured external integration and delivery service; the add-on itself is not the transport.
+
 ```mermaid
 flowchart LR
-    O["Odoo Manufacturing"] -->|"Order and operation snapshots"| U["Unified Namespace"]
-    U -->|"Configured order information"| F["Connected shop-floor systems"]
-    F -->|"Feedback from an authorized source"| U
-    U -->|"Validated feedback"| O
+  O["Odoo Manufacturing and UNS add-on"] <--> S["Integration and delivery service"]
+  S <--> U["UNS or data hub"]
+  U <--> F["Connected shop-floor systems"]
 ```
 
-## What travels in each direction?
+New manufacturing orders and tracked changes produce snapshots: records of the order at a point in time. A draft snapshot is information, not a command to release work or start a machine.
 
-| Direction | Information | Effect |
-| --- | --- | --- |
-| Odoo to connected systems | Manufacturing orders and operations | Makes the order state available to the configured receiving systems. |
-| Connected systems to Odoo | Operation progress and quantities | Records feedback from the configured execution owner. |
-| Connected systems to Odoo, when enabled | Measured time and completion | Can create Odoo time entries or complete the authorized operation or order. |
-| External stock to Odoo, when enabled | Lot stock observations and authorized bookings | Separates observed stock from changes actually booked in Odoo. |
+## What changes in Odoo?
 
-A **snapshot** is a record of an order at a particular point. Even a draft order can produce a snapshot. Publishing it is not a command to release work or start a machine.
+The manufacturing order gains a read-only **UNS Integration** tab with its work-order reference. A work order gains its own **UNS Integration** tab, with identity and latest feedback. Your usual Odoo manufacturing, time and stock records remain where you check the business result.
 
-## Controlled feedback
+Feedback can record an observation. Depending on separate permissions, it can also create time entries, complete an operation or manufacturing order, or book stock. Odoo is the default execution owner and rejects external operation feedback until a source is authorized.
 
-One configured system owns feedback for each operation. Time recording, operation completion, manufacturing completion and stock booking need their own settings. Receiving a message does not enable all these actions.
+External stock observations remain separate from Odoo stock. The [settings guide](/odoo-uns/settings) explains the boundaries.
 
-The connector supports **Odoo 19**. What your users see depends on the installed components and agreed configuration.
-
-Read the [workflow](/odoo-uns/workflow), [settings](/odoo-uns/settings) or [troubleshooting guide](/odoo-uns/troubleshooting). For commercial information, visit the [Odoo UNS Connector product page](https://sheetmetalconnect.com/integratie-odoo-uns-connector?lang=en).
+Continue with the [daily workflow](/odoo-uns/workflow) or [troubleshooting](/odoo-uns/troubleshooting). See the [product page](https://sheetmetalconnect.com/integratie-odoo-uns-connector?lang=en) for commercial information.

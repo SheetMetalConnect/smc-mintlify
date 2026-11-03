@@ -1,32 +1,114 @@
 ---
-title: "Volg een QF-offerte naar Odoo"
+title: "Van QF-calculatie tot betaling in Odoo"
 sidebarTitle: "Dagelijks gebruik"
-description: "Volg een export uit QuotationFactory via conceptcontrole en orderbevestiging naar productie en levering, inclusief revisies en terugmelding van statussen."
-keywords: ["Sheet Metal Connect","QF2Odoo","handleiding"]
+description: "Volg een QF-project van export en offertecontrole tot productie, levering, facturatie en betaling. Lees wat de koppeling toevoegt en wat standaard Odoo doet."
+keywords:
+  - "Sheet Metal Connect"
+  - "QF2Odoo"
+  - "handleiding"
 ---
 
-Met QF2Odoo neemt u de voorbereide offerte over in Odoo zonder de productstructuur opnieuw in te voeren. De beslissing om van die offerte een order te maken blijft in Odoo.
+QF2Odoo draagt de calculatie uit QuotationFactory over aan Odoo. Daarna loopt de order verder via de gebruikelijke Odoo-processen: klantakkoord, orderbevestiging, productie, levering, factuur en betaling.
 
 [English](/qf2odoo/workflow)
 
+## Het hele proces
+
+```mermaid
+flowchart TB
+    Q["QuotationFactory: calculeren en exporteren"] --> I["QF2Odoo: conceptofferte aanmaken"]
+    I --> C["Odoo: offerte controleren en klantakkoord verwerken"]
+    C --> O["Odoo: verkooporder bevestigen"]
+    O --> P["Werkvoorbereiding en productie volgens inrichting"]
+    P --> L["Levering bevestigen"]
+    O -->|"Bestelde hoeveelheden"| F["Factuur maken en bevestigen"]
+    L -->|"Geleverde hoeveelheden"| F
+    F --> B["Betaling verwerken en afletteren volgens inrichting"]
+```
+
+Het facturatiebeleid bepaalt wanneer aantallen factureerbaar zijn. Bij **Bestelde hoeveelheden** kan dat al na orderbevestiging. Bij **Geleverde hoeveelheden** is een bevestigde levering nodig.
+
+## Calculatie en offerte
+
 <Steps>
-  <Step title="Exporteer het project uit QuotationFactory">
-    Rond het calculatieproject af en gebruik de exportwerkwijze die voor uw bedrijf is ingericht. Bewaar de projectreferentie om het resultaat terug te vinden. Na een geslaagde import gaan het resultaat en de Odoo-offerte- of orderreferentie terug naar QuotationFactory.
+  <Step title="Exporteer het calculatieproject">
+    Rond het project af in QuotationFactory. Gebruik de exportwerkwijze die voor het bedrijf is ingericht.
+
+    Bewaar de projectreferentie. Na een geslaagde import meldt QF2Odoo het resultaat en de Odoo-offerte- of orderreferentie terug.
   </Step>
-  <Step title="Zoek en controleer de conceptofferte in Odoo">
-    Controleer klant, aantallen, commerciële afspraken, artikelen, stuklijsten, bewerkingen en bijlagen aan de hand van de bron. Met de optionele werkruimte vindt u projecten via **Verkoop → Orders → QF-projecten**. Het tabblad **QuotationFactory** toont brongegevens en de koppeling naar het project.
-  </Step>
-  <Step title="Bevestig via de gebruikelijke werkwijze in Odoo">
-    Bevestig de offerte als de bedrijfscontroles zijn afgerond. Odoo volgt daarna zijn ingerichte inkoop- en productieregels. Er is geen afzonderlijke QF-knop om productie vrij te geven.
-  </Step>
-  <Step title="Werk verder in productie en levering">
-    Gebruik de gebruikelijke productie- en leverprocessen in Odoo. Als statusterugmelding is ingeschakeld, meldt de connector de ingerichte voortgang terug aan QuotationFactory.
+  <Step title="Zoek en controleer de conceptofferte">
+    Open de geïmporteerde offerte in Odoo. Met de optionele werkruimte staan de projecten onder **Verkoop → Orders → QF-projecten**.
+
+    Vergelijk de gegevens met het QuotationFactory-project:
+
+    - Klant, aantallen, prijzen en commerciële afspraken.
+    - Artikelen, stuklijsten en bewerkingen.
+    - Tekeningen en andere bijlagen.
+
+    De import voegt een notitie met een koppeling naar het QF-project toe aan het berichtenoverzicht bij de offerte.
+
+    Op het tabblad **QF-broninformatie** staan de aangeleverde brongegevens. Met de optionele werkruimte toont **QuotationFactory** ook de importgegevens en bronkoppeling.
   </Step>
 </Steps>
 
-## Begrijp de teruggestuurde status
+De beschikbare tabbladen hangen af van de aangeleverde gegevens en geïnstalleerde onderdelen. Bij ingeschakelde bescherming blijven commerciële portaalgegevens beschermd tegen gewone gebruikerswijzigingen. Zie [instellingen](/nl/qf2odoo/settings).
 
-De standaardkoppelingen zijn:
+## Van order naar levering
+
+<Steps>
+  <Step title="Verwerk klantakkoord en bevestig de order">
+    Verwerk het klantakkoord volgens het ingerichte verkoopproces. Bij handmatige bevestiging zet **Bevestigen** de offerte om in een verkooporder.
+
+    Een onvolledige QF-import blokkeert deze bevestiging. Rond de import eerst af.
+  </Step>
+  <Step title="Bereid het werk voor en volg de productie">
+    Odoo volgt na orderbevestiging de ingerichte inkoop- en productieregels. Open de bijbehorende productieorders en werkorders om het werk voor te bereiden en uit te voeren.
+
+    Aangeleverde instructies staan onder **QF-productie-instructies**. Met de optionele werkruimte geven **QF-stuklijsten** en **Productie** toegang tot de gekoppelde gegevens.
+
+    Er is geen afzonderlijke QF-knop om productie vrij te geven.
+  </Step>
+  <Step title="Bevestig de werkelijke levering">
+    Open de levering vanuit de verkooporder. Controleer de werkelijk geleverde aantallen en bevestig de levering via de gebruikelijke Odoo-werkwijze.
+
+    Controleer bij een deellevering ook wat nog openstaat. Een teruggestuurde QF-status vervangt die controle niet.
+  </Step>
+</Steps>
+
+<Note>
+  **Ordered** in QuotationFactory bevestigt de Odoo-offerte niet en maakt geen productievraag aan. De bescherming van commerciële portaalgegevens is evenmin een bewijs van klantakkoord.
+</Note>
+
+## Factuur en betaling
+
+Dit zijn standaardfuncties van Odoo. QF2Odoo maakt of bevestigt geen facturen en verwerkt geen betalingen.
+
+<Steps>
+  <Step title="Maak en controleer de factuur">
+    Kies op de verkooporder **Factuur maken** en daarna **Concept maken**. Welke aantallen beschikbaar zijn, hangt af van het facturatiebeleid van het artikel.
+
+    Controleer de conceptfactuur, waaronder klant, aantallen, prijzen en betalingsvoorwaarden. **Bevestigen** boekt de factuur en kent een factuurnummer toe. Een conceptfactuur heeft nog geen boekhoudkundig effect.
+
+    Verstuur de bevestigde factuur volgens de ingerichte verzendwijze.
+  </Step>
+  <Step title="Verwerk de betaling en controleer de aflettering">
+    Volg de ingerichte betaal- en bankwerkwijze. Voor een handmatige betalingsregistratie staat op de klantfactuur **Betaal**.
+
+    Controleer dagboek, betaaldatum, betaalmethode en bedrag. Kies daarna **Betaling aanmaken**.
+
+    Controleer vervolgens of de betaling of factuur aan de juiste banktransactie is gekoppeld en of het openstaande bedrag klopt.
+  </Step>
+</Steps>
+
+<Note>
+  Een geregistreerde betaling betekent niet altijd dat de factuur direct **Betaald** is. Vaak blijft de status **In betaling** tot de bankaflettering. De rekening- en betaalinrichting bepaalt de precieze verwerking.
+</Note>
+
+De officiële Odoo 19-handleiding beschrijft het [facturatiebeleid](https://www.odoo.com/documentation/19.0/applications/sales/sales/invoicing/invoicing_policy.html), de [klantfacturen](https://www.odoo.com/documentation/19.0/applications/finance/accounting/customer_invoices.html) en de [betalingsverwerking](https://www.odoo.com/documentation/19.0/applications/finance/accounting/payments.html).
+
+## Welke status gaat terug naar QuotationFactory?
+
+Bij ingeschakelde statusterugmelding gelden standaard deze koppelingen:
 
 | Gebeurtenis in Odoo | Status in QuotationFactory |
 | --- | --- |
@@ -34,12 +116,14 @@ De standaardkoppelingen zijn:
 | Alle niet-geannuleerde productieorders zijn gereed | Produced |
 | Een uitgaande levering is gevalideerd | Delivered |
 
-**Delivered** kan volgen op een deellevering. De status bewijst niet dat alle regels volledig zijn geleverd. Controleer de werkelijke geleverde aantallen in Odoo.
+**Delivered** kan al volgen op een deellevering. Controleer de werkelijke geleverde aantallen in Odoo.
 
-Een status kan teruggaan als de onderliggende voortgang in Odoo verandert. Facturatie en betalingen blijven afzonderlijke Odoo-processen.
+Een status kan teruggaan als de voortgang in Odoo verandert. Facturatie en betalingen blijven afzonderlijke processen.
 
-## Verwerk een gewijzigde export
+## Een gewijzigde export verwerken
 
-Gewijzigde broninhoud levert een gekoppelde conceptrevisie op. Bevestigde orders blijven beschermd. Een gecontroleerde identieke herhaling gebruikt het geaccepteerde resultaat opnieuw.
+Bij gewijzigde broninhoud maakt de koppeling een gekoppelde conceptrevisie. Een bevestigde order blijft beschermd.
 
-Controleer het actuele concept en de bronreferentie vóór bevestiging. Zie [problemen oplossen](/nl/qf2odoo/troubleshooting) als een verwachte revisie ontbreekt.
+Een gecontroleerde, identieke herhaling gebruikt het eerder geaccepteerde resultaat opnieuw. Controleer vóór bevestiging welk concept actueel is en bij welke bronreferentie het hoort.
+
+Ontbreekt de verwachte revisie? Zie [problemen oplossen](/nl/qf2odoo/troubleshooting).

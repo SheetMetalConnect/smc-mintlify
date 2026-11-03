@@ -1,45 +1,37 @@
 ---
 title: "Get started with your integration"
 sidebarTitle: "First use"
-description: "Prepare a first walkthrough with your team: confirm the systems, agree data ownership, and check an example from its source to the expected result."
+description: "Follow an example from its source to the Odoo result, and find the guide for the next step."
 keywords:
   - "Sheet Metal Connect"
-  - "integrations"
-  - "user guide"
+  - "Odoo 19"
+  - "first use"
 ---
 
-Before your team starts using QF2Odoo or the Odoo UNS Connector, agree what a successful transfer should look like. Use an agreed test example and the workflow enabled for your company.
+Start with one example your team can recognize. Find it in the source system, follow it into Odoo and check the result in the normal business record.
 
 [Nederlands](/nl/quickstart)
 
-## Before you begin
-
-The documented integrations target **Odoo 19**. Your administrator needs to confirm the installed release, relevant Odoo apps, access rights and enabled exchanges. QuotationFactory is needed for QF2Odoo; a configured UNS connection and receiving systems are needed for the Odoo UNS Connector.
-
 <Steps>
-  <Step title="Agree where each change belongs">
-    Identify who maintains customer and article data, who confirms quotations, and which system reports each production operation. Name the person responsible for resolving transfer errors.
+  <Step title="Choose the integration">
+    For a quotation exported from QuotationFactory, use [QF2Odoo](/qf2odoo/overview). For Odoo manufacturing information and shop-floor feedback, use the [Odoo UNS Connector](/odoo-uns/overview).
   </Step>
-  <Step title="Follow one example">
-    For QF2Odoo, follow an exported project into its Odoo draft quotation. For the Odoo UNS Connector, follow a manufacturing order snapshot and, where enabled, one authorized feedback message.
+  <Step title="Find the record">
+    For QF2Odoo, open the Odoo quotation using the returned reference. For the UNS connector, open the manufacturing order and its work order in Odoo. The guides show the added tabs and the standard Odoo records.
   </Step>
-  <Step title="Check the business result">
-    Compare the source reference, quantities and expected destination record. A sent message or receipt alone does not prove that a quotation, time entry or stock booking is correct.
+  <Step title="Check the result">
+    Compare the source reference and quantities. A successful transfer is not the same as order confirmation, production completion or payment. Check each result in the relevant Odoo record.
   </Step>
 </Steps>
 
-## Choose your workflow
-
 <Columns cols={2}>
-  <Card title="From quotation to order" href="/qf2odoo/workflow">
-    Check the imported quotation before normal Odoo confirmation.
+  <Card title="Quotation to payment" href="/qf2odoo/workflow">
+    Review the draft, then follow the standard Odoo sales process.
   </Card>
 
-  <Card title="From order to production feedback" href="/odoo-uns/workflow">
-    Follow outgoing information, incoming feedback and its recorded effect.
+  <Card title="Production feedback" href="/odoo-uns/workflow">
+    See what the shop floor reported and check its effect in Odoo.
   </Card>
 </Columns>
 
-Agree optional capabilities before using them. Automated time recording, completion and stock booking have separate settings; receiving production information does not automatically authorize them.
-
-For product fit and implementation scope, see the [integration pages](https://sheetmetalconnect.com/integraties?lang=en).
+If the result is missing, start with [QF2Odoo troubleshooting](/qf2odoo/troubleshooting) or [UNS troubleshooting](/odoo-uns/troubleshooting). Your administrator can confirm the enabled exchanges and access rights.

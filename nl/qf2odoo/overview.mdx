@@ -12,6 +12,7 @@ QF2Odoo neemt een geëxporteerd QuotationFactory-project over als **conceptoffer
 ```mermaid
 flowchart LR
     Q["QuotationFactory"] -->|"Geëxporteerd project"| O["Conceptofferte in Odoo"]
+    O -->|"Importresultaat en Odoo-referentie"| Q
     O -->|"Uw controle en bevestiging"| S["Verkooporder in Odoo"]
     M["Stamgegevens in Odoo"] -->|"Op verzoek van QF, indien ingeschakeld"| Q
     P["Productie en levering in Odoo"] -->|"Status, indien ingeschakeld"| Q
@@ -27,6 +28,8 @@ flowchart LR
 | Productie, levering, facturatie en betalingsverwerking | Odoo |
 
 De productiegegevens kunnen stuklijsten met meerdere niveaus, bewerkingen en tekeningen bevatten. De offerte blijft een concept tot de gebruikelijke bevestiging in Odoo. De status **Ordered** in QuotationFactory bevestigt de Odoo-offerte niet en maakt geen productievraag aan.
+
+Na een geslaagde import gaan het resultaat en de Odoo-offerte- of orderreferentie terug naar QuotationFactory. Dit antwoord hoort bij de basisimport en staat los van optionele productiestatussen.
 
 ## Optionele terugkoppelingen
 

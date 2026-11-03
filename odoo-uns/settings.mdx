@@ -20,7 +20,7 @@ The Odoo UNS Connector separates receiving information from changing Odoo produc
 | Record authorized operation observations | Correct execution owner for the work order. |
 | Create Odoo time entries | A configured productive **UNS native time category**. |
 | Complete an operation in Odoo | **Authorize native operation completion**. |
-| Complete a manufacturing order in Odoo | **Authorize native manufacturing completion**. |
+| Complete a manufacturing order in Odoo | Both operation and manufacturing completion permissions. Completion follows the last open operation. |
 | Book external lot stock in Odoo | **Authorize native stock booking**, with approved source and lot mappings. |
 
 Here, **native** means the action changes Odoo's own business records, rather than only recording an external observation.
@@ -35,6 +35,6 @@ Automatic completion supports the full planned quantity. Partial or scrap comple
 
 Actual-lot material consumption in production needs an additional component and explicit authority for the affected material. It is not included merely by enabling stock observations.
 
-**Publish received lots to UNS** controls whether received lot information is shared outward.
+**Publish received lots to UNS** is a per-product opt-in. An incoming-receipt destination must also be configured. The exchange covers validated vendor receipt lines.
 
 These settings affect production records. Their scope should match the agreed process and the installed components. See [daily workflow](/odoo-uns/workflow) for the visible results and [troubleshooting](/odoo-uns/troubleshooting) for rejected feedback.

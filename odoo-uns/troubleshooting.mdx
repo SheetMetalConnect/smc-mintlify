@@ -1,0 +1,38 @@
+---
+title: "Understand pending or rejected UNS feedback"
+sidebarTitle: "Troubleshooting"
+description: "Check a pending snapshot, rejected feedback or missing production booking by using the Odoo journals and the permissions for the intended action."
+keywords: ["Odoo UNS Connector", "Odoo 19", "production", "user guide"]
+---
+
+When an Odoo UNS Connector result is missing, identify the order and the relevant outgoing or incoming message first. A message state and a business result are different pieces of evidence.
+
+[Nederlands](/nl/odoo-uns/troubleshooting)
+
+## The outgoing snapshot is still pending
+
+Check **UNS → Outbox** and the related order. Ask the responsible administrator to investigate the connection and delivery state using that reference. Avoid creating repeated snapshots as a substitute for diagnosing the pending one.
+
+## The hub acknowledged it, but the shop floor has no order
+
+The receipt confirms hub custody. It does not confirm delivery to every receiving system. The administrator must trace the configured route to the intended application.
+
+## Incoming feedback is rejected
+
+Read the reason in **Inbox** or **Feedback Audit**. Check the configured execution owner, source reference and permissions for the requested action. Repeating the same rejected message preserves its original result; resolve the cause first.
+
+## Progress arrived, but no time or completion was booked
+
+An applied observation does not guarantee a time entry or completion. Check the productive time category and the separate completion permissions.
+
+Automatic completion requires the full planned quantity. Partial quantities, scrap, missing lot information, backorders, Odoo warnings or conflicting local timers can prevent it. Continue through the agreed Odoo process for cases this path does not support.
+
+## External stock differs from Odoo stock
+
+Compare **Observed external stock** with **Native lot stock**. They are intentionally separate. Stock booking requires explicit authority and valid lot mappings; production material consumption has additional requirements.
+
+## Information for support
+
+Provide the company, order or operation reference, visible message reference, recorded state, exact reason, time of the event and the expected business result. Do not include credentials.
+
+See [settings](/odoo-uns/settings) or the [product page](https://sheetmetalconnect.com/integratie-odoo-uns-connector) for the supported scope.

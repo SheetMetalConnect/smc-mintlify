@@ -45,7 +45,12 @@
           },
           {
             "group": "Odoo UNS Connector",
-            "pages": []
+            "pages": [
+              "odoo-uns/overview",
+              "odoo-uns/workflow",
+              "odoo-uns/settings",
+              "odoo-uns/troubleshooting"
+            ]
           }
         ]
       },

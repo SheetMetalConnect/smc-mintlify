@@ -1,0 +1,40 @@
+---
+title: "Control what shop-floor feedback can change"
+sidebarTitle: "Settings"
+description: "Understand execution ownership and the separate permissions for Odoo time entries, operation completion, manufacturing completion and stock booking."
+keywords: ["Odoo UNS Connector", "Odoo 19", "production", "user guide"]
+---
+
+The Odoo UNS Connector separates receiving information from changing Odoo production and stock records. Your administrator configures the allowed source and effect for each workflow.
+
+[Nederlands](/nl/odoo-uns/settings)
+
+## Start with the execution owner
+
+**UNS Execution Owner** identifies the system allowed to report an operation's progress. The default owner is Odoo; external operation feedback is rejected until ownership is configured for that source.
+
+## Enable only the required effects
+
+| Capability | Required configuration |
+| --- | --- |
+| Record authorized operation observations | Correct execution owner for the work order. |
+| Create Odoo time entries | A configured productive **UNS native time category**. |
+| Complete an operation in Odoo | **Authorize native operation completion**. |
+| Complete a manufacturing order in Odoo | **Authorize native manufacturing completion**. |
+| Book external lot stock in Odoo | **Authorize native stock booking**, with approved source and lot mappings. |
+
+Here, **native** means the action changes Odoo's own business records, rather than only recording an external observation.
+
+<Note>
+Automatic completion supports the full planned quantity. Partial or scrap completion is not supported by this path. Odoo warnings, required lot information and backorders can prevent completion.
+</Note>
+
+## Stock and material consumption
+
+**Observed external stock** remains separate from **Native lot stock**. Observations alone do not change Odoo inventory.
+
+Actual-lot material consumption in production needs an additional component and explicit authority for the affected material. It is not included merely by enabling stock observations.
+
+**Publish received lots to UNS** controls whether received lot information is shared outward.
+
+These settings affect production records. Their scope should match the agreed process and the installed components. See [daily workflow](/odoo-uns/workflow) for the visible results and [troubleshooting](/odoo-uns/troubleshooting) for rejected feedback.

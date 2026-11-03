@@ -1,0 +1,41 @@
+---
+title: "Follow an order and its production feedback"
+sidebarTitle: "Daily workflow"
+description: "Follow an Odoo order snapshot to the hub, inspect incoming production feedback, and distinguish message receipt from the business result in Odoo."
+keywords: ["Odoo UNS Connector", "Odoo 19", "production", "user guide"]
+---
+
+Use the Odoo UNS Connector journals to follow an order outward and its production feedback back into Odoo. Each journal answers a different question: what was sent, what arrived, and what effect it had.
+
+[Nederlands](/nl/odoo-uns/workflow)
+
+<Steps>
+  <Step title="Create or update the manufacturing order">
+    Normal manufacturing changes create outgoing snapshots. The order's **UNS Integration** tab gives access to the integration information. **Enqueue Snapshot** queues a fresh view when an authorized user needs one.
+  </Step>
+  <Step title="Check the outgoing snapshot">
+    In **UNS → Outbox**, identify the relevant order. **Pending** means it is waiting. **Acknowledged by hub** means the hub has accepted responsibility for the message.
+  </Step>
+  <Step title="Follow the configured receiving system">
+    The receiving application uses the order information according to your agreed process. A hub receipt does not prove that the receiving application has accepted the order or released work.
+  </Step>
+  <Step title="Check feedback and its effect">
+    Use **UNS → Inbox** and **Feedback Audit** to inspect incoming results. Check the corresponding Odoo operation, time entry, order or stock record when that action is enabled.
+  </Step>
+</Steps>
+
+## Read the result correctly
+
+| Result | What it tells you |
+| --- | --- |
+| Acknowledged by hub | The hub has custody of the outgoing message. |
+| Applied | The incoming handler performed its configured effect. This may be an observation only. |
+| Rejected | The message did not pass the rules for that action. Inspect the recorded reason. |
+
+Repeated delivery of the same feedback retains its original result, including a rejection. Repeating a rejected message unchanged does not correct its cause.
+
+## Keep observations and bookings apart
+
+An observed quantity is not automatically a stock movement. Recorded progress is not automatically completed production. Compare the result with the capabilities enabled in [settings](/odoo-uns/settings).
+
+For a pending snapshot or rejected message, use [troubleshooting](/odoo-uns/troubleshooting).

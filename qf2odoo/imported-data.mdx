@@ -28,20 +28,12 @@ The connector creates engineering snapshots for manufactured work. The resulting
     A manufactured part becomes a revision-specific Odoo product. A bill of materials is created when the source supplies components or operations; it contains the applicable components and operations. The material article links to an existing Odoo catalogue product.
   </Tab>
   <Tab title="Assembly and multilevel BOM">
-    A non-wrapper assembly becomes a revision-specific product. Its native Odoo bill of materials contains the assembly components; nested assemblies retain their own levels and applicable operations. Artificial wrapper assemblies are unwrapped.
+    An assembly becomes a revision-specific product. A grouping-only wrapper is unpacked without a product of its own. Its native Odoo bill of materials contains the assembly components; nested assemblies retain their own levels and applicable operations. 
   </Tab>
   <Tab title="Purchased item">
     An item with purchasing steps only links to an existing Odoo article. The connector does not create a manufacturing bill of materials for it or replace the catalogue article's routes.
   </Tab>
 </Tabs>
-
-| Data from QuotationFactory | Where in Odoo | Needed when |
-| --- | --- | --- |
-| Part or assembly identity, dimensions and supplied engineering details | Product and its QF source information | When supplied. Native product plus QF fields and source information. |
-| Assembly structure, material and component quantities | Manufacturing → Bills of Materials | When supplied; Odoo needs a BOM to generate an MO for a manufactured product. Existing catalogue materials remain Odoo-owned. |
-| Ordered working steps and resource codes | Bill of materials → Operations and linked work centre | For operations supplied by QF, resource codes must match Odoo work centres. |
-| Supplied project, product and operation comments | QF production instructions on relevant production and work orders | When supplied. Production and work orders arise through Odoo's normal rules after confirmation. |
-| Explicit outsourced operation and supplier | Subcontracting bill of materials and supplier | When an outsourced QF resource explicitly identifies a supplier; that supplier must match in Odoo. |
 
 For the standard Odoo structure, see [multilevel bills of materials](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/advanced_configuration/sub_assemblies.html) and [manufacturing product configuration](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/basic_setup/configure_manufacturing_product.html).
 
@@ -51,7 +43,7 @@ These are normal Odoo records populated by the connector. Source values that are
 
 | Data | Where in Odoo | Needed when |
 | --- | --- | --- |
-| Part or assembly name and reference | Product; top-level items also appear on quotation lines | The project needs a customer and at least one top-level quotation line for a quotation. |
+| Part or assembly name and reference | Product; top-level items also appear on quotation lines | The connector fills product identity from the source, with fallbacks where needed. |
 | Quantity and unit | Quotation lines and BOM component lines | Supplied quantities express the offer and components. Unsupported or mismatched material units stop import. |
 | Material article, grade and thickness | BOM component and product source details | A referenced material must match an existing Odoo article. For sheet-fraction conversion to square metres, consistent stock-sheet dimensions or area are required. |
 | Length, width, height, area and weight | Product; the optional workspace shows QF geometry on its **QuotationFactory** tab | When supplied. Weight uses the native product field; geometry details are QF additions. |

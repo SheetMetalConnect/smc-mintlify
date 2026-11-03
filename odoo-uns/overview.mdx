@@ -25,7 +25,7 @@ flowchart LR
 
 New manufacturing orders and tracked changes produce snapshots: records of the order at a point in time. Odoo saves each snapshot in an outbox alongside the change. If the connection is interrupted, the delivery service can retry recorded changes when it resumes. A draft snapshot is information, not a command to release work or start a machine.
 
-**Pending** means the snapshot is awaiting collection. **Acknowledged** means the integration service has accepted durable custody; it does not mean every destination has processed it. Repeated feedback preserves the original accepted or rejected result, rather than repeating the action.
+**Pending** means the snapshot is awaiting collection. **Acknowledged by hub** means the integration service has accepted durable custody; it does not mean every destination has processed it. Repeated feedback preserves the original accepted or rejected result, rather than repeating the action.
 
 ## What changes in Odoo?
 

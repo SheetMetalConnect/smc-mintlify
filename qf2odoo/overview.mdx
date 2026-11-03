@@ -1,0 +1,41 @@
+---
+title: "QF2Odoo: from quotation to Odoo"
+sidebarTitle: "Overview"
+description: "See how QF2Odoo transfers quotation projects into Odoo, which system owns each part of the process, and which return exchanges are optional."
+keywords: ["Sheet Metal Connect","QF2Odoo","user guide"]
+---
+
+QF2Odoo brings an exported QuotationFactory project into Odoo as a **draft quotation** with products, bills of materials, operations and attachments. Your team reviews the result in Odoo before confirming an order.
+
+[Nederlands](/nl/qf2odoo/overview)
+
+```mermaid
+flowchart LR
+    Q["QuotationFactory"] -->|"Exported project"| O["Odoo draft quotation"]
+    O -->|"Your review and confirmation"| S["Odoo sales order"]
+    M["Odoo master data"] -->|"On QF request, if enabled"| Q
+    P["Odoo production and delivery"] -->|"Status feedback, if enabled"| Q
+```
+
+## What each system owns
+
+| Information or decision | Where it belongs |
+| --- | --- |
+| Quotation project, calculation and source files | QuotationFactory |
+| Customer, supplier and catalogue article master data | Odoo |
+| Imported quotation review and sales-order confirmation | Odoo |
+| Manufacturing, delivery, invoicing and payment handling | Odoo |
+
+The imported manufacturing information can include multilevel bills of materials, operations and drawings. The quotation remains a draft until normal Odoo confirmation. A QuotationFactory project marked **Ordered** does not confirm it or create manufacturing demand.
+
+## Optional return exchanges
+
+When configured, QuotationFactory can request master-data snapshots from Odoo. Production and delivery statuses can also return to QuotationFactory. These are specific exchanges, not unrestricted synchronization of both systems.
+
+The connector does not automate invoice creation, payment collection or payment reconciliation.
+
+## Continue
+
+Read the [daily workflow](/qf2odoo/workflow), check [settings and optional features](/qf2odoo/settings), or find help with a [missing result](/qf2odoo/troubleshooting).
+
+For product fit and commercial information, visit [QF2Odoo on the website](https://sheetmetalconnect.com/integratie-qf2odoo).

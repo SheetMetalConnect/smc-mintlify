@@ -1,0 +1,38 @@
+---
+title: "Find a missing or unexpected QF2Odoo result"
+sidebarTitle: "Troubleshooting"
+description: "Check missing quotations, revised exports, stale master data and production statuses. Gather the references needed to resolve a QF2Odoo transfer."
+keywords: ["Sheet Metal Connect","QF2Odoo","user guide"]
+---
+
+When a QF2Odoo result differs from what you expect, start with the source project reference and the corresponding Odoo record. Check the business state before exporting again.
+
+[Nederlands](/nl/qf2odoo/troubleshooting)
+
+## The quotation is missing
+
+Confirm that the project was exported, then check the Odoo company and search by its source reference. In the optional workspace, **Current QF Projects** is the default filter. Remove it to include earlier or incomplete imports.
+
+If an import reports an unknown customer, article or operation code, the responsible administrator must check the mapping. Do not substitute another record just to continue.
+
+## QF says Ordered, but production has not started
+
+This is expected if the Odoo quotation is still a draft. **Ordered** in QF does not confirm the Odoo quotation. Review its confirmation and the normal Odoo procurement and manufacturing rules.
+
+## A changed export did not replace the confirmed order
+
+Confirmed orders are protected. Look for the linked draft revision and compare the source content. An identical verified replay can reuse the existing result.
+
+## Master data or prices differ
+
+Check whether that exchange is enabled and whether QF has requested a new snapshot. Compare the configured price source and units, especially per-square-metre and per-sheet prices.
+
+## A returned status looks wrong
+
+Check whether status feedback is enabled and which mapping is configured. **Produced** requires all non-cancelled manufacturing orders to be done. **Delivered** can follow a partial outgoing delivery; inspect actual delivered quantities in Odoo.
+
+## Information for support
+
+Provide the QF project reference, Odoo quotation or order reference, affected company, observed result, expected result and exact visible error. Add the time of the relevant export or change. Keep credentials out of screenshots and messages.
+
+See [settings](/qf2odoo/settings) for optional behaviour, or the [QF2Odoo product page](https://sheetmetalconnect.com/integratie-qf2odoo) for the commercial scope.

@@ -36,7 +36,12 @@
           },
           {
             "group": "QF2Odoo",
-            "pages": []
+            "pages": [
+              "qf2odoo/overview",
+              "qf2odoo/workflow",
+              "qf2odoo/settings",
+              "qf2odoo/troubleshooting"
+            ]
           },
           {
             "group": "Odoo UNS Connector",

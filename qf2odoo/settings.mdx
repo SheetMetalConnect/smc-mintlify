@@ -1,0 +1,37 @@
+---
+title: "Choose the QF2Odoo exchanges your team needs"
+sidebarTitle: "Settings"
+description: "Understand core quotation import, optional master-data and status exchanges, and the controls that protect commercial content in Odoo drafts."
+keywords: ["Sheet Metal Connect","QF2Odoo","user guide"]
+---
+
+QF2Odoo has a core quotation-import workflow and separately configured return exchanges. Your administrator confirms which capabilities are enabled in your installed release.
+
+[Nederlands](/nl/qf2odoo/settings)
+
+## Core and optional capabilities
+
+| Capability | What it means for your team |
+| --- | --- |
+| Core quotation import | Exported projects arrive as Odoo drafts with their product and manufacturing information. |
+| Optional workspace | QF project views, source links and linked export history make imported work easier to find. |
+| Optional master-data exchange | QF requests the enabled customer, supplier or catalogue article snapshots from Odoo. |
+| Optional status feedback | Odoo manufacturing and delivery stages are reported to QF using configured mappings. |
+
+A master-data change in Odoo is not a promise of an immediate update in QF. The exchange starts when QF requests it.
+
+## Protect portal commercial content
+
+With the workspace installed, administrators can use **Protect QF Portal Commercial Content** under **Sales → Settings → QuotationFactory**.
+
+The setting is enabled per company by default. It protects portal-origin commercial content on draft and sent quotations from ordinary user edits. Shipping and work-preparation information remain editable, and normal quotation confirmation remains available.
+
+## Agree price and unit handling
+
+For article master-data exchange, the price source is configurable: supplier price with cost fallback, or cost. Confirm the intended source before comparing a price in QF with Odoo.
+
+Sheet prices and tiers held per square metre in Odoo can be converted to per-sheet values for QF using explicit sheet dimensions. This conversion does not rewrite the Odoo master data.
+
+Some installations also enable a delivery-completion gate. It is an optional administrative setting, not a default step for every user.
+
+For a missing or unexpected result, use the [troubleshooting guide](/qf2odoo/troubleshooting).

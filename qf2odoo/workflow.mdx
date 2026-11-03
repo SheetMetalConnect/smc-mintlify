@@ -1,0 +1,46 @@
+---
+title: "Follow a QF quotation into Odoo"
+sidebarTitle: "Daily workflow"
+description: "Follow a QuotationFactory export through draft review, Odoo confirmation, production and delivery, with clear rules for revisions and status feedback."
+keywords: ["Sheet Metal Connect","QF2Odoo","user guide"]
+---
+
+Use QF2Odoo to carry the prepared quotation into Odoo without rebuilding its product structure by hand. The decision to turn that quotation into an order stays in Odoo.
+
+[Nederlands](/nl/qf2odoo/workflow)
+
+<Steps>
+  <Step title="Export the project from QuotationFactory">
+    Complete the quotation project and use the export process configured for your company. Keep the source project reference so you can identify the result.
+  </Step>
+  <Step title="Find and review the Odoo draft">
+    Open the imported quotation. Check the customer, quantities, commercial terms, products, bills of materials, operations and attachments against the source.
+    With the optional workspace installed, use **Sales → Orders → QF Projects**. The **QuotationFactory** tab shows the source project information and link.
+  </Step>
+  <Step title="Confirm through the normal Odoo process">
+    Confirm the quotation when your business checks are complete. Odoo then follows its configured procurement and manufacturing rules. There is no separate QF production-release button.
+  </Step>
+  <Step title="Continue production and delivery in Odoo">
+    Use the normal Odoo manufacturing and delivery process. If status feedback is enabled, the connector reports the configured stage back to QuotationFactory.
+  </Step>
+</Steps>
+
+## Understand the returned status
+
+The default mappings are:
+
+| Odoo event | QuotationFactory status |
+| --- | --- |
+| Manufacturing is underway | Producing |
+| All non-cancelled manufacturing orders are done | Produced |
+| An outgoing delivery is validated | Delivered |
+
+**Delivered** can follow a partial outgoing delivery. It is not proof that every line has shipped. Review deliveries in Odoo for the actual quantities.
+
+Status can move backward when the underlying Odoo stage changes. Invoicing and payments remain separate Odoo processes.
+
+## Handle a revised export
+
+Changed source content creates a linked draft revision. Confirmed orders remain protected. A verified identical replay reuses the accepted result rather than creating a new business order.
+
+Review the current draft and its source reference before confirming it. See [troubleshooting](/qf2odoo/troubleshooting) if an expected revision is missing.

@@ -1,47 +1,45 @@
 ---
-title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+title: "Prepare your first integration walkthrough"
+sidebarTitle: "First use"
+description: "Prepare a first walkthrough with your team: confirm the systems, agree data ownership, and check an example from its source to the expected result."
+keywords:
+  - "Sheet Metal Connect"
+  - "integrations"
+  - "user guide"
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
+Before your team starts using QF2Odoo or the Odoo UNS Connector, agree what a successful transfer should look like. Use an agreed test example and the workflow enabled for your company.
 
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
+[Nederlands](/nl/quickstart)
 
-## Prerequisites
+## Before you begin
 
-Before you begin, you must have:
-
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
-
-## Get started
+The documented integrations target **Odoo 19**. Your administrator needs to confirm the installed release, relevant Odoo apps, access rights and enabled exchanges. QuotationFactory is needed for QF2Odoo; a configured UNS connection and receiving systems are needed for the Odoo UNS Connector.
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
-
-    ```bash
-    npm install your-package
-    ```
+  <Step title="Agree where each change belongs">
+    Identify who maintains customer and article data, who confirms quotations, and which system reports each production operation. Name the person responsible for resolving transfer errors.
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
-
-    ```bash
-    your-cli init
-    ```
+  <Step title="Follow one example">
+    For QF2Odoo, follow an exported project into its Odoo draft quotation. For the Odoo UNS Connector, follow a manufacturing order snapshot and, where enabled, one authorized feedback message.
   </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
-
-    ```bash
-    your-cli start
-    ```
+  <Step title="Check the business result">
+    Compare the source reference, quantities and expected destination record. A sent message or receipt alone does not prove that a quotation, time entry or stock booking is correct.
   </Step>
 </Steps>
 
-<Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
+## Choose your workflow
 
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
-</Tip>
+<Columns cols={2}>
+  <Card title="From quotation to order" href="/qf2odoo/workflow">
+    Check the imported quotation before normal Odoo confirmation.
+  </Card>
+
+  <Card title="From order to production feedback" href="/odoo-uns/workflow">
+    Follow outgoing information, incoming feedback and its recorded effect.
+  </Card>
+</Columns>
+
+Agree optional capabilities before using them. Automated time recording, completion and stock booking have separate settings; receiving production information does not automatically authorize them.
+
+For product fit and implementation scope, see the [integration pages](https://sheetmetalconnect.com/integraties).

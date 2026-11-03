@@ -25,10 +25,10 @@ De koppeling maakt technische momentopnamen voor maakwerk. Artikelen, stuklijste
 
 <Tabs>
   <Tab title="Eén maakdeel">
-    Een maakdeel wordt een revisiespecifiek Odoo-artikel met stuklijst, materiaalcomponenten en toepasselijke bewerkingen. Het materiaal verwijst naar een bestaand catalogusartikel in Odoo.
+    Een maakdeel wordt een revisiespecifiek Odoo-artikel. Als de bron componenten of bewerkingen bevat, ontstaat ook een stuklijst met die componenten en bewerkingen. Het materiaal verwijst naar een bestaand catalogusartikel in Odoo.
   </Tab>
   <Tab title="Samenstelling met meerdere niveaus">
-    Een samenstelling wordt een revisiespecifiek artikel. De standaard Odoo-stuklijst bevat de componenten; onderliggende samenstellingen behouden hun eigen niveaus en toepasselijke bewerkingen.
+    Een samenstelling die geen kunstmatige verzamelstructuur is, wordt een revisiespecifiek artikel. De standaard Odoo-stuklijst bevat de componenten; onderliggende samenstellingen behouden hun eigen niveaus en toepasselijke bewerkingen. Kunstmatige verzamelstructuren worden uitgepakt.
   </Tab>
   <Tab title="Inkoopdeel">
     Een deel met uitsluitend inkoopstappen verwijst naar een bestaand Odoo-artikel. De koppeling maakt daarvoor geen productiestuklijst en vervangt de routes van het catalogusartikel niet.
@@ -43,9 +43,11 @@ De koppeling maakt technische momentopnamen voor maakwerk. Artikelen, stuklijste
 | Aangeleverde project-, artikel- en bewerkingsopmerkingen | QF-productie-instructies op relevante productieorders en werkorders | Door de koppeling toegevoegde instructies. Orders ontstaan na bevestiging volgens de normale Odoo-regels. |
 | Expliciete uitbesteding met leverancier | Uitbestedingsstuklijst en leverancier | Standaard Odoo-uitbesteding als de QF-resource expliciet een leverancier aanwijst. |
 
+De Odoo-handleiding beschrijft [stuklijsten met meerdere niveaus](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/advanced_configuration/sub_assemblies.html) en de [inrichting van maakartikelen](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/basic_setup/configure_manufacturing_product.html) (Engels).
+
 ## Wat is wanneer nodig?
 
-Voor iedere import zijn de integratiemodule en een overeenkomstige connector nodig. De werkruimte is optioneel: die voegt navigatie en overzichten toe, niet de onderliggende standaardofferte en productierecords.
+Voor iedere import zijn de integratiemodule en een overeenkomstige connector nodig. Het project heeft een klant en minstens één offertregel op het hoogste niveau nodig. De werkruimte is optioneel: die voegt navigatie en overzichten toe, niet de onderliggende standaardofferte en productierecords.
 
 | Moment | Voorwaarde |
 | --- | --- |
@@ -53,6 +55,8 @@ Voor iedere import zijn de integratiemodule en een overeenkomstige connector nod
 | Als het in de export voorkomt | Codes van interne QF-resources moeten overeenkomen met Odoo-werkcentra; uitbesteding vraagt een passende leverancier. Een aangeleverde valuta moet actief zijn en passen bij een Odoo-prijslijst, of bij de bedrijfsvaluta waar die standaardroute geldt. |
 | Bij ingeschakelde synchronisatie | QF vraagt de ingestelde klant-, leveranciers- of artikelgegevens op uit Odoo. Deze uitwisselingen zijn optioneel en vragen de bijbehorende geschikte stamgegevens. |
 | Bevestiging en productie | De import moet compleet zijn. Medewerkers bevestigen de offerte in Odoo na de commerciële controles. De ingerichte routes, inkoop- en productieregels bepalen wat daarna ontstaat. |
+
+De [Odoo-handleiding voor aanvullen op order](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/inventory/warehouses_storage/replenishment/mto.html) beschrijft de voorwaarden voor maak- en inkoopartikelen (Engels).
 
 Een projectimport maakt de conceptofferte en technische gegevens aan, maar geen productie- of voorraadbehoefte. Een losse import van alleen artikelen of stuklijsten is geen beschreven werkwijze.
 

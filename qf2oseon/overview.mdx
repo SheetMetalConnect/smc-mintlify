@@ -18,6 +18,8 @@ flowchart TD
   Q["QuotationFactory"] --> E["Official QF Edge Connector"]
   E --> I["Order integration"]
   I --> O["Oseon: parts and orders"]
+  O -->|"Configured order status"| I
+  I -->|"Status feedback"| E
   E --> B["Bend-check service"]
   B --> T["TruTops Boost"]
   T --> B

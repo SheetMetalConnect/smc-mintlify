@@ -47,7 +47,8 @@
               "odoo-uns/troubleshooting"
             ]
           }
-        ]
+        ],
+        "default": true
       },
       {
         "language": "nl",

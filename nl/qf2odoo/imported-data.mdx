@@ -10,14 +10,14 @@ QF2Odoo importeert een QF-project naar een Odoo-offerte met bijbehorende technis
 
 ## Offerte en klant
 
-| Uit QuotationFactory | Vindplaats in Odoo | Wat gebeurt er? |
+| Gegevens uit QuotationFactory | Waar in Odoo | Wanneer nodig? |
 | --- | --- | --- |
-| Inkopen­de organisatie en contactpersonen | Klant op de offerte; Contacten | De organisatie moet al bestaan. Contactpersonen worden op e-mailadres gekoppeld of daaronder aangemaakt. De eerste aangeleverde contactpersoon wordt het ordercontact. |
-| Offertedelen, aantallen en stukprijzen | Offertregels | De koppeling levert QF-regels en prijzen. Odoo beheert belastingen en financiële verwerking. |
-| Gewenste leverdatum | Toegezegde datum op de offerte | De geschatte datum blijft afzonderlijke broninformatie en vervangt de gewenste datum niet. |
-| Betalings- en levervoorwaarden, offerteheader en -footer | Standaardvoorwaarden waar herkend; tabblad **QF-offerte** voor broninhoud | De koppeling verbindt overeenkomende Odoo-voorwaarden. Niet-herkende bronvoorwaarden blijven zichtbaar op het QF-tabblad. |
-| Tekeningen en bronexport | Bijlagen bij de offerte en gekoppelde records | De oorspronkelijke export hangt aan de offerte; broninformatie is alleen voor interne gebruikers toegankelijk. |
-| QF-project, status en revisie | Broninformatie op de offerte; optioneel tabblad **QuotationFactory** en **QF-projecten** | De bronstatus is informatief en bevestigt de order niet. |
+| Inkopen­de organisatie en contactpersonen | Klant op de offerte; Contacten | Voor import is een bestaande, overeenkomende organisatie nodig. Aangeleverde contactpersonen worden op e-mail gekoppeld of aangemaakt; de eerste wordt het ordercontact. |
+| Offertedelen, aantallen en stukprijzen | Offertregels | Voor import is minstens één offertregel op het hoogste niveau nodig. Odoo beheert belastingen en financiële verwerking. |
+| Gewenste leverdatum | Toegezegde datum op de offerte | Wanneer aangeleverd. De geschatte datum blijft afzonderlijke broninformatie en vervangt de gewenste datum niet. |
+| Betalings- en levervoorwaarden, offerteheader en -footer | Standaardvoorwaarden waar herkend; tabblad **QF-offerte** voor broninhoud | Wanneer aangeleverd. Overeenkomende Odoo-voorwaarden worden gekoppeld; niet-herkende blijven zichtbaar op het QF-tabblad. |
+| Tekeningen en bronexport | Bijlagen bij de offerte en gekoppelde records | Wanneer aangeleverd. De oorspronkelijke export hangt aan de offerte; broninformatie is alleen voor interne gebruikers toegankelijk. |
+| QF-project, status en revisie | Broninformatie op de offerte; optioneel tabblad **QuotationFactory** en **QF-projecten** | Wanneer aangeleverd. De bronstatus is informatief en bevestigt de order niet. |
 
 ## Onderdelen, samenstellingen en inkoopdelen
 
@@ -35,13 +35,13 @@ De koppeling maakt technische momentopnamen voor maakwerk. Artikelen, stuklijste
   </Tab>
 </Tabs>
 
-| Uit QuotationFactory | Vindplaats in Odoo | Standaard of toegevoegd |
+| Gegevens uit QuotationFactory | Waar in Odoo | Wanneer nodig? |
 | --- | --- | --- |
-| Identiteit, afmetingen en aangeleverde technische details | Artikel en bijbehorende QF-broninformatie | Standaardartikel met QF-velden en broninformatie. De inhoud hangt af van de aangeleverde gegevens. |
-| Samenstellingsstructuur, materiaal en componentaantallen | Productie → Stuklijsten | Standaardstuklijst en componentregels. Bestaande catalogusmaterialen blijven van Odoo. |
-| Volgorde van bewerkingen en resourcecodes | Stuklijst → Bewerkingen en gekoppeld werkcentrum | Standaardbewerkingen en werkcentra, aangevuld met QF-instructies en details. |
-| Aangeleverde project-, artikel- en bewerkingsopmerkingen | QF-productie-instructies op relevante productieorders en werkorders | Door de koppeling toegevoegde instructies. Orders ontstaan na bevestiging volgens de normale Odoo-regels. |
-| Expliciete uitbesteding met leverancier | Uitbestedingsstuklijst en leverancier | Standaard Odoo-uitbesteding als de QF-resource expliciet een leverancier aanwijst. |
+| Identiteit, afmetingen en aangeleverde technische details | Artikel en bijbehorende QF-broninformatie | Wanneer aangeleverd: een standaardartikel met QF-velden en broninformatie. |
+| Samenstellingsstructuur, materiaal en componentaantallen | Productie → Stuklijsten | Wanneer aangeleverd; Odoo heeft een stuklijst nodig om voor een maakartikel een productieorder aan te maken. Bestaande catalogusmaterialen blijven van Odoo. |
+| Volgorde van bewerkingen en resourcecodes | Stuklijst → Bewerkingen en gekoppeld werkcentrum | Bij aangeleverde bewerkingen moeten resourcecodes overeenkomen met Odoo-werkcentra. |
+| Aangeleverde project-, artikel- en bewerkingsopmerkingen | QF-productie-instructies op relevante productieorders en werkorders | Wanneer aangeleverd. Productieorders en werkorders ontstaan na bevestiging volgens de normale Odoo-regels. |
+| Expliciete uitbesteding met leverancier | Uitbestedingsstuklijst en leverancier | Als een uitbestede QF-resource expliciet een leverancier aanwijst; die leverancier moet overeenkomen met Odoo. |
 
 De Odoo-handleiding beschrijft [stuklijsten met meerdere niveaus](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/advanced_configuration/sub_assemblies.html) en de [inrichting van maakartikelen](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/basic_setup/configure_manufacturing_product.html) (Engels).
 

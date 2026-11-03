@@ -31,8 +31,8 @@ De offerte-import is de basis van QF2Odoo. De werkruimte, uitwisseling van stamg
 flowchart LR
     Q["QF2Odoo: project importeren"] --> C["Odoo: offerte controleren en bevestigen"]
     C --> P["Odoo: productie en levering"]
-    C --> F["Odoo: facturatie volgens facturatiebeleid"]
-    P --> F
+    C -->|"Bestelde hoeveelheden"| F["Odoo: facturatie volgens facturatiebeleid"]
+    P -->|"Geleverde hoeveelheden"| F
     F --> B["Odoo: betaling"]
     W["Optionele QF-werkruimte: projecten volgen"] --- Q
     R["Optionele uitwisseling: stamgegevens en statussen"] --- Q

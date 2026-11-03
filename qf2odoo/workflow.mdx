@@ -27,7 +27,7 @@ See [imported data](/qf2odoo/imported-data) for destinations, requirements and o
 flowchart TB
   Q["Export QF project"] --> D["Review Odoo draft"]
   D --> C["Confirm sales order"]
-  C --> P["Production"]
+  C --> P["Production when applicable"]
   P --> L["Delivery"]
   C -->|"Ordered quantities"| I["Invoice according to policy"]
   L -->|"Delivered quantities"| I

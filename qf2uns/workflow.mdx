@@ -34,7 +34,7 @@ flowchart TB
   D -->|"No"| E["Confirmation and archive"]
   D -->|"Yes"| F["Retry may repeat messages"]
   F --> G["Consumer deduplicates by entity and revision"]
-  G --> E
+  F --> C
 ```
 
 A retry can repeat messages around a failure. Consumers must deduplicate them; the confirmation is not a guarantee of exactly-once delivery. If an export reuses a filename with different contents, the worker rejects it rather than treating the changed file as the earlier export.

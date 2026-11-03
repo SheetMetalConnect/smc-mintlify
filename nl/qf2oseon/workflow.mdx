@@ -11,7 +11,7 @@ De calculatie begint in QuotationFactory. Controleer de overgenomen gegevens in 
   <img src="/images/qf-project-status-nl.png" alt="Illustratieve QF-projectkop met statuslabels en portaalzichtbaarheid" />
 </Frame>
 
-De labels tonen mogelijke stappen; de afbeelding bewijst geen afronding of automatische statusfeedback.
+De labels tonen mogelijke stappen. Controleer de werkelijke projectstatus en de ingestelde terugmeldroute.
 
 ## Kies de route
 
@@ -21,10 +21,10 @@ Een klant kan een aanvraag starten in het portaal van QuotationFactory. Een mede
 | --- | --- |
 | Controle voor de offerte | De ingestelde Boost-controle geeft het oordeel terug aan QuotationFactory. Dit staat los van de orderexport naar Oseon. |
 | Artikelen voorbereiden zonder klantorder | Als artikelverwerking en export bij **Quoted** zijn ingericht, kunnen geschikte artikelen zonder klantorder naar Oseon. In een inrichting met alleen artikelverwerking gebeurt dit ook bij exports met Ordered of Producing. Controleer de artikelen voordat je ze opnieuw gebruikt. |
-| Klantorder | Na export van een project met status **Ordered** verwerkt de koppeling geschikte artikelen en maakt zij, indien ingeschakeld, een klantorder klaar voor import in Oseon. |
-| Productieorder | Een export bij **Producing** kan ook productieorders klaarzetten als die route is ingeschakeld. |
+| Klantorder | Na export van een project met status **Ordered** (besteld) verwerkt de koppeling geschikte artikelen en maakt zij, indien ingeschakeld, een klantorder klaar voor import in Oseon. |
+| Productieorder | Een export bij **Producing** (in productie) kan ook productieorders klaarzetten als die route is ingeschakeld. |
 
-De exportmomenten van de QF Edge Connector en de actieve routes hangen af van de inrichting. Een status in QuotationFactory bewijst op zichzelf niet dat een export of import in Oseon is geslaagd.
+De exportmomenten van de QF Edge Connector en de actieve routes hangen af van de inrichting. Controleer na de ingestelde export het bijbehorende resultaat in Oseon.
 
 ## Losse delen en samenstellingen
 
@@ -37,7 +37,7 @@ De artikelinterface verwerkt geschikte plaatdelen met een snijbewerking. Buizen 
 | Bestemming | Gegevens uit het QF-project | Controle in Oseon |
 | --- | --- | --- |
 | Artikelstam, via de artikelinterface | Geschikte plaatdelen met snijbewerking: artikelnummer en omschrijving, tekeningnummer en revisie, gekozen materiaal, CAD-verwijzing en ingestelde werkplanstappen en documenten. | Controleer artikel, materiaal, tekening en de gekoppelde bewerkingen. Een bewerking zonder vertaaltabel kan ontbreken. |
-| Klantorder, via de orderimport | Project-ID en referentie, klant en adres, leveringsconditie en per geëxporteerd deel een positie met artikelnummer, aantal, stuksprijs, materiaal, gewenste datum en ingesteld werkplan. | Controleer de order en posities na import. Een positie bewijst niet dat het artikel is aangemaakt. |
+| Klantorder, via de orderimport | Project-ID en referentie, klant en adres, leveringsconditie en per geëxporteerd deel een positie met artikelnummer, aantal, stuksprijs, materiaal, gewenste datum en ingesteld werkplan. | Controleer de order en posities na import. Controleer het bijbehorende artikel apart. |
 | Productieorder, indien ingeschakeld | Artikelnummer, projectaantal, klant en materiaal per geëxporteerd deel, met een productiewerkplan. | Controleer de geïmporteerde productieorders, datums en aantallen. |
 | Buisartikel, indien ingeschakeld | Buisgegevens via de bestandsimport van Oseon; CAD-bestanden volgen de ingerichte buisroute. | Controleer het buisartikel en de productiegegevens. |
 
@@ -53,7 +53,7 @@ Bij een bestaand plaatdeel kan de koppeling een wijziging sturen als QF de bijbe
 
 De klantorderimport gebruikt de project-ID van QuotationFactory als externe identificatie en geeft de projectreferentie apart mee. Het Oseon-ordernummer is een referentie van Oseon; beide helpen bij het terugzoeken.
 
-Als statusfeedback voor klantorders is ingericht, wordt Oseon **Released** vertaald naar QF **Producing**, **Finished** naar **Produced**, **Delivered** naar **Delivered** en **Cancelled** naar **Cancelled**. Oseon Incomplete en Valid wijzigen de QF-projectstatus niet. Andere Oseon-statussen zijn in deze feedbackroute niet gekoppeld. Zichtbaarheid in het portaal bewijst niet dat feedback is ingeschakeld of ontvangen.
+Als statusfeedback voor klantorders is ingericht, wordt Oseon **Released** vertaald naar QF **Producing**, **Finished** naar **Produced**, **Delivered** naar **Delivered** en **Cancelled** naar **Cancelled**. Oseon Incomplete en Valid wijzigen de QF-projectstatus niet. Andere Oseon-statussen zijn in deze feedbackroute niet gekoppeld. Controleer de ingestelde terugmeldroute en de werkelijke projectstatus in QF.
 
 ## Controleer een kantdeel
 
@@ -72,20 +72,20 @@ Boost berekent een kantoplossing met de ingestelde machine en gereedschappen. Qu
 ```mermaid
 flowchart TD
  A["Exporteer project bij ingestelde status"] --> B["Koppeling verwerkt project en bijlagen"]
- B --> C["Oseon ontvangt artikelen en order"]
- C --> D["Controleer order, tekeningen en werkplan"]
+ B --> C["Ingerichte artikel- of orderroute"]
+ C --> D["Controleer het resultaat in Oseon"]
  D --> E["Werk verder in Oseon"]
 ```
 
 <Steps>
   <Step title="Exporteer het project">Rond het project in QuotationFactory af en zet het op de afgesproken exportstatus.</Step>
-  <Step title="Controleer in Oseon">Open de order en artikelen. Vergelijk aantallen, materiaal, tekeningen en werkplan met het project.</Step>
+  <Step title="Controleer in Oseon">Controleer bij alleen artikelverwerking de aangemaakte artikelen. Controleer bij de klantorderroute de order, posities en artikelen. Controleer bij de productieorderroute de productieorders. Vergelijk de toepasselijke aantallen, materialen, tekeningen en werkplannen met het project.</Step>
   <Step title="Maak de voorbereiding compleet">Vul ontbrekende gegevens aan voordat de werkvoorbereiding verdergaat.</Step>
 </Steps>
 
 Controleer de bestaande order in Oseon voordat een gewijzigd project opnieuw wordt geëxporteerd. Stel vast welke wijzigingen nodig zijn. Oseon bepaalt hoe de import een herhaalde order behandelt; een nieuwe export werkt de order niet noodzakelijk bij en voorkomt niet vanzelf dubbele orders.
 
-Oseon verwerkt de orderimport zelf. Een bestand bij de importinterface bewijst nog niet dat de order compleet of productiegereed is. Als statusfeedback is ingericht, kan Oseon voortgang teruggeven aan QuotationFactory.
+Oseon verwerkt de orderimport nadat de koppeling het bestand heeft afgeleverd. Controleer het geïmporteerde resultaat en de volledigheid voordat het naar productie gaat. Als statusfeedback is ingericht, kan Oseon voortgang teruggeven aan QuotationFactory.
 
 ## Als een resultaat ontbreekt
 

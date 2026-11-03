@@ -79,6 +79,16 @@ Zoek steeds de betreffende order of bewerking. Controleer daarnaast de tijdregis
 
 ## Controleer wat werkelijk is geboekt
 
+```mermaid
+flowchart TD
+    T["Terugmelding ontvangen"] --> A{"Bron en gevraagde handeling toegestaan?"}
+    A -->|Nee| R["Afgewezen met reden"]
+    A -->|Ja| C{"Odoo-controles geslaagd?"}
+    C -->|Nee| R
+    C -->|"Ja, waarneming"| W["Waarneming vastgelegd"]
+    C -->|"Ja, toegestane handeling"| B["Tijd, gereedmelding of voorraadboeking"]
+```
+
 Vastgelegde voortgang is niet automatisch gereedgemelde productie. Een waargenomen aantal is niet automatisch een voorraadmutatie.
 
 Welke handelingen zijn toegestaan, staat bij de [instellingen](/nl/odoo-uns/settings).

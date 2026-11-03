@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168.341 168.341">
+  <defs>
+    <linearGradient id="smc-hex" gradientUnits="userSpaceOnUse" x1="3.237" y1="0" x2="165.103" y2="0">
+      <stop offset="0" stop-color="#47B5E2"/>
+      <stop offset="0.5" stop-color="#5C7BC8"/>
+      <stop offset="1" stop-color="#6658A3"/>
+    </linearGradient>
+    <linearGradient id="smc-smc" gradientUnits="userSpaceOnUse" x1="22.07" y1="0" x2="138.77" y2="0">
+      <stop offset="0" stop-color="#47B5E2"/>
+      <stop offset="0.5" stop-color="#5C7BC8"/>
+      <stop offset="1" stop-color="#6658A3"/>
+    </linearGradient>
+  </defs>
+  <path d="M34.874 29.84 L133.466 29.84 L160.631 84.17 L133.466 138.5 L34.874 138.5 L7.709 84.17 Z" fill="none" stroke="url(#smc-hex)" stroke-width="8" stroke-linejoin="miter" stroke-miterlimit="4"/>
+  <path d="M34.07 51.47 L22.07 75.47 L23.57 78.47 L64.262 78.47 L56.762 93.47 L37.779 93.47 L34.029 85.97 L27.32 85.97 L34.07 99.47 L56.762 99.47 L67.262 120.47 L73.97 120.47 L61.97 96.47 L70.97 78.47 L81.17 78.47 L81.17 120.47 L87.17 120.47 L87.17 78.47 L97.37 78.47 L106.37 96.47 L94.37 120.47 L101.079 120.47 L111.579 99.47 L135.77 99.47 L138.77 93.47 L111.579 93.47 L102.579 75.47 L111.579 57.47 L138.77 57.47 L135.77 51.47 L107.87 51.47 L97.37 72.47 L30.279 72.47 L37.779 57.47 L56.762 57.47 L60.512 64.97 L67.22 64.97 L60.47 51.47 Z" fill="url(#smc-smc)" stroke="url(#smc-smc)" stroke-width="2" stroke-linejoin="miter" stroke-miterlimit="4"/>
+</svg>

@@ -7,7 +7,7 @@
     "light": "#47B5E2",
     "dark": "#6658A3"
   },
-  "favicon": "https://sheetmetalconnect.com/favicon.svg",
+  "favicon": "/images/smc-favicon.svg",
   "navigation": {
     "global": {
       "anchors": [

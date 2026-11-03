@@ -10,14 +10,14 @@ QF2Odoo imports a QF project into an Odoo quotation and its related engineering 
 
 ## Quotation and customer
 
-| From QuotationFactory | Where to find it in Odoo | What happens |
+| Data from QuotationFactory | Where in Odoo | Needed when |
 | --- | --- | --- |
-| Buying company and contacts | Customer on the quotation; Contacts | The company must already exist. Supplied contacts are matched by email or created under it. The first supplied contact is the order contact. |
-| Quoted items, quantities and unit prices | Quotation lines | The connector supplies QF lines and prices. Odoo owns taxes and financial processing. |
-| Requested delivery date | Quotation commitment date | The estimated date is kept separately as source information; it does not replace the requested date. |
-| Payment and delivery terms, quotation header and footer | Native terms where matched; **QF Quotation** tab for supplied source content | The connector links matching Odoo terms. Unsupported source terms remain visible on the QF tab. |
-| Drawings and source export | Quotation attachments and related records | The original export is attached to the quotation; access to its source information is for internal users. |
-| QF project, status and revision | Quotation source information; optional **QuotationFactory** tab and **QF Projects** | Source status is informational. It does not confirm the order. |
+| Buying company and contacts | Customer on the quotation; Contacts | A matching company is needed to import. Supplied contacts are matched by email or created under it; the first is the order contact. |
+| Quoted items, quantities and unit prices | Quotation lines | At least one top-level quotation line is needed to import. Odoo owns taxes and financial processing. |
+| Requested delivery date | Quotation commitment date | When supplied. Estimated date is separate source information; it does not replace the requested date. |
+| Payment and delivery terms, quotation header and footer | Native terms where matched; **QF Quotation** tab for supplied source content | When supplied. Matching Odoo terms are linked; unsupported source terms remain visible on the QF tab. |
+| Drawings and source export | Quotation attachments and related records | When supplied. The original export is attached; source information is for internal users. |
+| QF project, status and revision | Quotation source information; optional **QuotationFactory** tab and **QF Projects** | When supplied. Source status is informational and does not confirm the order. |
 
 ## Parts, assemblies and purchased items
 
@@ -35,13 +35,13 @@ The connector creates engineering snapshots for manufactured work. The resulting
   </Tab>
 </Tabs>
 
-| From QuotationFactory | Where to find it in Odoo | Standard record or connector addition |
+| Data from QuotationFactory | Where in Odoo | Needed when |
 | --- | --- | --- |
-| Part or assembly identity, dimensions and supplied engineering details | Product and its QF source information | Native product plus QF fields and source information. Availability depends on supplied data. |
-| Assembly structure, material and component quantities | Manufacturing → Bills of Materials | Native bill of materials and component lines. Existing catalogue materials remain Odoo-owned. |
-| Ordered working steps and resource codes | Bill of materials → Operations and linked work centre | Native operations and work centres; supplied QF instructions and details are added. |
-| Supplied project, product and operation comments | QF production instructions on relevant production and work orders | Connector-added instructions. Production and work orders arise through Odoo's normal rules after confirmation. |
-| Explicit outsourced operation and supplier | Subcontracting bill of materials and supplier | Native Odoo subcontracting structure, when the QF resource explicitly identifies a supplier. |
+| Part or assembly identity, dimensions and supplied engineering details | Product and its QF source information | When supplied. Native product plus QF fields and source information. |
+| Assembly structure, material and component quantities | Manufacturing → Bills of Materials | When supplied; Odoo needs a BOM to generate an MO for a manufactured product. Existing catalogue materials remain Odoo-owned. |
+| Ordered working steps and resource codes | Bill of materials → Operations and linked work centre | For operations supplied by QF, resource codes must match Odoo work centres. |
+| Supplied project, product and operation comments | QF production instructions on relevant production and work orders | When supplied. Production and work orders arise through Odoo's normal rules after confirmation. |
+| Explicit outsourced operation and supplier | Subcontracting bill of materials and supplier | When an outsourced QF resource explicitly identifies a supplier; that supplier must match in Odoo. |
 
 For the standard Odoo structure, see [multilevel bills of materials](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/advanced_configuration/sub_assemblies.html) and [manufacturing product configuration](https://www.odoo.com/documentation/19.0/applications/inventory_and_mrp/manufacturing/basic_setup/configure_manufacturing_product.html).
 

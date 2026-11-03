@@ -1,37 +1,79 @@
 ---
-title: "Odoo UNS Connector: verbind productiewerk"
+title: "Odoo UNS Connector: orders en terugmeldingen"
 sidebarTitle: "Overzicht"
-description: "Lees hoe productiegegevens uit Odoo aangesloten systemen bereiken en hoe bevoegde terugmeldingen voortgang, tijd, gereedmelding en voorraad vastleggen."
-keywords: ["Odoo UNS Connector", "Odoo 19", "productie", "handleiding"]
+description: "Lees hoe de Odoo UNS Connector productieorders met de werkvloer uitwisselt. Bekijk de onderdelen, de gegevensstroom en wat gebruikers in Odoo zien."
+keywords:
+  - "Odoo UNS Connector"
+  - "Odoo 19"
+  - "productie"
+  - "handleiding"
 ---
 
-De Odoo UNS Connector verbindt Odoo Productie met de gedeelde productiedatalaag. De connector verstuurt ordergegevens en ontvangt terugmeldingen van bevoegde systemen. Zo kan uw team het werk volgen in Odoo en op de werkvloer.
+De Odoo UNS Connector verbindt Odoo Productie met aangesloten werkvloersystemen. Productieorders en bewerkingen gaan naar buiten. Voortgang en aantallen komen terug. Tijdregistratie, gereedmelding en voorraadboeking zijn afzonderlijk in te schakelen functies.
 
 [English](/odoo-uns/overview)
 
+## Wat lost de koppeling op?
+
+Odoo legt vast wat er gemaakt moet worden. De uitvoering vindt plaats in machines, terminals en productiesystemen op de werkvloer.
+
+De connector deelt ordergegevens via een **Unified Namespace (UNS)**. Dat is de gedeelde datalaag tussen de aangesloten systemen. Terugmeldingen kunnen vervolgens bij de juiste bewerking of order in Odoo worden verwerkt.
+
+## Uit welke onderdelen bestaat de koppeling?
+
+| Onderdeel | Functie |
+| --- | --- |
+| Integratie-uitbreiding in Odoo | Legt uitgaande ordergegevens vast en controleert welke terugmeldingen in Odoo mogen worden verwerkt. |
+| Integratie- en afleverdienst | Verzorgt de overdracht tussen de Odoo-uitbreiding en de gedeelde datalaag. |
+| UNS of datahub | Verdeelt de gegevens over de aangesloten systemen. |
+| Aangesloten werkvloersystemen | Ontvangen ordergegevens en melden voortgang terug, volgens de afgesproken werkwijze. |
+| Optionele voorraaduitbreidingen | Ondersteunen afzonderlijk toegestane voorraadboekingen en materiaalverbruik vanuit werkelijke partijen. |
+
+## Hoe lopen de gegevens?
+
 ```mermaid
 flowchart LR
-    O["Odoo Productie"] -->|"Momentopnamen van orders en bewerkingen"| U["Unified Namespace"]
-    U -->|"Ingerichte ordergegevens"| F["Aangesloten werkvloersystemen"]
-    F -->|"Terugmelding van bevoegde bron"| U
-    U -->|"Gevalideerde terugmelding"| O
+    O["Odoo met integratie-uitbreiding"] -->|"Order en bewerkingen"| D["Integratie- en afleverdienst"]
+    D --> U["UNS of datahub"]
+    U --> W["Aangesloten werkvloersystemen"]
+    W -->|"Terugmeldingen"| U
+    U --> D
+    D -->|"Verwerking volgens ingestelde bevoegdheden"| O
 ```
 
-## Welke gegevens gaan heen en terug?
+Odoo verstuurt een **momentopname**: de stand van de order op een bepaald moment. Ook een conceptorder kan zo'n momentopname opleveren.
 
-| Richting | Gegevens | Resultaat |
-| --- | --- | --- |
-| Odoo naar aangesloten systemen | Productieorders en bewerkingen | De orderstatus komt beschikbaar voor de ingerichte ontvangende systemen. |
-| Aangesloten systemen naar Odoo | Voortgang en aantallen per bewerking | Terugmelding van het ingestelde uitvoeringssysteem wordt vastgelegd. |
-| Aangesloten systemen naar Odoo, indien ingeschakeld | Gemeten tijd en gereedmelding | Kan tijd registreren of de bevoegde bewerking of productieorder in Odoo afronden. |
-| Externe voorraad naar Odoo, indien ingeschakeld | Partijvoorraad en bevoegde boekingen | Houdt waargenomen voorraad apart van voorraad die werkelijk in Odoo is geboekt. |
+<Note>
+  Een momentopname versturen geeft geen werk vrij en start geen machine. De ontvangende toepassing volgt de afgesproken productieaansturing.
+</Note>
 
-Een **momentopname** legt de order op een bepaald moment vast. Ook een conceptorder kan een momentopname opleveren. Publicatie daarvan is geen opdracht om werk vrij te geven of een machine te starten.
+## Wat verandert er zichtbaar in Odoo?
 
-## Beheerste terugmelding
+De productieorder krijgt het tabblad **UNS-integratie**, met de alleen-lezen **UNS-productieorderreferentie**.
 
-Per bewerking is één systeem ingesteld dat de voortgang mag terugmelden. Tijdregistratie, gereedmelding van bewerkingen, gereedmelding van productieorders en voorraadboeking hebben eigen instellingen. Een bericht ontvangen schakelt die handelingen niet automatisch in.
+Bij de werkorder toont hetzelfde tabblad de **Identiteit** en **Laatste terugkoppeling**. Daar zijn onder meer de externe status, het teruggekoppelde aantal en de terugkoppelingsnotitie te zien.
 
-De connector ondersteunt **Odoo 19**. Wat gebruikers zien hangt af van de geïnstalleerde onderdelen en afgesproken inrichting.
+Onder het menu **UNS** staan de uitgaande en inkomende berichten. Het **Terugkoppelingslogboek** laat zien hoe een terugmelding is verwerkt.
 
-Lees de [werkwijze](/nl/odoo-uns/workflow), [instellingen](/nl/odoo-uns/settings) of [problemen oplossen](/nl/odoo-uns/troubleshooting). Voor commerciële informatie kunt u naar de [productpagina](https://sheetmetalconnect.com/integratie-odoo-uns-connector).
+### Welke gegevens kunnen terugkomen?
+
+| Terugmelding | Verwerking in Odoo |
+| --- | --- |
+| Voortgang en aantallen per bewerking | Vastleggen van de terugmelding van het ingestelde uitvoeringssysteem. |
+| Gemeten tijd, indien ingeschakeld | Registreren van tijd bij de bewerking. |
+| Gereedmelding, indien toegestaan | Afronden van de bewerking of productieorder. |
+| Partijvoorraad, indien ingeschakeld | Vastleggen van waargenomen voorraad. Werkelijke voorraadboekingen vragen aparte toestemming. |
+
+Per bewerking is één systeem ingesteld dat voortgang mag terugmelden. Een bericht ontvangen geeft niet automatisch toestemming om ook tijd, gereedmelding of voorraad te boeken.
+
+## Wat blijft standaard Odoo?
+
+De productieorder en de bijbehorende productie- en voorraadregistraties blijven in Odoo. De connector verwerkt alleen de handelingen die voor de betreffende werkwijze zijn ingeschakeld.
+
+De connector ondersteunt **Odoo 19**. De zichtbare schermen en functies hangen af van de geïnstalleerde onderdelen en inrichting.
+
+## Aan de slag
+
+Volg [de productieorder en de terugmeldingen](/nl/odoo-uns/workflow). De [instellingen](/nl/odoo-uns/settings) beschrijven de afzonderlijke toestemmingen. Zie [problemen oplossen](/nl/odoo-uns/troubleshooting) als gegevens ontbreken.
+
+De [productpagina](https://sheetmetalconnect.com/integratie-odoo-uns-connector) beschrijft de mogelijkheden en de inrichting.
